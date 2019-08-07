@@ -16,7 +16,7 @@ const initialState=[
     },
     {
         title:"Second Column",
-        id: 0,
+        id: 1,
         cards: [
             {
                 id: 0,
@@ -34,7 +34,7 @@ const initialState=[
     },
     {
         title:"Third Column",
-        id: 0,
+        id: 2,
         cards: [
             {
                 id: 0,
