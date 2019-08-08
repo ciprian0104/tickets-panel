@@ -3,8 +3,17 @@ import { Icon } from '@material-ui/core';
 import Textarea from "react-textarea-autosize";
 import Card from "@material-ui/core/Card";
 import Button from "@material-ui/core/Button";
+import { connect } from "react-redux";
+import { addList, addCard } from "../actions";
 
-export default class TrelloActionButton extends Component {
+/*
+import Card from "react-bootstrap/Card"
+import "./App.css";
+import Form from 'react-bootstrap/Form';
+*/
+
+
+class TrelloActionButton extends Component {
 
     state = {
         formOpen: false,
@@ -27,6 +36,28 @@ export default class TrelloActionButton extends Component {
         this.setState({
             text: e.target.value
         })
+    };
+
+    handleAddList = () => {
+        const { dispatch } = this.props;
+        const { text } = this.state;
+
+        if (text) {
+            dispatch(addList(text));
+        }
+
+
+        return;
+    };
+
+    handleAddCard = () => {
+        const { dispatch, listID } = this.props;
+        const { text } = this.state;
+
+        if (text){
+            dispatch(addCard(listID, text))
+        }
+
     };
 
 
@@ -66,11 +97,13 @@ export default class TrelloActionButton extends Component {
 
         return (
         <div>
-            <Card style={{
-                minHeight: 85,
-                minWidth: 272,
-                padding: "6px 8px 2px"
-            }}>
+            <Card 
+                style={{
+                    minHeight: 85,
+                    minWidth: 272,
+                    padding: "6px 8px 2px"
+                }}
+            >
                 <Textarea 
                 placeholder={placeholder} 
                 autoFocus 
@@ -85,9 +118,12 @@ export default class TrelloActionButton extends Component {
                     overflow: "hidden"
                 }}
                 />
+
             </Card>
             <div style={styles.formButtonGroup}>
-                <Button variant="contained" 
+                <Button 
+                onMouseDown={list ? this.handleAddList : this.handleAddCard}
+                variant="contained" 
                 style={{color:"white", backgroundColor: "#5aac44"}}
                 > 
                 {buttonTitle}{" "}
@@ -129,3 +165,7 @@ const styles = {
 
 
 };
+
+
+
+export default connect()(TrelloActionButton);
