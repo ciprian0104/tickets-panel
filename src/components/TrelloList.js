@@ -3,20 +3,39 @@ import TrelloCard from "./TrelloCard";
 
 import TrelloActionButton from "./TrelloActionButton";
 
-
+import {Droppable} from "react-beautiful-dnd";
 
 
 const TrelloList = ({title, cards, listID} ) => {
     return(
-        <div style={styles.container}>
-            <h4>{title}</h4>
+        <Droppable droppableId={String(listID)}>
+            {
+                (provided) => (
+                    <div 
+                    {...provided.droppableProps} 
+                    ref= {provided.innerRef}
+                    
+                    style={styles.container}>
+                  <h4>{title}</h4>
            {   //we render all the cards
-               cards.map(card => <TrelloCard key={card.id} text={card.text} />)
+               cards.map((card,index) => 
+               <TrelloCard 
+               key={card.id}
+               index={index}
+               text={card.text}
+                id={card.id}
+               />)
            }
 
            <TrelloActionButton listID={listID}/>
-
-        </div>     
+           {/*contains every single item that we give 
+            when u drag the card is gonna create a placeholder*/}
+           {provided.placeholder}
+            </div>
+                )
+            }
+             
+        </Droppable>
     )
 };
 
@@ -27,7 +46,8 @@ const styles= {
         width: 300,
         padding: 8,
         marginRight: 10,
-        height: "100%"
+        height: "100%",
+        wordWrap: "break-word"
     }
 };
 
