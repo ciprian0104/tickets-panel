@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Icon } from '@material-ui/core';
+import { Icon, TextField } from '@material-ui/core';
 import Textarea from "react-textarea-autosize";
 import Card from "@material-ui/core/Card";
 import Button from "@material-ui/core/Button";
@@ -14,7 +14,8 @@ class TrelloActionButton extends Component {
 
     state = {
         formOpen: false,
-        text: ""
+        text: "",
+        title: ""
     };
 
     openForm = () => {
@@ -29,15 +30,20 @@ class TrelloActionButton extends Component {
             });
     };
 
-    handleInputChange = (e) => {
-        this.setState({
-            text: e.target.value
-        })
-    };
+    handleInputChange(property) {
+        return e => {
+          this.setState({
+            [property]: e.target.value
+          });
+        };
+      }
+   
+    
 
     handleAddList = () => {
         const { dispatch } = this.props;
         const { text } = this.state;
+        
 
         if (text) {
             dispatch(addList(text));
@@ -50,9 +56,12 @@ class TrelloActionButton extends Component {
     handleAddCard = () => {
         const { dispatch, listID } = this.props;
         const { text } = this.state;
+        const {title} =this.state;
+    
 
         if (text){
-            dispatch(addCard(listID, text))
+            dispatch(addCard(listID, text, title));
+            
         }
 
     };
@@ -87,33 +96,44 @@ class TrelloActionButton extends Component {
     renderForm = () => {
 
         const {list} = this.props;
-
-        const placeholder = list ? "Enter list title.." : "Enter title for this card";
+        const titleholder= list ? "" :"Enter card title:";
+        const placeholder = list ? "Enter list title.." : "Enter content for this card";
         const buttonTitle = list ? "Add List" : "Add Card";
 
 
 
         return (
-        <div>
+        <div >
             <Card 
                 className="add_card"
             >
+            <form onBlur={this.closeForm} autoFocus>
+                <TextField
+                className="title_area"
+                placeholder={titleholder}
+                
+                
+                value={this.state.title}
+                onChange={this.handleInputChange('title')}
+                />
                 <Textarea 
                 placeholder={placeholder} 
-                autoFocus 
-                onBlur={this.closeForm}
+                
                 value={this.state.text}
-                onChange={this.handleInputChange}
+                onChange={this.handleInputChange('text')}
 
                 className="text_area"
                 />
-
+            </form>
             </Card>
             <div className="formButton">
                 <Button 
                 onMouseDown={list ? this.handleAddList : this.handleAddCard}
                 variant="contained" 
+                color ="secondary"
                 className="add_button"
+                
+                
                 > 
                 {buttonTitle}{" "}
                 </Button>
