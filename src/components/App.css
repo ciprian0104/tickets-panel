@@ -1,13 +1,13 @@
 
-.listsContainer {
+.listContainer {
 
     display: flex;
     flex-direction: row;
 }
 
-.listContainer {
+.container {
 
-    background-color: aquamarine;
+    background: #7fffd4;
     border-radius: 3px;
     width: 300px;
     padding: 8px;
@@ -78,4 +78,19 @@
     right: 0;
     overflow: auto;
     background: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);
+}
+
+.list_title{
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-weight: bold;
+    font-size: 17px;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+    color: rgb(44, 41, 41);
+    font-weight: normal;
+    text-decoration: none;
+    font-style: italic;
+    font-variant: normal;
+    text-transform: uppercase;
+    padding-left: 10px;
 }
