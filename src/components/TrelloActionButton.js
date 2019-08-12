@@ -12,11 +12,13 @@ import "./App.css";
 
 class TrelloActionButton extends Component {
 
+
 state = {
     formOpen: false,
     text: "",
     title: ""
 };
+
 
 openForm = () => {
     this.setState({
@@ -30,16 +32,17 @@ closeForm = e => {
 });
 };
 
-handleInputChange(property) {
-    return e => {
-        this.setState({
+
+
+
+    handleInputChange(property) {
+        return e => {
+          this.setState({
             [property]: e.target.value
-});
-};
-}
-
-
-
+          });
+        };
+      }
+   
 handleAddList = () => {
     const { dispatch } = this.props;
     const { text } = this.state;
@@ -58,8 +61,10 @@ handleAddCard = () => {
     const {title} =this.state;
 
 
+
 if (text){
     dispatch(addCard(listID, text, title));
+
 
 }
 
@@ -142,6 +147,7 @@ return (
 
 </div>
 );
+
 
 };
 

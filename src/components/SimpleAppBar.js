@@ -13,7 +13,7 @@ TODO: Add functionality later
 export default function SimpleAppBar() {
   return (
     <div >
-      <AppBar position="static" style={{ backgroundColor: "#7fffd4", marginBottom: 10 }}
+      <AppBar position="static" style={{ background:"linear-gradient(to right, #e0eafc, #cfdef3)", marginBottom: 10 }}
 
 >
         <Toolbar>
