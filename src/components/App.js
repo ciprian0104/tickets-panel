@@ -2,34 +2,31 @@ import React,{Component} from "react";
 import TrelloList from "./TrelloList";
 import {connect} from "react-redux";
 import TrelloActionButton from "./TrelloActionButton";
-import {DragDropContext} from "react-beautiful-dnd";
-import {sort} from "../actions";
-import "./App.css";
-
+import {DragDropContext, Droppable} from "react-beautiful-dnd";
+import { sort } from '../actions';
+import "./App.css"
+import SimpleAppBar from "./SimpleAppBar";
 
 class App extends Component {
-  //it will receive a prop
   onDragEnd=(result)=>{
-    //we create a redux action
-    const { destination, source , draggableId}=result;
+    const {destination, source, draggableId, type} = result;
     
     if(!destination){
-      return;//if we drag and drop the card outside of the lists
-      // it should do nothing
+      return;
     }
-    //but if it is a destination, we will run the operation
-    //we will call de sort action from actions/index.js
+
     this.props.dispatch(
       sort(
         source.droppableId,
         destination.droppableId,
         source.index,
         destination.index,
-        draggableId
-    )
-  );
+        draggableId,
+        type
+      )
+    );
+      };
 
-  };
   render(){
     //we will receive the list with this.props
     const {lists}= this.props;
@@ -37,20 +34,28 @@ class App extends Component {
 
   return (
     <DragDropContext onDragEnd={this.onDragEnd}>
-    <div className="App">
-      <h1>The tickets-panel</h1>
-     {/* <div style={styles.listsContainer}>*/}
-     <div className="listContainer">
+    <div className="background">
+      <SimpleAppBar />
+      <Droppable droppableId="all-lists" direction="horizontal" type="list">
+
       {
-        lists.map(list => 
-        <TrelloList 
-          listID={list.id} 
-          key={list.id} 
-          title= {list.title}
-          cards={list.cards} />)
+        provided => (
+        <div className="listContainer"{...provided.droppableProps} ref={provided.innerRef}>
+        {
+          lists.map( (list, index) => <TrelloList listID={list.id} key={list.id} title= {list.title}
+           cards={list.cards} index={index}/>)
+        }
+        <TrelloActionButton list />
+         </div>)
       }
-      <TrelloActionButton list />
-      </div>
+
+      </Droppable>
+
+
+
+
+    
+
     </div>
     </DragDropContext>
   );
