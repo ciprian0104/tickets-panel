@@ -5,6 +5,7 @@ import Card from "@material-ui/core/Card";
 import Button from "@material-ui/core/Button";
 import { connect } from "react-redux";
 import { addList, addCard } from "../actions";
+import "./App.css";
 
 /*
 import Card from "react-bootstrap/Card"
@@ -73,7 +74,8 @@ class TrelloActionButton extends Component {
     return (
         <div
         onClick={this.openForm}
-        style={{...styles.openFormButtonGroup,
+        className="openFormButtonGroup"
+        style={{
         capacity: buttonTextOpacity, 
         color: buttonTextColor, 
         background: buttonTextBackground
@@ -98,11 +100,7 @@ class TrelloActionButton extends Component {
         return (
         <div>
             <Card 
-                style={{
-                    minHeight: 85,
-                    minWidth: 272,
-                    padding: "6px 8px 2px"
-                }}
+                className="add_card"
             >
                 <Textarea 
                 placeholder={placeholder} 
@@ -110,26 +108,21 @@ class TrelloActionButton extends Component {
                 onBlur={this.closeForm}
                 value={this.state.text}
                 onChange={this.handleInputChange}
-                style={{
-                    resize: "none",
-                    width: "100%",
-                    outline: "none",
-                    border: "none",
-                    overflow: "hidden"
-                }}
+                className="text_area"
                 />
 
             </Card>
-            <div style={styles.formButtonGroup}>
+            <div className="formButtonGroup">
                 <Button 
                 onMouseDown={list ? this.handleAddList : this.handleAddCard}
                 variant="contained" 
-                style={{color:"white", backgroundColor: "#5aac44"}}
+                className="add_button"
+                color="secondary"
                 > 
                 {buttonTitle}{" "}
                 </Button>
 
-                <Icon style={{marginLeft:8, cursor:"pointer", }} 
+                <Icon className="icon"
                 > 
                 close
                 </Icon>
@@ -146,25 +139,7 @@ class TrelloActionButton extends Component {
     }
 }
 
-const styles = {
-    openFormButtonGroup : {
-        display: "flex",
-        alignItems: "center",
-        cursor: "pointer",
-        borderRadius: 3,
-        height: 36,
-        width: 272,
-        paddingLeft: 10
-    },
 
-    formButtonGroup: {
-        marginTop: 8,
-        display: "flex",
-        alignItems: "center"
-    }
-
-
-};
 
 
 
