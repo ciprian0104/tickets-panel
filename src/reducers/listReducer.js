@@ -12,6 +12,7 @@ const initialState=[
         cards: [
             {
                 id: 'card-${0}',
+                title:"title",
                 text:" we have for now a static list and a first static card"
             },
             {
@@ -69,6 +70,7 @@ const listReducer = (state = initialState, action) => {
 
         case CONSTANTS.ADD_CARD:{
             const newCard = {
+                title:action.payload.title,
                 text: action.payload.text,
                 id: 'card-${cardID}'
             }

@@ -15,6 +15,7 @@
 .cardContainer{
     margin-bottom: 10px;
 }
+
 .add_card{
     min-height: 85px;
     min-width: 272px;
@@ -38,8 +39,11 @@
     overflow: auto;
     background: linear-gradient(to right, #114357, #f29492); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
-.cardContent{
+
+.cardTitle{
    
+   padding-left: 20px;
+   font-weight: bold;
 }
 
 .formButtonGroup {
