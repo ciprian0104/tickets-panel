@@ -6,12 +6,8 @@ import Button from "@material-ui/core/Button";
 import { connect } from "react-redux";
 import { addList, addCard } from "../actions";
 import "./App.css";
-
-/*
-import Card from "react-bootstrap/Card"
 import "./App.css";
-import Form from 'react-bootstrap/Form';
-*/
+
 
 
 class TrelloActionButton extends Component {
@@ -89,7 +85,7 @@ class TrelloActionButton extends Component {
         color: buttonTextColor, 
         background: buttonTextBackground
         }}
-         >
+        >
         <Icon>add</Icon>
         <p>{buttonText}</p>
         </div>
@@ -124,16 +120,16 @@ class TrelloActionButton extends Component {
                 
                 value={this.state.text}
                 onChange={this.handleInputChange('text')}
+
                 className="text_area"
                 />
             </form>
             </Card>
-            <div className="formButtonGroup">
+            <div className="formButton">
                 <Button 
                 onMouseDown={list ? this.handleAddList : this.handleAddCard}
                 variant="contained" 
                 className="add_button"
-                color="secondary"
                 
                 
                 > 
