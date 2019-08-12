@@ -1,0 +1,87 @@
+.listContainer{
+    display: flex;
+    flex-direction: row;
+
+}
+.container{
+    background: linear-gradient(to right, #e0eafc, #cfdef3);
+    width: 350px;
+    padding: 8px;
+    margin-right: 45px;
+    height: 100%;
+    word-wrap: break-word;
+    opacity: 0.9;
+}
+.cardContainer{
+    margin-bottom: 10px;
+}
+.add_card{
+    min-height: 85px;
+    min-width: 272px;
+    padding: 6px 10px 3px;
+}
+.openFormButtonGroup{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 3px;
+    height: 36px;
+    width: 272px;
+    padding-left: 10px;
+}
+.App{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+    background: linear-gradient(to right, #114357, #f29492); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.cardContent{
+   
+}
+
+.formButtonGroup {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+}
+.text_area{
+    resize: none;
+    width: 100%;
+    outline: none;
+    border: none;
+    overflow: hidden;
+}
+.list_title{
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-weight: bold;
+    font-size: 17px;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+    color: rgb(44, 41, 41);
+    font-weight: normal;
+    text-decoration: none;
+    font-style: italic;
+    font-variant: normal;
+    text-transform: uppercase;
+    padding-left: 10px;
+}
+.card_text{
+    font-size:15px;
+    font-style:italic;
+}
+.add_button{
+    color:#F6F0CC;
+    background-color: #3ca71f;
+}
+.delete_icon{
+    left: 280px;
+    top: 10px;
+    position: absolute;
+}
+.icon{
+    margin-left: 8px;
+    cursor: pointer;
+}
