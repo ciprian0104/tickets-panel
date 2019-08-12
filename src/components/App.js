@@ -25,8 +25,8 @@ class App extends Component {
         type
       )
     );
+      };
 
-  };
   render(){
     //we will receive the list with this.props
     const {lists}= this.props;

@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import { connect } from "react-redux";
 import { addList, addCard } from "../actions";
 import "./App.css";
+import "./App.css";
 
 
 
@@ -69,13 +70,13 @@ class TrelloActionButton extends Component {
     return (
         <div
         onClick={this.openForm}
-        
-        style={{...styles.openFormButtonGroup,
+        className="openFormButtonGroup"
+        style={{
         capacity: buttonTextOpacity, 
         color: buttonTextColor, 
         background: buttonTextBackground
         }}
-         >
+        >
         <Icon>add</Icon>
         <p>{buttonText}</p>
         </div>
@@ -110,7 +111,6 @@ class TrelloActionButton extends Component {
             </Card>
             <div className="formButton">
                 <Button 
-                color="inherit"
                 onMouseDown={list ? this.handleAddList : this.handleAddCard}
                 variant="contained" 
                 className="add_button"
@@ -135,25 +135,7 @@ class TrelloActionButton extends Component {
     }
 }
 
-const styles = {
-    openFormButtonGroup : {
-        display: "flex",
-        alignItems: "center",
-        cursor: "pointer",
-        borderRadius: 3,
-        height: 36,
-        width: 272,
-        paddingLeft: 10
-    },
 
-    formButtonGroup: {
-        marginTop: 8,
-        display: "flex",
-        alignItems: "center"
-    }
-
-
-};
 
 
 

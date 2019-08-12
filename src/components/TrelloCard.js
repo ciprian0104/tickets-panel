@@ -2,6 +2,9 @@ import React from "react";
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
+import DeleteIcon from '@material-ui/icons/Delete';
+import IconButton from '@material-ui/core/IconButton';
+
 import {Draggable} from "react-beautiful-dnd";
 import "./App.css";
 
@@ -21,11 +24,19 @@ const TrelloCard =({text, id, index})=> {
              
              
                     
-         <Card>
+         <Card className = "cardContainer">
 
-        <CardContent>
-      <Typography gutterBottom>{text}</Typography>
+        <CardContent className="cardContent">
+
+        <Typography className="card_text" gutterBottom>{text}</Typography>
+        <IconButton aria-label="delete">
+          <DeleteIcon className="delete_icon" fontSize="small" />
+        </IconButton>
+
         </CardContent>
+
+
+
         </Card>
         </div>
         )}

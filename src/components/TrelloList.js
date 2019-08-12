@@ -6,7 +6,6 @@ import TrelloActionButton from "./TrelloActionButton";
 import {Droppable, Draggable} from "react-beautiful-dnd";
 import "./App.css"
 
-
 const TrelloList = ({title, cards, listID, index} ) => {
     return(
         <Draggable draggableId={String(listID)} index={index} >
@@ -22,10 +21,11 @@ const TrelloList = ({title, cards, listID, index} ) => {
 
                 <div{...provided.droppableProps} ref={provided.innerRef}>
 
-                  <h4>{title}</h4>
+                  <h4 className="list_title">{title}</h4>
            {   //we render all the cards
                cards.map((card,index) => 
                <TrelloCard 
+              
                key={card.id}
                index={index}
                text={card.text}
@@ -50,6 +50,5 @@ const TrelloList = ({title, cards, listID, index} ) => {
         </Draggable>
 
     )
-};
-
+        };
 export default TrelloList;
