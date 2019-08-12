@@ -1,0 +1,81 @@
+
+.listsContainer {
+
+    display: flex;
+    flex-direction: row;
+}
+
+.listContainer {
+
+    background-color: aquamarine;
+    border-radius: 3px;
+    width: 300px;
+    padding: 8px;
+    margin-right: 10px;
+    height: 100%;
+    word-wrap: break-word;
+
+}
+
+
+.cardContainer {
+    margin-bottom: 8px;
+    word-wrap: break-word;
+
+}
+
+.formButton {
+    display: flex;
+    margin-top: 8px;
+    align-items: center;
+}
+
+.openFormButton {
+    display: flex;
+    align-items: center;
+    cursor: "pointer";
+    border-radius: 3;
+    height: 36px;
+    width: 272px;
+    padding-left: 10px;
+}
+
+.text_area{
+    resize: none;
+    width: 100%;
+    outline: none;
+    border: none;
+    overflow: hidden;
+}
+
+.icon{
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+.add_card{
+    min-height: 85px;
+    min-width: 272px;
+    padding: 6px 8px 2px;
+}
+
+.add_button{
+    color:white;
+}
+
+.app_bar{
+    background-color:#7fffd4;
+    margin-bottom: 8px;
+
+}
+
+.background{
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+    background: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);
+}

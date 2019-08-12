@@ -5,12 +5,8 @@ import Card from "@material-ui/core/Card";
 import Button from "@material-ui/core/Button";
 import { connect } from "react-redux";
 import { addList, addCard } from "../actions";
-
-/*
-import Card from "react-bootstrap/Card"
 import "./App.css";
-import Form from 'react-bootstrap/Form';
-*/
+
 
 
 class TrelloActionButton extends Component {
@@ -73,6 +69,7 @@ class TrelloActionButton extends Component {
     return (
         <div
         onClick={this.openForm}
+        
         style={{...styles.openFormButtonGroup,
         capacity: buttonTextOpacity, 
         color: buttonTextColor, 
@@ -98,11 +95,7 @@ class TrelloActionButton extends Component {
         return (
         <div>
             <Card 
-                style={{
-                    minHeight: 85,
-                    minWidth: 272,
-                    padding: "6px 8px 2px"
-                }}
+                className="add_card"
             >
                 <Textarea 
                 placeholder={placeholder} 
@@ -110,26 +103,22 @@ class TrelloActionButton extends Component {
                 onBlur={this.closeForm}
                 value={this.state.text}
                 onChange={this.handleInputChange}
-                style={{
-                    resize: "none",
-                    width: "100%",
-                    outline: "none",
-                    border: "none",
-                    overflow: "hidden"
-                }}
+
+                className="text_area"
                 />
 
             </Card>
-            <div style={styles.formButtonGroup}>
+            <div className="formButton">
                 <Button 
+                color="inherit"
                 onMouseDown={list ? this.handleAddList : this.handleAddCard}
                 variant="contained" 
-                style={{color:"white", backgroundColor: "#5aac44"}}
+                className="add_button"
                 > 
                 {buttonTitle}{" "}
                 </Button>
 
-                <Icon style={{marginLeft:8, cursor:"pointer", }} 
+                <Icon className="icon"
                 > 
                 close
                 </Icon>
