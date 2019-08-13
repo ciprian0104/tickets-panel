@@ -12,6 +12,14 @@ import "./App.css";
 
 class TrelloActionButton extends Component {
 
+<<<<<<< HEAD
+    state = {
+        formOpen: false,
+        text: "",
+        title: ""
+    };
+=======
+>>>>>>> master
 
 state = {
     formOpen: false,
@@ -43,18 +51,31 @@ closeForm = e => {
         };
       }
    
-    
-   
 handleAddList = () => {
     const { dispatch } = this.props;
     const { text } = this.state;
-        
 
 if (text) {
     dispatch(addList(text));
 }
 
 
+<<<<<<< HEAD
+    handleInputChange(property) {
+        return e => {
+          this.setState({
+            [property]: e.target.value
+          });
+        };
+      }
+   
+    
+
+    handleAddList = () => {
+        const { dispatch } = this.props;
+        const { text } = this.state;
+        
+=======
 return;
 };
 
@@ -63,15 +84,29 @@ handleAddCard = () => {
     const { text } = this.state;
     const {title} =this.state;
 
+>>>>>>> master
 
 
 if (text){
     dispatch(addCard(listID, text, title));
 
 
+<<<<<<< HEAD
+    handleAddCard = () => {
+        const { dispatch, listID } = this.props;
+        const { text } = this.state;
+        const {title} =this.state;
+    
+
+        if (text){
+            dispatch(addCard(listID, text, title));
+            
+        }
+=======
 }
 
 };
+>>>>>>> master
 
 
 renderAddButton = () => {
@@ -102,12 +137,19 @@ return (
 
     renderForm = () => {
 
+<<<<<<< HEAD
+        const {list} = this.props;
+        const titleholder= list ? "" :"Enter card title:";
+        const placeholder = list ? "Enter list title.." : "Enter content for this card";
+        const buttonTitle = list ? "Add List" : "Add Card";
+=======
     const {list} = this.props;
     const titleholder= list ? "" :"Enter card title:";
     const placeholder = list ? "Enter list title.." : "Enter content for this card";
     const buttonTitle = list ? "Add List" : "Add Card";
 
 
+>>>>>>> master
 
     return (
     <div>
@@ -128,6 +170,41 @@ return (
     value={this.state.text}
     onChange={this.handleInputChange('text')}
 
+<<<<<<< HEAD
+        return (
+        <div >
+            <Card 
+                className="add_card"
+            >
+            <form onBlur={this.closeForm} autoFocus>
+                <TextField
+                placeholder={titleholder}
+                
+                
+                value={this.state.title}
+                onChange={this.handleInputChange('title')}
+                />
+                <Textarea 
+                placeholder={placeholder} 
+                
+                value={this.state.text}
+                onChange={this.handleInputChange('text')}
+
+                className="text_area"
+                />
+            </form>
+            </Card>
+            <div className="formButton">
+                <Button 
+                onMouseDown={list ? this.handleAddList : this.handleAddCard}
+                variant="contained" 
+                className="add_button"
+                
+                
+                > 
+                {buttonTitle}{" "}
+                </Button>
+=======
     className="text_area"
     />
     </form>
@@ -142,6 +219,7 @@ return (
     > 
     {buttonTitle}{" "}
     </Button>
+>>>>>>> master
 
     <Icon className="icon"> 
         close

@@ -3,8 +3,12 @@ import { CONSTANTS } from "../actions";
 
 
 
+<<<<<<< HEAD
+export const addCard = (listID, text,title) => {
+=======
 
 export const addCard = (listID, text, title) => {
+>>>>>>> master
     return {
         type: CONSTANTS.ADD_CARD,
         payload: {text, title, listID}
