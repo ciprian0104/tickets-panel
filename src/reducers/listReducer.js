@@ -13,13 +13,14 @@ cards: [
     id: 'card-${0}',
     title:"title1",
     text:" we have for now a static list and a first static card",
+    priority:"",
 
 },
 {
     id: 'card-${1}',
     title:"title2",
     text: " we have for now a static list and a second static card",
-
+    priority:"",
 }
 ]
 },
@@ -30,19 +31,21 @@ cards: [
 {
     id: 'card-${2}',
     title:"title3",
-
-    text:" we have for now a second static list and a first static card"
+    text:" we have for now a second static list and a first static card",
+    priority:"",
 },
 {
     id: 'card-${3}',
     title:"title4",
 
-    text: " we have for now a second static list and a second static card"
+    text: " we have for now a second static list and a second static card",
+    priority: "red",
 },
 {
     id: 'card-${4}',
     title:"title5",
-    text: "blablabla"
+    text: "blablabla",
+    priority:"",
 }
 ]
 },
@@ -54,7 +57,8 @@ cards: [
     id: 'card-${5}',
     title:"title6",
 
-    text:" we have for now a second static list and a first static card"
+    text:" we have for now a second static list and a first static card",
+    priority:""
 }
 
 ]
@@ -79,6 +83,7 @@ switch(action.type){
         const newCard = {
         title:action.payload.title,
         text: action.payload.text,
+        priority:action.payload.priority,
         id: 'card-${cardID}'
         }
         cardID += 1;
@@ -139,13 +144,16 @@ if (droppableIdStart !== droppableIdEnd) {
 
 
     case CONSTANTS.EDIT_CARD: {
-        const { id, listID, newText, newTitle } = action.payload;
+        const { id, listID, newText, newTitle, newPriority } = action.payload;
         return state.map(list => {
           if (list.id === listID) {
             const newCards = list.cards.map(card => {
               if (card.id === id) {
                 card.text = newText;
                 card.title = newTitle;
+                card.priority=newPriority;
+                console.log(card.text);
+                console.log(card.priority);
                 return card;
               }
               return card;

@@ -6,7 +6,7 @@ import { Draggable } from "react-beautiful-dnd";
 import IconButton from "@material-ui/core/IconButton";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete"
-
+import Chip from '@material-ui/core/Chip';
 import EditCardForm from "./EditCardForm";
 import { editCard, deleteCard } from "../actions";
 import { connect } from "react-redux";
@@ -16,10 +16,11 @@ import { Grid } from "@material-ui/core";
 import ActionButton from './ActionButton';
 
 
-const TrelloCard = React.memo(({title, text, id, listID, index, dispatch }) => {
+const TrelloCard = React.memo(({priority ,title, text, id, listID, index, dispatch }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [cardText, setText] = useState(text);
   const [cardTitle, setTitle] = useState(title);
+  const [cardPriority,setPriority] = useState(priority);
 
   const closeForm = e => {
     setIsEditing(false);
@@ -32,6 +33,10 @@ const TrelloCard = React.memo(({title, text, id, listID, index, dispatch }) => {
   const handleChangeTitle = e => {
     setTitle(e.target.value);
   }
+  const handleChangePriority = e =>{
+    setPriority(e.target.value);
+    console.log(e.target.value);
+  }
 
 
   const handleDeleteCard = e => {
@@ -41,14 +46,14 @@ const TrelloCard = React.memo(({title, text, id, listID, index, dispatch }) => {
   const saveCard = e => {
 
     e.preventDefault();
-    dispatch(editCard(id, listID, cardText, cardTitle));
+    dispatch(editCard(id, listID, cardText, cardTitle,cardPriority));
     setIsEditing(false);
   };
 
   const renderEditForm = () => {
     return (
 
-      <EditCardForm text={cardText} title={cardTitle} onChangeText={handleChangeText} onChangeTitle={handleChangeTitle} closeForm={closeForm}>
+      <EditCardForm text={cardText} title={cardTitle} priority={cardPriority} onChangeText={handleChangeText} onChangePriority={handleChangePriority} onChangeTitle={handleChangeTitle} closeForm={closeForm}>
       <ActionButton onClick={saveCard}>Save</ActionButton>
 
       </EditCardForm>
@@ -91,7 +96,9 @@ const TrelloCard = React.memo(({title, text, id, listID, index, dispatch }) => {
                 >
                 {text}</Typography>
               </CardContent>
+              <Chip style={{backgroundColor: priority}} size="small" display="flex" justifyContent="center" 
 
+flexWrap="wrap" variant="outlined" label={(priority === "red") ? "High" : (priority === "yellow") ? "Medium" : (priority === "green") ? "Normal" : "Undefined" }/>
             </Card>
           </div>
         )}
