@@ -8,11 +8,12 @@ import { CardHeader } from "@material-ui/core";
 import "./App.css";
 import TextField from "@material-ui/core/TextField";
 import "./EditCardForm.css";
+import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
 
 //This is the edit form
 
 const EditCardForm = React.memo(
-  ({ list, text = "", title="", onChangeText, onChangeTitle, closeForm, children }) => {
+  ({ list, text = "", title="",priority="" , onChangeText, onChangeTitle, onChangePriority,closeForm, children }) => {
 
   
   const titleholder= list ? "Enter list title..." :"Enter card title:";
@@ -38,6 +39,22 @@ const EditCardForm = React.memo(
           value={text}
           onChange={e => onChangeText(e)}
         />
+        <ContextMenuTrigger id="colorsMenu">
+
+      <div className="colorMenuButton">Priority</div>
+      </ContextMenuTrigger>
+
+      <select defaultValue={priority} onChange={e=> onChangePriority(e)}
+                className="form-control">
+                    <option></option>
+                    <option value={'red'}>High</option>
+                    <option value={'yellow'}>Medium</option>
+                    <option value={'green'}>Low</option>
+                    </select>
+
+
+      
+
       </Card>
       <div className="buttonContainer">
         {children}

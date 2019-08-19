@@ -7,6 +7,7 @@ import { addList, addCard } from "../actions";
 import { TextField } from "@material-ui/core";
 import './App.css';
 import './EditCardForm.css';
+import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
 
 
 //Changed from TrelloActionButton
@@ -15,7 +16,8 @@ class CreateCardForm extends React.Component {
   state = {
     formOpen: false,
     title: "",
-    text: ""
+    text: "",
+    priority:"green",
   };
 
   openForm = () => {
@@ -29,6 +31,21 @@ class CreateCardForm extends React.Component {
       formOpen: false
     });
   };
+  //handlers for the selector
+  handleClickNormal = () => {
+    return this.setState({priority: "green"});
+
+    }
+  handleClickHigh = () => {
+    return this.setState({priority: "red"});
+  };
+  handleClickMedium = () => {
+    return this.setState({priority: "yellow"});
+  };
+  handleChangePriority = (e) => {
+    return this.setState({priority:e.target.value});
+  }
+
 
   handleChange = name => event => {
     this.setState({ ...this.state, [name]: event.target.value });
@@ -52,13 +69,15 @@ class CreateCardForm extends React.Component {
     const { dispatch, listID } = this.props;
     const { text } = this.state;
     const { title } = this.state;
+    const {priority}= this.state;
 
     if (text && title) {
       this.setState({
         title: "",
-        text: ""
+        text: "",
+        priority:"",
       });
-      dispatch(addCard(listID, title, text));
+      dispatch(addCard(listID, title, text,priority));
     }
   };
 
@@ -132,6 +151,27 @@ class CreateCardForm extends React.Component {
           />
 
           <Icon className="icon" onClick={this.closeForm}>close</Icon>
+          <form onBlur={this.closeForm} autoFocus>
+          {/*priority selector form */}
+          <div className= {(buttonTitle === "Add Card") ? "parentDiv" : "ghost" }>
+          
+          <ContextMenuTrigger id="colorsMenu">
+
+          <div className="colorMenuButton">Priority</div>
+          </ContextMenuTrigger>
+
+          <select defaultValue="" onChange={this.handleChangePriority}
+                className="form-control">
+                    <option></option>
+                    <option value={'red'}>High</option>
+                    <option value={'yellow'}>Medium</option>
+                    <option value={'green'}>Low</option>
+                    </select>
+              
+
+</div>
+</form>
+
         </div>
       </div>
     );
