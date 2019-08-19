@@ -1,8 +1,8 @@
 import { CONSTANTS } from "../actions";
 
 
-let listID = 3;//list index
-let cardID = 6;//card index
+let listID = 1;//list index
+let cardID = 1;//card index
 
 const initialState=[
 {
@@ -13,52 +13,13 @@ cards: [
     id: 'card-${0}',
     title:"title1",
     text:" we have for now a static list and a first static card",
+    priority:"red"
 
 },
-{
-    id: 'card-${1}',
-    title:"title2",
-    text: " we have for now a static list and a second static card",
-
-}
 ]
-},
-{
-    title:"Second Column",
-    id: 'list-${1}',
-cards: [
-{
-    id: 'card-${2}',
-    title:"title3",
-
-    text:" we have for now a second static list and a first static card"
-},
-{
-    id: 'card-${3}',
-    title:"title4",
-
-    text: " we have for now a second static list and a second static card"
-},
-{
-    id: 'card-${4}',
-    title:"title5",
-    text: "blablabla"
-}
-]
-},
-{
-    title:"Third Column",
-    id: 'list-${2}',
-cards: [
-{
-    id: 'card-${5}',
-    title:"title6",
-
-    text:" we have for now a second static list and a first static card"
 }
 
-]
-},
+
 ];
 
 
@@ -81,6 +42,7 @@ switch(action.type){
         const newCard = {
         title:action.payload.title,
         text: action.payload.text,
+        priority: action.payload.priority,
         id: 'card-${cardID}'
         }
         cardID += 1;
@@ -139,6 +101,8 @@ if (droppableIdStart !== droppableIdEnd) {
 
 
     return newState;
+
+
     default:
     return state;
 

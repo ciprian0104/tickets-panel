@@ -11,10 +11,16 @@ import "./App.css";
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 import CardHeader from '@material-ui/core/CardHeader';
-import { Grid } from "@material-ui/core";
+import { Grid, Button } from "@material-ui/core";
 
-const TrelloCard =({text, title, id, index})=> {
+import Chip from '@material-ui/core/Chip';
+
+
+const TrelloCard =({priority ,text, title, id, index})=> {
+
+
     return(
+
     <Draggable draggableId={String(id)} index={index}>
     {provided =>(
     //we create a ref that is pointing to the DOM note provided.innerRef
@@ -39,28 +45,37 @@ const TrelloCard =({text, title, id, index})=> {
         }
         title={title}
       />
-    <Grid
-          justify="space-between" // Add it here :)
-          container 
-          
-    >
+
     <CardContent className="cardContent">
 
 
     <Typography className="card_text" gutterBottom>{text}</Typography>
 
     </CardContent>
+    <Grid
+          direction="row"
+          justify="flex-end"
+          alignItems="center"
+          container 
+          
+    >
+      
+    <Chip style={{backgroundColor: priority}} size="small" display="flex" justifyContent="center" 
+    
+    flexWrap="wrap" variant="outlined" label={(priority === "red") ? "High" : (priority === "yellow") ? "Medium" : "Normal"}/>
 
-    <IconButton aria-label="delete">
+    <IconButton aria-label="delete" align="right">
           <DeleteIcon className="delete_icon" fontSize="small" />
         </IconButton>
 
-        <IconButton aria-label="edit" edge="none" className="deleteEdit">
+        <IconButton aria-label="edit" className="deleteEdit" align="right">
           <EditIcon className="edit_icon" fontSize="small" />
-        </IconButton>
-        </Grid>
 
-    </Card>
+        </IconButton>
+        </Grid>      
+
+
+        </Card>
     </div>
     )}
     </Draggable>

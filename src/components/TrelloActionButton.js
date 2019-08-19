@@ -6,20 +6,28 @@ import Button from "@material-ui/core/Button";
 import { connect } from "react-redux";
 import { addList, addCard } from "../actions";
 import "./App.css";
-import "./App.css";
-
+import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
 
 
 class TrelloActionButton extends Component {
-
+  
 
 state = {
     formOpen: false,
     text: "",
-    title: ""
+    title: "",
+    priority: "green",
 };
+handleClickNormal = () => {
+    return this.setState({priority: "green"});
 
-
+}
+handleClickHigh = () => {
+    return this.setState({priority: "red"});
+  };
+  handleClickMedium = () => {
+    return this.setState({priority: "yellow"});
+  };
 openForm = () => {
     this.setState({
     formOpen: true
@@ -35,7 +43,7 @@ closeForm = e => {
 
 
 
-    handleInputChange(property) {
+handleInputChange(property) {
         return e => {
           this.setState({
             [property]: e.target.value
@@ -55,15 +63,18 @@ if (text) {
 return;
 };
 
+
+
+
 handleAddCard = () => {
     const { dispatch, listID } = this.props;
     const { text } = this.state;
-    const {title} =this.state;
+    const { title } =this.state;
+    const { priority } = this.state;
 
 
-
-if (text){
-    dispatch(addCard(listID, text, title));
+if (text && title){
+    dispatch(addCard(listID, text, title, priority));
 
 
 }
@@ -100,10 +111,9 @@ return (
     renderForm = () => {
 
     const {list} = this.props;
-    const titleholder= list ? "" :"Enter card title:";
+    const titleholder = list ? "" :"Enter card title:";
     const placeholder = list ? "Enter list title.." : "Enter content for this card";
     const buttonTitle = list ? "Add List" : "Add Card";
-
 
 
     return (
@@ -111,13 +121,14 @@ return (
     <Card 
     className="add_card"
     >
-    <form onBlur={this.closeForm} autoFocus>
+    <form>
+
     <TextField
     placeholder={titleholder}
-
-
+    
     value={this.state.title}
     onChange={this.handleInputChange('title')}
+    className= {(buttonTitle === "Add List") ? "ghost" : "none"}
     />
 <Textarea 
     placeholder={placeholder} 
@@ -127,6 +138,32 @@ return (
 
     className="text_area"
     />
+
+
+<div className= {(buttonTitle === "Add Card") ? "parentDiv" : "ghost" }>
+ 
+ <ContextMenuTrigger id="colorsMenu">
+   
+   <div className="colorMenuButton">Priority</div>
+ </ContextMenuTrigger>
+
+ <ContextMenu id="colorsMenu" className="react-contextmenu">
+
+   <MenuItem className="react-contextmenu-item" onClick={(this.handleClickHigh)}>
+     High
+   </MenuItem>
+   <MenuItem  className="react-contextmenu-item" onClick={this.handleClickMedium}>
+     Medium
+   </MenuItem>
+   <MenuItem  className="react-contextmenu-item" onClick={this.handleClickNormal}>
+     Normal
+   </MenuItem>
+ </ContextMenu>
+
+</div>
+
+
+
     </form>
     </Card>
     <div className="formButton">
@@ -140,7 +177,7 @@ return (
     {buttonTitle}{" "}
     </Button>
 
-    <Icon className="icon"> 
+    <Icon className="icon" onClick={this.closeForm}> 
         close
     </Icon>
 </div>
