@@ -1,71 +1,105 @@
-import React from "react";
-import Card from '@material-ui/core/Card';
-import Typography from '@material-ui/core/Typography';
-import CardContent from '@material-ui/core/CardContent';
-import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
-import IconButton from '@material-ui/core/IconButton';
-import clsx from 'clsx';
-import {Draggable} from "react-beautiful-dnd";
-import "./App.css";
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+import React, { useState } from "react";
+import Card from "@material-ui/core/Card";
+import Typography from "@material-ui/core/Typography";
+import CardContent from "@material-ui/core/CardContent";
+import { Draggable } from "react-beautiful-dnd";
+import IconButton from "@material-ui/core/IconButton";
+import EditIcon from "@material-ui/icons/Edit";
+import DeleteIcon from "@material-ui/icons/Delete"
 
-import CardHeader from '@material-ui/core/CardHeader';
+import EditCardForm from "./EditCardForm";
+import { editCard, deleteCard } from "../actions";
+import { connect } from "react-redux";
+import CardHeader from "@material-ui/core/CardHeader";
+import './TrelloCard.css';
 import { Grid } from "@material-ui/core";
-
-const TrelloCard =({text, title, id, index})=> {
-    return(
-    <Draggable draggableId={String(id)} index={index}>
-    {provided =>(
-    //we create a ref that is pointing to the DOM note provided.innerRef
-    //dragHandleDrops is for where we want to let the user to be able to handle the drag
-    //for example we can let the user to drag a card only if it's dragging from the title
-    <div className="cardContainer"
-    ref={provided.innerRef}
-    {...provided.draggableProps} 
-    {...provided.dragHandleProps}
-    >
+import ActionButton from './ActionButton';
 
 
+const TrelloCard = React.memo(({title, text, id, listID, index, dispatch }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [cardText, setText] = useState(text);
+  const [cardTitle, setTitle] = useState(title);
 
-    <Card className = "cardContainer">
+  const closeForm = e => {
+    setIsEditing(false);
+  };
 
-    <CardHeader
-
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
-        title={title}
-      />
-    <Grid
-          justify="space-between" // Add it here :)
-          container 
-          
-    >
-    <CardContent className="cardContent">
+  const handleChangeText = e => {
+    setText(e.target.value);
+    
+  };
+  const handleChangeTitle = e => {
+    setTitle(e.target.value);
+  }
 
 
-    <Typography className="card_text" gutterBottom>{text}</Typography>
+  const handleDeleteCard = e => {
+    dispatch(deleteCard(id, listID));
+  }
 
-    </CardContent>
+  const saveCard = e => {
 
-    <IconButton aria-label="delete">
-          <DeleteIcon className="delete_icon" fontSize="small" />
-        </IconButton>
+    e.preventDefault();
+    dispatch(editCard(id, listID, cardText, cardTitle));
+    setIsEditing(false);
+  };
 
-        <IconButton aria-label="edit" edge="none" className="deleteEdit">
-          <EditIcon className="edit_icon" fontSize="small" />
-        </IconButton>
-        </Grid>
+  const renderEditForm = () => {
+    return (
 
-    </Card>
-    </div>
-    )}
-    </Draggable>
-);
+      <EditCardForm text={cardText} title={cardTitle} onChangeText={handleChangeText} onChangeTitle={handleChangeTitle} closeForm={closeForm}>
+      <ActionButton onClick={saveCard}>Save</ActionButton>
 
-};
+      </EditCardForm>
+    );
+  };
 
-export default TrelloCard;
+  const renderCard = () => {
+    return (
+      <Draggable draggableId={String(id)} index={index}>
+        {provided => (
+          <div className="cardDiv"
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+            ref={provided.innerRef}
+            onDoubleClick={() => setIsEditing(true)}
+          >
+            <Card 
+            className="textStyles"
+            >
+            <IconButton
+                aria-label="edit"
+                onMouseDown={() => setIsEditing(true)}
+                fontSize="small"
+              >
+                <EditIcon  fontSize="small"/>
+            </IconButton>
+            <IconButton
+                aria-label="delete"
+                onMouseDown={handleDeleteCard}
+                fontSize="small"
+            >
+              <DeleteIcon  fontSize="small"/>
+            </IconButton>
+              <CardHeader
+              title={title}
+              />
+
+              <CardContent>
+                <Typography
+                >
+                {text}</Typography>
+              </CardContent>
+
+            </Card>
+          </div>
+        )}
+      </Draggable>
+    );
+  };
+
+  return isEditing ? renderEditForm() : renderCard();
+});
+
+export default connect()(TrelloCard);
