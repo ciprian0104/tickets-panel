@@ -4,66 +4,7 @@ import { CONSTANTS } from "../actions";
 //let listID = 3;//list index
 //let cardID = 6;//card index
 
-const initialState=[
-{
-    title:"First Column",
-    id: `list-${0}`,
-cards: [
-{
-    id: `card-${0}`,
-    title:"title1",
-    text:" we have for now a static list and a first static card",
-    priority:"",
-
-},
-{
-    id: `card-${1}`,
-    title:"title2",
-    text: " we have for now a static list and a second static card",
-    priority:"",
-}
-]
-},
-{
-    title:"Second Column",
-    id: `list-${1}`,
-cards: [
-{
-    id: `card-${2}`,
-    title:"title3",
-    text:" we have for now a second static list and a first static card",
-    priority:"",
-},
-{
-    id: `card-${3}`,
-    title:"title4",
-
-    text: " we have for now a second static list and a second static card",
-    priority: "red",
-},
-{
-    id: `card-${4}`,
-    title:"title5",
-    text: "blablabla",
-    priority:"",
-}
-]
-},
-{
-    title:"Third Column",
-    id: `list-${2}`,
-cards: [
-{
-    id: `card-${5}`,
-    title:"title6",
-
-    text:" we have for now a second static list and a first static card",
-    priority:""
-}
-
-]
-},
-];
+const initialState=[];
 
 
 
