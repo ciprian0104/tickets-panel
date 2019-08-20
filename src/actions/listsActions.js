@@ -1,12 +1,13 @@
 import { CONSTANTS } from "../actions";
 
-
+import uuid from "uuidv4";
 
 
 export const addList = title => {
+  const id = uuid();
     return {
         type: CONSTANTS.ADD_LIST,
-        payload: title
+        payload: {title, id}
     };
 };
 

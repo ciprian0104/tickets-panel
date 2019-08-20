@@ -149,3 +149,18 @@
     align-items: center;
     cursor: pointer;
 }
+
+.background{
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+    background: linear-gradient(to right, #114357, #f29492); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.ghost{
+    visibility: hidden;
+    display: none;
+}

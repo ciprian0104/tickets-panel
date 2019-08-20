@@ -7,7 +7,6 @@ import { addList, addCard } from "../actions";
 import { TextField } from "@material-ui/core";
 import './App.css';
 import './EditCardForm.css';
-import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
 
 
 //Changed from TrelloActionButton
@@ -124,8 +123,9 @@ class CreateCardForm extends React.Component {
 
     return (
       <div>
+        <form onBlur={this.closeForm}>
+
         <Card className="add_card">
-        <form onBlur={this.closeForm} autoFocus>
 
            <TextField
             placeholder={placeholder}
@@ -140,7 +140,7 @@ class CreateCardForm extends React.Component {
             value={this.state.title}
             onChange={this.handleChange('title')}
           />
-        </form>
+
         </Card>
 
         <div className="buttonContainer">
@@ -151,15 +151,9 @@ class CreateCardForm extends React.Component {
           />
 
           <Icon className="icon" onClick={this.closeForm}>close</Icon>
-          <form onBlur={this.closeForm} autoFocus>
           {/*priority selector form */}
           <div className= {(buttonTitle === "Add Card") ? "parentDiv" : "ghost" }>
           
-          <ContextMenuTrigger id="colorsMenu">
-
-          <div className="colorMenuButton">Priority</div>
-          </ContextMenuTrigger>
-
           <select defaultValue="" onChange={this.handleChangePriority}
                 className="form-control">
                     <option></option>
@@ -167,12 +161,11 @@ class CreateCardForm extends React.Component {
                     <option value={'yellow'}>Medium</option>
                     <option value={'green'}>Low</option>
                     </select>
-              
-
-</div>
-</form>
+          </div>
 
         </div>
+        </form>
+
       </div>
     );
   };
