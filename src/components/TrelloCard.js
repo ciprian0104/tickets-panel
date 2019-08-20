@@ -36,6 +36,7 @@ const TrelloCard = React.memo(({priority ,title, text, id, listID, index, dispat
   const handleChangePriority = e =>{
     setPriority(e.target.value);
     console.log(e.target.value);
+
   }
 
 
@@ -88,6 +89,8 @@ const TrelloCard = React.memo(({priority ,title, text, id, listID, index, dispat
               <DeleteIcon  fontSize="small"/>
             </IconButton>
               <CardHeader
+              fontFamily="Italic"
+              variant="h4"
               title={title}
               />
 
