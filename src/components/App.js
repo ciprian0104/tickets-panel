@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import CreateCardForm from "./CreateCardForm";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { sort } from "../actions";
+import SimpleAppBar from './SimpleAppBar';
 import './App.css';
 
 
@@ -31,8 +32,10 @@ class App extends PureComponent {
   render() {
     const { lists } = this.props;
     return (
-      <DragDropContext onDragEnd={this.onDragEnd}>
-        <h2>Tickets App</h2>
+      <DragDropContext onDragEnd={this.onDragEnd}>    
+      <div className="background">
+
+        <SimpleAppBar />
         <Droppable droppableId="all-lists" direction="horizontal" type="list">
           {provided => (
             <div className="listContainer"
@@ -53,6 +56,7 @@ class App extends PureComponent {
             </div>
           )}
         </Droppable>
+        </div>
       </DragDropContext>
     );
   }

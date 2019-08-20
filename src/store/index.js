@@ -1,5 +1,8 @@
 import {createStore} from "redux";
 import rootReducer from "../reducers";
+import { composeWithDevTools } from 'redux-devtools-extension';
+
+
 /*
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
@@ -19,7 +22,7 @@ const persistConfig = {
   }
 
   */
- const store = createStore(rootReducer);
+ const store = createStore(rootReducer, composeWithDevTools());
 
 
   export default store;

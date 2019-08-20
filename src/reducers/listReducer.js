@@ -1,23 +1,23 @@
 import { CONSTANTS } from "../actions";
 
 
-let listID = 3;//list index
-let cardID = 6;//card index
+//let listID = 3;//list index
+//let cardID = 6;//card index
 
 const initialState=[
 {
     title:"First Column",
-    id: 'list-${0}',
+    id: `list-${0}`,
 cards: [
 {
-    id: 'card-${0}',
+    id: `card-${0}`,
     title:"title1",
     text:" we have for now a static list and a first static card",
     priority:"",
 
 },
 {
-    id: 'card-${1}',
+    id: `card-${1}`,
     title:"title2",
     text: " we have for now a static list and a second static card",
     priority:"",
@@ -26,23 +26,23 @@ cards: [
 },
 {
     title:"Second Column",
-    id: 'list-${1}',
+    id: `list-${1}`,
 cards: [
 {
-    id: 'card-${2}',
+    id: `card-${2}`,
     title:"title3",
     text:" we have for now a second static list and a first static card",
     priority:"",
 },
 {
-    id: 'card-${3}',
+    id: `card-${3}`,
     title:"title4",
 
     text: " we have for now a second static list and a second static card",
     priority: "red",
 },
 {
-    id: 'card-${4}',
+    id: `card-${4}`,
     title:"title5",
     text: "blablabla",
     priority:"",
@@ -51,10 +51,10 @@ cards: [
 },
 {
     title:"Third Column",
-    id: 'list-${2}',
+    id: `list-${2}`,
 cards: [
 {
-    id: 'card-${5}',
+    id: `card-${5}`,
     title:"title6",
 
     text:" we have for now a second static list and a first static card",
@@ -70,13 +70,14 @@ cards: [
 const listReducer = (state = initialState, action) => {
 switch(action.type){
     case CONSTANTS.ADD_LIST:
+      const { title, id } = action.payload; 
         const newList = {
-        title: action.payload,
+        title: title,
         cards: [],
-        id:'list-${listID}'
+        id:`list-${id}`
 
 }
-    listID += 1
+    console.log("LIST ID: ", id);
     return [...state, newList];
 
     case CONSTANTS.ADD_CARD:{
@@ -84,9 +85,10 @@ switch(action.type){
         title:action.payload.title,
         text: action.payload.text,
         priority:action.payload.priority,
-        id: 'card-${cardID}'
+        id: `card-${action.payload.id}`
         }
-        cardID += 1;
+        console.log(action.payload.id);
+        //cardID += 1;
 
     const newState = state.map(list => {
     if(list.id === action.payload.listID){

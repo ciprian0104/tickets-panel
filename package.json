@@ -15,9 +15,10 @@
     "react-scripts": "3.0.1",
     "react-textarea-autosize": "^7.1.0",
     "redux": "^4.0.4",
+    "redux-devtools-extension": "^2.13.8",
     "redux-persist": "^5.10.0",
     "styled-components": "^4.3.2",
-    "uuid": "^3.3.2",
+    "uuid": "^3.3.3",
     "uuidv4": "^4.0.0"
   },
   "scripts": {
