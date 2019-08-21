@@ -74,7 +74,7 @@ const TrelloCard = React.memo(({priority ,title, text, id, listID, index, dispat
             onDoubleClick={() => setIsEditing(true)}
           >
             
-            <Card bg="secondary" text="white" >
+            <Card bg="secondary" text="white" style={{width:'18rem'}}>
               <Card.Header>
                 {title}
               </Card.Header>

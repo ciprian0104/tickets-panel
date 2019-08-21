@@ -67,11 +67,11 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
                   <div className="titleContainer" onClick={() => setIsEditing(true)} >
                       <h4>{listTitle}</h4>
                       <FontAwesomeIcon icon="delete"/>
-                      {/*
+                      
                       <IconButton fontSize="small" aria-label="delete" onClick={handleDeleteList}>
                         <DeleteIcon fontSize="small"/>
                       </IconButton>
-                      */}
+                      
 
                   </div>
             )}
