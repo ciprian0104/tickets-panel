@@ -17,8 +17,11 @@ import ActionButton from './ActionButton';
 import Box from '@material-ui/core/Box';
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-
+library.add(faTrash, faEdit);
 const TrelloCard = React.memo(({priority ,title, text, id, listID, index, dispatch }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [cardText, setText] = useState(text);
@@ -82,8 +85,10 @@ const TrelloCard = React.memo(({priority ,title, text, id, listID, index, dispat
               <Card.Text>
                 {text}
               </Card.Text>
-              <Button variant="primary" onMouseDown={()=>setIsEditing(true)}>edit</Button>
-              <Button variant="primary" onMouseDown={handleDeleteCard}>delete</Button>
+              
+              <a><FontAwesomeIcon className="icon_delete" color="white" size="1x" icon="trash" onMouseDown={handleDeleteCard}/></a>
+              <a> <FontAwesomeIcon className="icon_edit" color="white" size="1x" icon="edit" onMouseDown={()=>setIsEditing(true)} /></a>
+              
               </Card.Body>
             </Card>
             {/*

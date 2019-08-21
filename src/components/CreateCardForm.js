@@ -9,9 +9,11 @@ import './App.css';
 import './EditCardForm.css';
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
-
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 //Changed from TrelloActionButton
-
+library.add(faPlus );
 class CreateCardForm extends React.Component {
   state = {
     formOpen: false,
@@ -90,8 +92,8 @@ class CreateCardForm extends React.Component {
         background: buttonTextBackground
 }}
     >
-    <Icon>add</Icon>
-    <p>{buttonText}</p>
+    <FontAwesomeIcon color="white" size="1x" icon="plus"/>
+    <p className="buttonText">{buttonText}</p>
     </div>
 );
 
@@ -116,7 +118,7 @@ class CreateCardForm extends React.Component {
       <div>
         <form onBlur={this.closeForm}>
 
-        <Card className="add_card" bg="secondary">
+        <Card className="add_card" bg="secondary" style={{width:'18rem'}}>
             <Card.Header>
             <form className="form-title-inline">
               <Form.Group className="form-title-group">
