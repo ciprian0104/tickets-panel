@@ -3,24 +3,32 @@
 
     display: flex;
     flex-direction: row;
+    position: relative;
+    right: 300px;
+  
 }
 
 .container {
 
-    background-color: #dfe3e6;
+  
     border-radius: 3px;
-    width: 300px;
     padding: 8px;
     height: 100%;
     word-wrap: break-word;
     margin: 0 8px 0 0;
+    position: relative;
+    
+}
+.container_2{
+    background-color: white;
     opacity: 0.9;
+    padding: 15px;
 }
 
 
 .cardContainer {
     margin-bottom: 8px;
-
+    opacity: 0.9;
 }
 
 .formButton {
@@ -164,4 +172,13 @@
 .ghost{
     visibility: hidden;
     display: none;
+}
+.form-title-inline {
+    width: 100%;
+}
+.form-title-group {
+    width: 90%;
+}
+.form-title-input{
+    width:90% !important;
 }

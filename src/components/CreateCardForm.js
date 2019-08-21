@@ -1,13 +1,14 @@
 import React from "react";
 import Icon from "@material-ui/core/Icon";
-import Card from "@material-ui/core/Card";
+//import Card from "@material-ui/core/Card";
 import Button from "@material-ui/core/Button";
 import { connect } from "react-redux";
 import { addList, addCard } from "../actions";
 import { TextField } from "@material-ui/core";
 import './App.css';
 import './EditCardForm.css';
-
+import Card from "react-bootstrap/Card";
+import Form from "react-bootstrap/Form";
 
 //Changed from TrelloActionButton
 
@@ -30,17 +31,7 @@ class CreateCardForm extends React.Component {
       formOpen: false
     });
   };
-  //handlers for the selector
-  handleClickNormal = () => {
-    return this.setState({priority: "green"});
-
-    }
-  handleClickHigh = () => {
-    return this.setState({priority: "red"});
-  };
-  handleClickMedium = () => {
-    return this.setState({priority: "yellow"});
-  };
+  //handler for the selector
   handleChangePriority = (e) => {
     return this.setState({priority:e.target.value});
   }
@@ -125,8 +116,25 @@ class CreateCardForm extends React.Component {
       <div>
         <form onBlur={this.closeForm}>
 
-        <Card className="add_card">
-
+        <Card className="add_card" bg="secondary">
+            <Card.Header>
+            <form className="form-title-inline">
+              <Form.Group className="form-title-group">
+                <Form.Label>Title</Form.Label>
+                <Form.Control className="form-title-input" type="text" placeholder={placeholder} value={this.state.title} 
+                  onChange={this.handleChange('title')}
+                />
+              </Form.Group>
+              </form>
+            </Card.Header>
+            <Card.Body>
+              <Form.Group>
+                <Form.Label>Description input</Form.Label>
+                <Form.Control size="sm" as="textarea" rows="3"  value={this.state.text} onChange={this.handleChange('text')}/>
+              </Form.Group>
+            </Card.Body>
+           
+           {/*
            <TextField
             placeholder={placeholder}
             value={this.state.text}
@@ -139,7 +147,7 @@ class CreateCardForm extends React.Component {
             placeholder={secondPlaceholder}
             value={this.state.title}
             onChange={this.handleChange('title')}
-          />
+           /> */}
 
         </Card>
 

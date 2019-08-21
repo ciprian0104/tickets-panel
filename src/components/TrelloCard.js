@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Card from "@material-ui/core/Card";
+//import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
 import CardContent from "@material-ui/core/CardContent";
 import { Draggable } from "react-beautiful-dnd";
@@ -14,6 +14,9 @@ import CardHeader from "@material-ui/core/CardHeader";
 import './TrelloCard.css';
 import { Grid } from "@material-ui/core";
 import ActionButton from './ActionButton';
+import Box from '@material-ui/core/Box';
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
 
 
 const TrelloCard = React.memo(({priority ,title, text, id, listID, index, dispatch }) => {
@@ -36,7 +39,6 @@ const TrelloCard = React.memo(({priority ,title, text, id, listID, index, dispat
   const handleChangePriority = e =>{
     setPriority(e.target.value);
     console.log(e.target.value);
-
   }
 
 
@@ -71,8 +73,23 @@ const TrelloCard = React.memo(({priority ,title, text, id, listID, index, dispat
             ref={provided.innerRef}
             onDoubleClick={() => setIsEditing(true)}
           >
+            
+            <Card bg="secondary" text="white" style={{width:'18rem'}}>
+              <Card.Header>
+                {title}
+              </Card.Header>
+              <Card.Body>
+              <Card.Text>
+                {text}
+              </Card.Text>
+              <Button variant="primary" onMouseDown={()=>setIsEditing(true)}>edit</Button>
+              <Button variant="primary" onMouseDown={handleDeleteCard}>delete</Button>
+              </Card.Body>
+            </Card>
+            {/*
             <Card 
-            className="textStyles"
+            style={{backgroundColor:"white"} }
+            
             >
             <IconButton
                 aria-label="edit"
@@ -88,21 +105,28 @@ const TrelloCard = React.memo(({priority ,title, text, id, listID, index, dispat
             >
               <DeleteIcon  fontSize="small"/>
             </IconButton>
-              <CardHeader
-              fontFamily="Italic"
-              variant="h4"
-              title={title}
-              />
+              
+              <Typography
+                variant="h6"
+                >
+                <Box  textAlign="center" >
+                  {title}
+                </Box>
+                </Typography>
 
               <CardContent>
                 <Typography
+                variant="body1"
                 >
-                {text}</Typography>
+                <Box  textAlign="center" >
+                  {text}
+                </Box>
+                </Typography>
               </CardContent>
-              <Chip style={{backgroundColor: priority}} size="small" display="flex" justifyContent="center" 
+              <Chip className="chip" style={{backgroundColor: priority}} size="medium" display="flex" justifyContent="center" 
 
 flexWrap="wrap" variant="outlined" label={(priority === "red") ? "High" : (priority === "yellow") ? "Medium" : (priority === "green") ? "Normal" : "Undefined" }/>
-            </Card>
+            </Card>*/}
           </div>
         )}
       </Draggable>
