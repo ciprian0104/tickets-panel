@@ -7,15 +7,18 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import IconButton from "@material-ui/core/IconButton";
 import { connect } from "react-redux";
 import { editTitle, deleteList } from "../actions";
-import { TextField } from "@material-ui/core";
-
+//import { TextField } from "@material-ui/core";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import Form from "react-bootstrap/Form"
 const TrelloList = ({ title, cards, listID, index, dispatch }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [listTitle, setListTitle] = useState(title);
 
   const renderEditInput = () => {
     return (
-      <TextField 
+      <Form.Control
+      as="textarea"
       className="editList"
       value={listTitle}
       onChange={handleChange}
@@ -56,13 +59,19 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
         >
           <Droppable droppableId={String(listID)} type="card">
             {provided => (
-              <div {...provided.droppableProps} ref={provided.innerRef}>
+              <div 
+              className="container_2"
+              {...provided.droppableProps} ref={provided.innerRef}>
                 {
-                  isEditing ? (renderEditInput()) : (<div className="titleContainer" onClick={() => setIsEditing(true)} >
+                  isEditing ? (renderEditInput()) : (
+                  <div className="titleContainer" onClick={() => setIsEditing(true)} >
                       <h4>{listTitle}</h4>
+                      <FontAwesomeIcon icon="delete"/>
+                      {/*
                       <IconButton fontSize="small" aria-label="delete" onClick={handleDeleteList}>
                         <DeleteIcon fontSize="small"/>
                       </IconButton>
+                      */}
 
                   </div>
             )}

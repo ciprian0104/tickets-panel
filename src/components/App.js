@@ -6,6 +6,7 @@ import CreateCardForm from "./CreateCardForm";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { sort } from "../actions";
 import SimpleAppBar from './SimpleAppBar';
+import Container from 'react-bootstrap/Container';
 import './App.css';
 
 
@@ -38,7 +39,8 @@ class App extends PureComponent {
         <SimpleAppBar />
         <Droppable droppableId="all-lists" direction="horizontal" type="list">
           {provided => (
-            <div className="listContainer"
+            <Container
+              className="listContainer"
               {...provided.droppableProps}
               ref={provided.innerRef}
             >
@@ -53,7 +55,7 @@ class App extends PureComponent {
               ))}
               {provided.placeholder}
               <CreateCardForm list />
-            </div>
+            </Container>
           )}
         </Droppable>
         </div>
