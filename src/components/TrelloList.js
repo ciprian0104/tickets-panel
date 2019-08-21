@@ -3,14 +3,16 @@ import TrelloCard from "./TrelloCard";
 import CreateCardForm from "./CreateCardForm";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import './App.css';
-import DeleteIcon from "@material-ui/icons/Delete";
-import IconButton from "@material-ui/core/IconButton";
+
 import { connect } from "react-redux";
 import { editTitle, deleteList } from "../actions";
-//import { TextField } from "@material-ui/core";
+
+import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import Form from "react-bootstrap/Form"
+import Form from "react-bootstrap/Form";
+
+library.add(faTrash);
 const TrelloList = ({ title, cards, listID, index, dispatch }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [listTitle, setListTitle] = useState(title);
@@ -60,17 +62,16 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
           <Droppable droppableId={String(listID)} type="card">
             {provided => (
               <div 
+              
               className="container_2"
               {...provided.droppableProps} ref={provided.innerRef}>
                 {
                   isEditing ? (renderEditInput()) : (
                   <div className="titleContainer" onClick={() => setIsEditing(true)} >
-                      <h4>{listTitle}</h4>
-                      <FontAwesomeIcon icon="delete"/>
+                      <h4 className="list_title">{listTitle}</h4>
+                      <FontAwesomeIcon className="icon_delete" color="white" size="1x" icon="trash" onClick={handleDeleteList}/>
                       
-                      <IconButton fontSize="small" aria-label="delete" onClick={handleDeleteList}>
-                        <DeleteIcon fontSize="small"/>
-                      </IconButton>
+                      
                       
 
                   </div>
