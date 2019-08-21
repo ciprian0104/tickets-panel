@@ -8,6 +8,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete"
 import Chip from '@material-ui/core/Chip';
 import EditCardForm from "./EditCardForm";
+import EditModal from "./EditModal";
 import { editCard, deleteCard } from "../actions";
 import { connect } from "react-redux";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -55,12 +56,21 @@ const TrelloCard = React.memo(({priority ,title, text, id, listID, index, dispat
 
   const renderEditForm = () => {
     return (
-
+      /*
       <EditCardForm text={cardText} title={cardTitle} priority={cardPriority} onChangeText={handleChangeText} onChangePriority={handleChangePriority} onChangeTitle={handleChangeTitle} closeForm={closeForm}>
       <ActionButton onClick={saveCard}>Save</ActionButton>
 
       </EditCardForm>
-    );
+      */
+
+     <EditModal show = {isEditing} text={cardText} title={cardTitle}
+     priority={cardPriority} onChangeText={handleChangeText} onChangePriority={handleChangePriority}
+      onChangeTitle={handleChangeTitle} closeForm={closeForm}>
+    <ActionButton onClick={saveCard}>Save</ActionButton>
+
+    </EditModal>
+  );
+    
   };
 
   const renderCard = () => {
