@@ -33,10 +33,11 @@ class App extends PureComponent {
   render() {
     const { lists } = this.props;
     return (
-      <DragDropContext onDragEnd={this.onDragEnd}>    
       <div className="background">
-
+      <DragDropContext onDragEnd={this.onDragEnd}>    
+      
         <SimpleAppBar />
+      
         <Droppable droppableId="all-lists" direction="horizontal" type="list">
           {provided => (
             <Container
@@ -58,8 +59,9 @@ class App extends PureComponent {
             </Container>
           )}
         </Droppable>
-        </div>
+       
       </DragDropContext>
+      </div>
     );
   }
 }

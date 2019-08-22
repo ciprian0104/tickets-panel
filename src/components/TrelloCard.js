@@ -89,11 +89,11 @@ const TrelloCard = React.memo(({priority ,title, text, id, listID, index, dispat
             
             <Card bg="secondary" text="white" style={{width:'18rem'}}>
               <Card.Header>
-                {title}
+                {text}
               </Card.Header>
               <Card.Body>
               <Card.Text>
-                {text}
+                {title}
               </Card.Text>
               
               <a><FontAwesomeIcon className="icon_delete" color="white" size="1x" icon="trash" onMouseDown={handleDeleteCard}/></a>
