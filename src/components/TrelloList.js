@@ -54,7 +54,7 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
   return (
     <Draggable draggableId={String(listID)} index={index}>
       {provided => (
-        <div className="container"
+        <div /*className="container"*/
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
