@@ -19,7 +19,7 @@ class CreateCardForm extends React.Component {
     formOpen: false,
     title: "",
     text: "",
-    priority:"green",
+    priority:"",
   };
 
   openForm = () => {
@@ -52,6 +52,8 @@ class CreateCardForm extends React.Component {
         text: ""
       });
       dispatch(addList(text));
+      this.closeForm();
+
     }
 
     return;
@@ -70,6 +72,7 @@ class CreateCardForm extends React.Component {
         priority:"",
       });
       dispatch(addCard(listID, title, text,priority));
+      this.closeForm();
     }
   };
 
@@ -78,7 +81,7 @@ class CreateCardForm extends React.Component {
 
     const buttonText = list ? "Add another list" : "Add another card";
     const buttonTextOpacity = list ? 1 : 0.5;
-    const buttonTextColor = list ? "white" : "inherit";
+    const buttonTextColor = "white"
     const buttonTextBackground = list ? "rgba(0,0,0,.15)" : "inherit";
 
 
@@ -116,24 +119,27 @@ class CreateCardForm extends React.Component {
 
     return (
       <div>
-        <form onBlur={this.closeForm}>
+        <form>
 
         <Card className="add_card" bg="secondary" style={{width:'18rem'}}>
             <Card.Header>
             <form className="form-title-inline">
               <Form.Group className="form-title-group">
                 <Form.Label>Title</Form.Label>
-                <Form.Control className="form-title-input" type="text" placeholder={placeholder} value={this.state.title} 
-                  onChange={this.handleChange('title')}
+                <Form.Control className="form-title-input" type="text" placeholder={placeholder} value={this.state.text} 
+                  onChange={this.handleChange('text')}
                 />
               </Form.Group>
               </form>
             </Card.Header>
             <Card.Body>
+            <div className= {(buttonTitle === "Add Card") ? null : "ghost" }>
+
               <Form.Group>
                 <Form.Label>Description input</Form.Label>
-                <Form.Control size="sm" as="textarea" rows="3"  value={this.state.text} onChange={this.handleChange('text')}/>
+                <Form.Control size="sm" as="textarea" rows="3"  value={this.state.title} onChange={this.handleChange('title')}/>
               </Form.Group>
+            </div>
             </Card.Body>
            
            {/*
