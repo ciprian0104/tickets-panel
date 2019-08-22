@@ -1,29 +1,23 @@
 
 .listContainer {
+    resize: horizontal;
 
     display: flex;
     flex-direction: row;
     position: relative;
-    
-   
+    right: 300px;
+  
 }
 
-.container {
-    border-radius: 3px;
-    padding: 8px 10px;
-    width: 350px;
-    word-wrap: break-word;
-    margin: auto;
-    position: static;
-    left: 0px;
+.container {}
     
-    
-}
 .container_2{
-    width: 300px;
+    margin: 8px;
     border: 0.2px solid white;
     opacity: 0.9;
-    
+    padding: 15px 15px;
+    word-wrap: break-word;
+
 }
 
 
@@ -78,11 +72,12 @@
 }
 
 .background{
+
     position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+    
+    height: 100%;
+    width: 100%;
+
     overflow: auto;
     background: linear-gradient(to right, #114357, #f29492); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
@@ -169,9 +164,7 @@
     align-items: center;
     cursor: pointer;
 }
-.all_items{
-   align-items: flex-start;
-}
+
 .background{
 
     position: fixed;

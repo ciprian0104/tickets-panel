@@ -89,15 +89,18 @@ const TrelloCard = React.memo(({priority ,title, text, id, listID, index, dispat
             
             <Card bg="secondary" text="white" style={{width:'18rem'}}>
               <Card.Header>
-                {text}
+                {title}
               </Card.Header>
               <Card.Body>
               <Card.Text>
-                {title}
+                {text}
               </Card.Text>
               
               <a><FontAwesomeIcon className="icon_delete" color="white" size="1x" icon="trash" onMouseDown={handleDeleteCard}/></a>
-              <a> <FontAwesomeIcon className="icon_edit" color="white" size="1x" icon="edit" onMouseDown={()=>setIsEditing(true)} /></a>
+              <a> <FontAwesomeIcon className="icon_edit" color="white" size="1x" icon="edit" onMouseDown={()=>setIsEditing(true)} />
+              {(isEditing === true) ? renderEditForm() : null}
+              
+              </a>
               
               </Card.Body>
             </Card>
@@ -148,7 +151,7 @@ flexWrap="wrap" variant="outlined" label={(priority === "red") ? "High" : (prior
     );
   };
 
-  return isEditing ? renderEditForm() : renderCard();
+  return renderCard();
 });
 
 export default connect()(TrelloCard);
