@@ -54,7 +54,7 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
   return (
     <Draggable draggableId={String(listID)} index={index}>
       {provided => (
-        <div /*className="container"*/
+        <div /*className="container"*/className="container_2"
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
@@ -63,12 +63,12 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
             {provided => (
               <div 
               
-              className="container_2"
+              
               {...provided.droppableProps} ref={provided.innerRef}>
                 {
                   isEditing ? (renderEditInput()) : (
                   <div className="titleContainer" onClick={() => setIsEditing(true)} >
-                      <h4 className="list_title">{listTitle}</h4>
+                      <p className="list_title">{listTitle}</p>
                       <FontAwesomeIcon className="icon_delete" color="white" size="1x" icon="trash" onClick={handleDeleteList}/>
                       
                       

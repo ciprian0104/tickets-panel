@@ -1,11 +1,8 @@
 
 .listContainer {
-    resize: horizontal;
-
     display: flex;
     flex-direction: row;
     position: relative;
-    right: 300px;
   
 }
 
@@ -15,6 +12,8 @@
     margin: 8px;
     border: 0.2px solid white;
     opacity: 0.9;
+    width: 325px;
+    height: 100%;
     padding: 15px 15px;
     word-wrap: break-word;
 
@@ -82,20 +81,7 @@
     background: linear-gradient(to right, #114357, #f29492); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-.list_title{
-    font-family: "Comic Sans MS", cursive, sans-serif;
-    font-weight: bold;
-    font-size: 17px;
-    letter-spacing: 1px;
-    word-spacing: 2px;
-    color: rgb(44, 41, 41);
-    font-weight: normal;
-    text-decoration: none;
-    font-style: italic;
-    font-variant: normal;
-    text-transform: uppercase;
-    padding-left: 10px;
-}
+
 .card_text{
     font-size:15px;
     font-style:italic;
@@ -113,6 +99,8 @@
 }
 .list_title{
     color: white;
+    overflow-wrap: break-word;
+
 }
 .icon_delete{
     display:inline-block;
@@ -128,6 +116,7 @@
     display: flex;
     align-items: center;
     cursor: pointer;
+    margin: 15px 15px 15px 15px;
     border-radius: 3px;
     height: 36px;
     width: 272px;
@@ -163,6 +152,10 @@
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+
+
 }
 
 .background{
