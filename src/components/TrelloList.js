@@ -11,8 +11,10 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import Form from "react-bootstrap/Form";
-
+import { MDBContainer, MDBScrollbar } from "mdbreact";
 library.add(faTrash);
+const scrollContainerStyle = {maxHeight: "775px", paddingRight:"15px" };
+
 const TrelloList = ({ title, cards, listID, index, dispatch }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [listTitle, setListTitle] = useState(title);
@@ -52,6 +54,7 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
   };
 
   return (
+    
     <Draggable draggableId={String(listID)} index={index}>
       {provided => (
         <div /*className="container"*/className="container_2"
@@ -59,12 +62,18 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
           {...provided.dragHandleProps}
           ref={provided.innerRef}
         >
+          
           <Droppable droppableId={String(listID)} type="card">
+          
             {provided => (
+             
               <div 
               
               
               {...provided.droppableProps} ref={provided.innerRef}>
+                <MDBContainer>
+                   <div className="scrollbar scrollbar-primary  mt-5 mx-auto" style={scrollContainerStyle} >
+                
                 {
                   isEditing ? (renderEditInput()) : (
                   <div className="titleContainer" onClick={() => setIsEditing(true)} >
@@ -76,8 +85,9 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
 
                   </div>
             )}
-
+                
                 {cards.map((card, index) => (
+                   
                   <TrelloCard
                     key={card.id}
                     title={card.title}
@@ -87,15 +97,23 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
                     index={index}
                     listID={listID}
                   />
+                 
                 ))}
+                
                 {provided.placeholder}
                 <CreateCardForm listID={listID} />
+                </div>
+              </MDBContainer>
               </div>
+              
+              
             )}
           </Droppable>
+          
         </div>
       )}
     </Draggable>
+   
   );
 };
 

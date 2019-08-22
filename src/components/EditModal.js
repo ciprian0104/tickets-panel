@@ -26,8 +26,10 @@ const EditModal = React.memo(
       
         return (    
           <>   
-            <Modal show={show}>
-              <Modal.Header closeButton ={closeForm}>
+            <Modal show={show}
+            onHide={()=>closeForm(false)}
+            >
+              <Modal.Header closeButton>
                 <Modal.Title>Modal heading</Modal.Title>
               </Modal.Header>
               <Modal.Body>
@@ -41,18 +43,19 @@ const EditModal = React.memo(
           <Form.Control type="text" placeholder={placeholder} 
           value={text} onChange={e =>onChangeText(e)}></Form.Control>
         </Form.Group>
+        <Form.Control size="sm" as="select" defaultValue={priority} onChange={e=> onChangePriority(e)}>
+              <option></option>
+              <option value={'danger'}>High</option>
+              <option value={'warning'}>Medium</option>
+              <option value={'success'}>Low</option>
+     
+            </Form.Control>
         </Form>
       
      
 
 
-      <select defaultValue={priority} onChange={e=> onChangePriority(e)}
-                className="form-control">
-                    <option></option>
-                    <option value={'red'}>High</option>
-                    <option value={'yellow'}>Medium</option>
-                    <option value={'green'}>Low</option>
-                    </select>
+      
          
 
 
