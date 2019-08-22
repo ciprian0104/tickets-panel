@@ -7,6 +7,8 @@ import Button from 'react-bootstrap/Button';
 import "./App.css";
 import TextField from "@material-ui/core/TextField";
 import "./EditCardForm.css";
+import Form from 'react-bootstrap/Form';
+import { FORMERR } from "dns";
 
 //This is the edit form
 
@@ -29,18 +31,19 @@ const EditModal = React.memo(
                 <Modal.Title>Modal heading</Modal.Title>
               </Modal.Header>
               <Modal.Body>
-      <Card className="add_card">
-      <TextField
-            placeholder={titleholder}
-
-            value={title}
-            onChange={e => onChangeTitle(e)}
-          />
-        <TextField
-          placeholder={placeholder}
-          value={text}
-          onChange={e => onChangeText(e)}
-        />
+      
+      <Form>
+        <Form.Group>
+          <Form.Control type="text" placeholder={titleholder} 
+          value={title} onChange={e =>onChangeTitle(e)}></Form.Control>
+        </Form.Group>
+        <Form.Group>
+          <Form.Control type="text" placeholder={placeholder} 
+          value={text} onChange={e =>onChangeText(e)}></Form.Control>
+        </Form.Group>
+        </Form>
+      
+     
 
 
       <select defaultValue={priority} onChange={e=> onChangePriority(e)}
@@ -50,11 +53,12 @@ const EditModal = React.memo(
                     <option value={'yellow'}>Medium</option>
                     <option value={'green'}>Low</option>
                     </select>
+         
 
 
       
 
-      </Card>
+     
               </Modal.Body>
               <Modal.Footer>
                 {children}
