@@ -1,17 +1,19 @@
 import React from "react";
 import Icon from "@material-ui/core/Icon";
 //import Card from "@material-ui/core/Card";
-import Button from "@material-ui/core/Button";
+import Button from "react-bootstrap/Button";
 import { connect } from "react-redux";
 import { addList, addCard } from "../actions";
-import { TextField } from "@material-ui/core";
+import ButtonToolbar from "react-bootstrap/ButtonToolbar";
 import './App.css';
 import './EditCardForm.css';
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
+
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 //Changed from TrelloActionButton
 library.add(faPlus );
 class CreateCardForm extends React.Component {
@@ -19,7 +21,7 @@ class CreateCardForm extends React.Component {
     formOpen: false,
     title: "",
     text: "",
-    priority:"green",
+    priority:"",
   };
 
   openForm = () => {
@@ -119,7 +121,7 @@ class CreateCardForm extends React.Component {
         <form onBlur={this.closeForm}>
 
         <Card className="add_card" bg="secondary" style={{width:'18rem'}}>
-            <Card.Header>
+            <Card.Header className="inputCardHeader">
             <form className="form-title-inline">
               <Form.Group className="form-title-group">
                 <Form.Label>Title</Form.Label>
@@ -129,8 +131,8 @@ class CreateCardForm extends React.Component {
               </Form.Group>
               </form>
             </Card.Header>
-            <Card.Body>
-              <Form.Group>
+            <Card.Body className="addInputCardBody" >
+              <Form.Group className="description_input">
                 <Form.Label>Description input</Form.Label>
                 <Form.Control size="sm" as="textarea" rows="3"  value={this.state.text} onChange={this.handleChange('text')}/>
               </Form.Group>
@@ -150,7 +152,16 @@ class CreateCardForm extends React.Component {
             value={this.state.title}
             onChange={this.handleChange('title')}
            /> */}
-
+          <Form className="priority_selector">
+           <Form.Control size="sm" as="select" defaultValue="" onChange={this.handleChangePriority}>
+              <option></option>
+              <option value={'danger'}>High</option>
+              <option value={'warning'}>Medium</option>
+              <option value={'success'}>Low</option>
+     
+            </Form.Control>
+            </Form>
+          
         </Card>
 
         <div className="buttonContainer">
@@ -167,9 +178,9 @@ class CreateCardForm extends React.Component {
           <select defaultValue="" onChange={this.handleChangePriority}
                 className="form-control">
                     <option></option>
-                    <option value={'red'}>High</option>
-                    <option value={'yellow'}>Medium</option>
-                    <option value={'green'}>Low</option>
+                    <option value={'danger'}>High</option>
+                    <option value={'warning'}>Medium</option>
+                    <option value={'success'}>Low</option>
                     </select>
           </div>
 

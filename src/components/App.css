@@ -25,6 +25,16 @@
     margin-bottom: 8px;
     opacity: 0.9;
 }
+.priority_selector{
+    width: 126px;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    border:1px;
+}
 
 .formButton {
     display: flex;
@@ -183,8 +193,59 @@
     width: 100%;
 }
 .form-title-group {
-    width: 90%;
+    width: 240px;
+    margin-bottom: 5px;
 }
 .form-title-input{
     width:90% !important;
 }
+
+.form-control {
+    width: 126px;
+}
+.priority_selector{
+    width: 5 rem;
+    margin-left:20px;
+    margin-top:0px;
+}
+.description_input{
+    margin:10px;
+    padding-top:10px;
+    padding-left:0px;
+}
+.addInputCardBody{
+    padding-top: 5px;
+}
+.inputCardHeader{
+    padding-left:30px;
+}
+.icon{
+    float: right;
+}
+.scrollbar {
+    overflow: scroll;
+  }
+  
+  .scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    padding-right: 15px;
+  }
+  
+  .scrollbar::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.2);
+  }
+  
+  /* custom colors  */
+  .scrollbar-primary::-webkit-scrollbar {
+    padding-right: 15px;
+  }
+  
+  .scrollbar-primary::-webkit-scrollbar-thumb {
+    padding-right: 15px;
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    background-color: #4285F4;
+  }
