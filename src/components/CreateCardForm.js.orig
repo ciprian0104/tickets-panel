@@ -134,10 +134,15 @@ class CreateCardForm extends React.Component {
               </Form.Group>
               </form>
             </Card.Header>
+<<<<<<< HEAD
+            <Card.Body className="addInputCardBody" >
+              <Form.Group className="description_input">
+=======
             <Card.Body>
             <div className= {(buttonTitle === "Add Card") ? null : "ghost" }>
 
               <Form.Group>
+>>>>>>> master
                 <Form.Label>Description input</Form.Label>
                 <Form.Control size="sm" as="textarea" rows="3"  value={this.state.title} onChange={this.handleChange('title')}/>
               </Form.Group>

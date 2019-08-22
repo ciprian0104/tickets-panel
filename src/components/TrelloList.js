@@ -57,7 +57,7 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
     
     <Draggable draggableId={String(listID)} index={index}>
       {provided => (
-        <div /*className="container"*/
+        <div /*className="container"*/className="container_2"
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
@@ -69,7 +69,7 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
              
               <div 
               
-              className="container_2"
+              
               {...provided.droppableProps} ref={provided.innerRef}>
                 <MDBContainer>
                    <div className="scrollbar scrollbar-primary  mt-5 mx-auto" style={scrollContainerStyle} >
@@ -77,7 +77,7 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
                 {
                   isEditing ? (renderEditInput()) : (
                   <div className="titleContainer" onClick={() => setIsEditing(true)} >
-                      <h4 className="list_title">{listTitle}</h4>
+                      <p className="list_title">{listTitle}</p>
                       <FontAwesomeIcon className="icon_delete" color="white" size="1x" icon="trash" onClick={handleDeleteList}/>
                       
                       
