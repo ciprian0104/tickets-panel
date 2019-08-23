@@ -117,6 +117,7 @@
 .list_title{
     color: white;
     overflow: auto;
+ 
 
 }
 
@@ -140,22 +141,18 @@
     color: #dc3545;
 }
 
-.icon_edit::after{
-    z-index: 0;
-
-
-}
 
 .openFormButtonGroup{
     display: flex;
-    align-items: center;
     cursor: pointer;
     margin: 15px 15px 15px 15px;
     border-radius: 3px;
     height: 36px;
     width: 272px;
     padding-left: 10px;
+    padding-top: 5px;
 }
+
 .cardContainer{
     margin-bottom: 10px;
 }
@@ -222,7 +219,7 @@
 }
 .priority_selector{
     width: 5 rem;
-    margin-left:20px;
+    margin-left:10px;
     margin-top:0px;
 }
 .description_input{
@@ -238,6 +235,8 @@
 }
 .icon{
     float: right;
+    width: 85px;
+    height: 40px;
 }
 .scrollbar {
     overflow: scroll;
@@ -265,4 +264,21 @@
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
     background-color: white;
+  }
+
+  .p_class{
+      margin-top: 2px;
+  }
+
+  .p_class:hover{
+      color: red;
+  }
+
+  .plus_icon{
+      margin-top: 5px;
+      margin-right: 5px;
+      color: white;
+  }
+  .plus_icon:hover{
+      color: red;
   }

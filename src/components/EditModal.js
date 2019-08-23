@@ -36,11 +36,11 @@ const EditModal = React.memo(
       
       <Form>
         <Form.Group>
-          <Form.Control type="text" placeholder={titleholder} 
+          <Form.Control type="text" placeholder={titleholder} maxLength="15"
           value={title} onChange={e =>onChangeTitle(e)}></Form.Control>
         </Form.Group>
         <Form.Group>
-          <Form.Control type="text" placeholder={placeholder} 
+          <Form.Control type="text" maxLength="200"placeholder={placeholder} 
           value={text} onChange={e =>onChangeText(e)}></Form.Control>
         </Form.Group>
         <Form.Control size="sm" as="select" defaultValue={priority} onChange={e=> onChangePriority(e)}>
@@ -51,9 +51,7 @@ const EditModal = React.memo(
      
             </Form.Control>
         </Form>
-      
-     
-              </Modal.Body>
+     </Modal.Body>
               <Modal.Footer>
                 {children}
               </Modal.Footer>

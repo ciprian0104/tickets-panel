@@ -13,6 +13,7 @@ import Form from "react-bootstrap/Form";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Modal from 'react-bootstrap/Modal';
 
 //Changed from TrelloActionButton
 library.add(faPlus );
@@ -67,7 +68,7 @@ class CreateCardForm extends React.Component {
     const { title } = this.state;
     const {priority}= this.state;
 
-    if (text && title) {
+    if (text && title && priority) {
       this.setState({
         title: "",
         text: "",
@@ -94,11 +95,12 @@ class CreateCardForm extends React.Component {
         style={{
         capacity: buttonTextOpacity, 
         color: buttonTextColor, 
-        background: buttonTextBackground
+        background: buttonTextBackground,
+
 }}
     >
-    <FontAwesomeIcon color="white" size="1x" icon="plus"/>
-    <p className="buttonText">{buttonText}</p>
+    <FontAwesomeIcon size="1x" icon="plus" className="plus_icon" />
+    <p class="p_class">{buttonText}</p>
     </div>
 );
 
@@ -120,15 +122,22 @@ class CreateCardForm extends React.Component {
 
 
     return (
+      <Modal show={this.openForm}
+      onHide={this.closeForm}
+      >
+        <Modal.Header closeButton>
+                <Modal.Title>Add another card</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
       <div>
         <form>
 
-        <Card className="add_card" bg="secondary" style={{width:'18rem'}}>
+        <Card className="add_card">
             <Card.Header className="inputCardHeader">
             <form className="form-title-inline">
               <Form.Group className="form-title-group">
                 <Form.Label>Title</Form.Label>
-                <Form.Control className="form-title-input" type="text" placeholder={placeholder} value={this.state.text} 
+                <Form.Control className="form-title-input" required type="text" maxLength="15" placeholder={placeholder} value={this.state.text} 
                   onChange={this.handleChange('text')}
                 />
               </Form.Group>
@@ -139,7 +148,7 @@ class CreateCardForm extends React.Component {
 
               <Form.Group>
                 <Form.Label>Description input</Form.Label>
-                <Form.Control size="sm" as="textarea" rows="3"  value={this.state.title} onChange={this.handleChange('title')}/>
+                <Form.Control size="sm" as="textarea" rows="3" maxLength="200"  value={this.state.title} onChange={this.handleChange('title')}/>
               </Form.Group>
             </div>
             </Card.Body>
@@ -159,6 +168,7 @@ class CreateCardForm extends React.Component {
             onChange={this.handleChange('title')}
            /> */}
           <Form className="priority_selector">
+           <Form.Label>Select priority</Form.Label>
            <Form.Control size="sm" as="select" defaultValue="" onChange={this.handleChangePriority}>
               <option></option>
               <option value={'danger'}>High</option>
@@ -176,24 +186,12 @@ class CreateCardForm extends React.Component {
             variant="contained"
             children={buttonTitle}
           />
-
-          <Icon className="icon" onClick={this.closeForm}>close</Icon>
-          {/*priority selector form */}
-          <div className= {(buttonTitle === "Add Card") ? "parentDiv" : "ghost" }>
-          
-          <select defaultValue="" onChange={this.handleChangePriority}
-                className="form-control">
-                    <option></option>
-                    <option value={'danger'}>High</option>
-                    <option value={'warning'}>Medium</option>
-                    <option value={'success'}>Low</option>
-                    </select>
-          </div>
-
         </div>
         </form>
 
       </div>
+      </Modal.Body>
+      </Modal>
     );
   };
 
