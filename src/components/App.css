@@ -110,6 +110,7 @@
 .list_title{
     color: white;
     overflow-wrap: break-word;
+ 
 
 }
 .icon_delete{
@@ -198,7 +199,7 @@
 }
 .priority_selector{
     width: 5 rem;
-    margin-left:20px;
+    margin-left:10px;
     margin-top:0px;
 }
 .description_input{
@@ -214,6 +215,8 @@
 }
 .icon{
     float: right;
+    width: 85px;
+    height: 40px;
 }
 .scrollbar {
     overflow: scroll;
@@ -240,5 +243,5 @@
     padding-right: 15px;
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
-    background-color: #4285F4;
+    background-color: white;
   }
