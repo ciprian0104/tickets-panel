@@ -53,15 +53,6 @@ const EditModal = React.memo(
         </Form>
       
      
-
-
-      
-         
-
-
-      
-
-     
               </Modal.Body>
               <Modal.Footer>
                 {children}

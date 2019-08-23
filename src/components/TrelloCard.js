@@ -87,12 +87,11 @@ const TrelloCard = React.memo(({priority ,title, text, id, listID, index, dispat
             onDoubleClick={() => setIsEditing(true)}
           >
             
-            <Card bg="secondary" text="white" style={{width:'18rem'}}>
+            <Card bg="secondary" text="white" style={{width:'18rem', overflow:'auto'}}>
               <Card.Header>
                 
                 {title}
-                <Button variant={priority} className="icon" disabled>priority</Button>
-                {console.log(priority)}
+                <Button variant={priority} style={{borderRadius: '16px'}} className="icon" disabled>priority</Button>
               </Card.Header>
               <Card.Body>
               <Card.Text>
