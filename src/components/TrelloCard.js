@@ -88,7 +88,7 @@ const TrelloCard = React.memo(({priority ,title, text, id, listID, index, dispat
           >
             
             <Card bg="secondary" text="white" style={{width:'18rem'}}>
-              <Card.Header>
+              <Card.Header style={{width:'275px',paddingRight: '5px'}}>
                 
                 {title}
                 <Button style={{borderRadius: '16px'}} variant={priority} className="icon" disabled> 
