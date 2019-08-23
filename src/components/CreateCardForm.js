@@ -95,11 +95,12 @@ class CreateCardForm extends React.Component {
         style={{
         capacity: buttonTextOpacity, 
         color: buttonTextColor, 
-        background: buttonTextBackground
+        background: buttonTextBackground,
+
 }}
     >
-    <FontAwesomeIcon color="white" size="1x" icon="plus"/>
-    <p className="buttonText">{buttonText}</p>
+    <FontAwesomeIcon size="1x" icon="plus" className="plus_icon" />
+    <p class="p_class">{buttonText}</p>
     </div>
 );
 
