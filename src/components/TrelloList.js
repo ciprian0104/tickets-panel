@@ -71,8 +71,7 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
               
               
               {...provided.droppableProps} ref={provided.innerRef}>
-                <MDBContainer>
-                   <div className="scrollbar scrollbar-primary  mt-5 mx-auto" style={scrollContainerStyle} >
+                
                 
                 {
                   isEditing ? (renderEditInput()) : (
@@ -85,7 +84,8 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
 
                   </div>
             )}
-                
+                 <MDBContainer>
+                   <div className="scrollbar scrollbar-primary  mt-5 mx-auto" style={scrollContainerStyle} >
                 {cards.map((card, index) => (
                    
                   <TrelloCard
