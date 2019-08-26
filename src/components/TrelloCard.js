@@ -27,7 +27,8 @@ const TrelloCard = React.memo(({priority ,title, text, id, listID, index, dispat
   const [isEditing, setIsEditing] = useState(false);
   const [cardText, setText] = useState(text);
   const [cardTitle, setTitle] = useState(title);
-  const [cardPriority,setPriority] = useState(priority);
+  const [cardPriority, setPriority] = useState(priority);
+
 
   const closeForm = e => {
     setIsEditing(false);
@@ -78,6 +79,7 @@ const TrelloCard = React.memo(({priority ,title, text, id, listID, index, dispat
 
   const renderCard = () => {
     return (
+
       <Draggable draggableId={String(id)} index={index}>
         {provided => (
           <div className="cardDiv"
@@ -153,6 +155,7 @@ flexWrap="wrap" variant="outlined" label={(priority === "red") ? "High" : (prior
           </div>
         )}
       </Draggable>
+
     );
   };
 

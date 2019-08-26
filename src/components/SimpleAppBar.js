@@ -1,17 +1,19 @@
 import React from 'react';
 import Navbar from "react-bootstrap/Navbar"
 import "./App.css";
+import { Link } from "react-router-dom";
 
 
 /**To be modified
 TODO: Add functionality later
 
 */
-export default function SimpleAppBar() {
+export default function SimpleAppBar({title}) {
   return (
     <Navbar bg="secondary" variant="secondary">
     <Navbar.Brand className="buttonText" >
-      {'Tickets Panel'}
+    <Link to="/">Go Back</Link>
+     <h4>{title}</h4>
     </Navbar.Brand>
   </Navbar>
   );

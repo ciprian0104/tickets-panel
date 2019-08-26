@@ -74,7 +74,7 @@ class CreateCardForm extends React.Component {
         text: "",
         priority:"",
       });
-      dispatch(addCard(listID, title, text,priority));
+      dispatch(addCard(listID, title, text, priority));
       this.closeForm();
     }
   };
