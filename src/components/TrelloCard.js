@@ -13,10 +13,11 @@ import { editCard, deleteCard } from "../actions";
 import { connect } from "react-redux";
 import CardHeader from "@material-ui/core/CardHeader";
 import './TrelloCard.css';
-import { Grid } from "@material-ui/core";
+
 import ActionButton from './ActionButton';
 import Box from '@material-ui/core/Box';
 import Card from "react-bootstrap/Card";
+import Badge from "react-bootstrap/Badge";
 import Button from "react-bootstrap/Button";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
@@ -90,13 +91,13 @@ const TrelloCard = React.memo(({priority ,title, text, id, listID, index, dispat
           >
             
             <Card bg="secondary" text="white" style={{width:'18rem', overflow:'auto'}}>
-              <Card.Header>
+              <Card.Header style={{width:'275px',paddingRight: '5px'}}>
                 
                 {title}
-                <Button variant={priority} style={{borderRadius: "16px"}} className="icon" disabled>
+                <Badge variant={priority}  className="icon" disabled>
                 {(priority === "danger") ? "High" : (priority === "warning") ? "Medium" : (priority === "success") ? "Low" : null}
              
-                </Button>
+                </Badge>
               </Card.Header>
               <Card.Body>
               <Card.Text>

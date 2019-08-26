@@ -1,4 +1,3 @@
-
 import React, { PureComponent } from "react";
 import TrelloList from "./TrelloList";
 import { connect } from "react-redux";
