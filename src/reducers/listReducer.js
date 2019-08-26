@@ -1,148 +1,101 @@
 import { CONSTANTS } from "../actions";
 
+const initialState = {};
 
-//let listID = 3;//list index
-//let cardID = 6;//card index
-
-const initialState=[];
-
-
-
-const listReducer = (state = initialState, action) => {
-switch(action.type){
-    case CONSTANTS.ADD_LIST:
-      const { title, id } = action.payload; 
-        const newList = {
+const listsReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case CONSTANTS.ADD_LIST: {
+      const { title, id } = action.payload;
+      const newList = {
         title: title,
-        cards: [],
-        id:`list-${id}`
+        id: `list-${id}`,
+        cards: []
+      };
 
-}
-    console.log("LIST ID: ", id);
-    return [...state, newList];
+      const newState = { ...state, [`list-${id}`]: newList };
 
-    case CONSTANTS.ADD_CARD:{
-        const newCard = {
-        title:action.payload.title,
-        text: action.payload.text,
-        priority:action.payload.priority,
-        id: `card-${action.payload.id}`
-        }
-        console.log(action.payload.id);
-        //cardID += 1;
+      return newState;
+    }
 
-    const newState = state.map(list => {
-    if(list.id === action.payload.listID){
-    return {
-    ...list,
-    cards: [...list.cards, newCard]
+    case CONSTANTS.ADD_CARD: {
+      const { listID, id } = action.payload;
+      const list = state[listID];
+      list.cards.push(`card-${id}`);
+      return { ...state, [listID]: list };
     }
-    } else {
-    return list;
-    }
-    });
-    return newState;
-    }
+
     case CONSTANTS.DRAG_HAPPENED:
-    const {
-    droppableIdStart,
-    droppableIdEnd,
-    droppableIndexStart,
-    droppableIndexEnd,
-    type
-    } = action.payload;
+      const {
+        droppableIdStart,
+        droppableIdEnd,
+        droppableIndexEnd,
+        droppableIndexStart,
 
-    const newState = [...state];
-    // Dragging the lists
+        type
+      } = action.payload;
 
-    if(type === "list"){
-    const list = newState.splice(droppableIndexStart, 1);
-    newState.splice(droppableIndexEnd, 0, ...list);
-    return newState;
-}
-
-
-//If they are in the same list
-if (droppableIdStart === droppableIdEnd) {
-    const list = state.find(list => droppableIdStart === list.id);
-    const card = list.cards.splice(droppableIndexStart, 1);
-    list.cards.splice(droppableIndexEnd, 0, ...card);
-
-
-}
-
-if (droppableIdStart !== droppableIdEnd) {
-    const listStart = state.find(list => droppableIdStart === list.id);
-
-    const card = listStart.cards.splice(droppableIndexStart, 1);
-
-    const listEnd = state.find(list => droppableIdEnd === list.id);
-
-    listEnd.cards.splice(droppableIndexEnd, 0, ...card)
-}
-
-
-
-    return newState;
-
-
-    case CONSTANTS.EDIT_CARD: {
-        const { id, listID, newText, newTitle, newPriority } = action.payload;
-        return state.map(list => {
-          if (list.id === listID) {
-            const newCards = list.cards.map(card => {
-              if (card.id === id) {
-                card.text = newText;
-                card.title = newTitle;
-                card.priority=newPriority;
-                console.log(card.text);
-                console.log(card.priority);
-                return card;
-              }
-              return card;
-            });
-            return { ...list, cards: newCards };
-          }
-          return list;
-        });
-      }
-  
-      case CONSTANTS.DELETE_CARD: {
-        const { id, listID } = action.payload;
-        return state.map(list => {
-          if (list.id === listID) {
-            const newCards = list.cards.filter(card => card.id !== id);
-            return { ...list, cards: newCards };
-          } else {
-            return list;
-          }
-        });
+      // draggin lists around - the listOrderReducer should handle this
+      if (type === "list") {
+        return state;
       }
 
-      case CONSTANTS.DELETE_LIST: {
-        const { listID } = action.payload;
-        return state.filter(list => list.id !== listID);
-      }
-  
-  
-      case CONSTANTS.EDIT_LIST_TITLE: {
-        const { listID, newTitle } = action.payload;
-        return state.map(list => {
-          if (list.id === listID) {
-            list.title = newTitle;
-            return list;
-          } else {
-            return list;
-          }
-        });
+      // in the same list
+      if (droppableIdStart === droppableIdEnd) {
+        const list = state[droppableIdStart];
+        const card = list.cards.splice(droppableIndexStart, 1);
+        list.cards.splice(droppableIndexEnd, 0, ...card);
+        return { ...state, [droppableIdStart]: list };
       }
 
+      // other list
+      if (droppableIdStart !== droppableIdEnd) {
+        // find the list where the drag happened
+        const listStart = state[droppableIdStart];
+        // pull out the card from this list
+        const card = listStart.cards.splice(droppableIndexStart, 1);
+        // find the list where the drag ended
+        const listEnd = state[droppableIdEnd];
+
+        // put the card in the new list
+        listEnd.cards.splice(droppableIndexEnd, 0, ...card);
+        return {
+          ...state,
+          [droppableIdStart]: listStart,
+          [droppableIdEnd]: listEnd
+        };
+      }
+      return state;
+
+    case CONSTANTS.DELETE_CARD: {
+      const { listID, id } = action.payload;
+
+      const list = state[listID];
+      const newCards = list.cards.filter(cardID => cardID !== id);
+
+      return { ...state, [listID]: { ...list, cards: newCards } };
+    }
+
+    case CONSTANTS.EDIT_LIST_TITLE: {
+      const { listID, newTitle } = action.payload;
+
+      const list = state[listID];
+      list.title = newTitle;
+      return { ...state, [listID]: list };
+    }
+
+    case CONSTANTS.DELETE_LIST: {
+      const { listID } = action.payload;
+      const newState = state;
+      console.log("This is the list state: ", newState);
+      console.log("List state with list ID:", newState[listID]);
+      delete newState[listID];
+      console.log("List state after deletion: ", newState);
+      return newState;
+    }
 
     default:
-    return state;
+      return state;
+  }
+};
 
-}
-
-}
-
-export default listReducer;
+export default listsReducer;
