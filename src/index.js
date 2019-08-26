@@ -9,13 +9,16 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 const { store, persistor } = Store();
 
-     /*<PersistGate loading={null} persistor={persistor}>
+     /*
      
      */
 
+/*<PersistGate loading={null} persistor={persistor}>
+    </PersistGate>
+*/
 
 ReactDOM.render(<Provider store={store}>
-<PersistGate loading={null} persistor={persistor}>
+    <PersistGate loading={null} persistor={persistor}>
     <App />
     </PersistGate>
     </Provider>

@@ -38,7 +38,6 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
   };
 
   const handleFocus = e => {
-    console.log("hi");
 
     e.target.select();
   };
@@ -57,7 +56,7 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
     
     <Draggable draggableId={String(listID)} index={index}>
       {provided => (
-        <div /*className="container"*/className="container_2"
+        <div className="container_2"
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}

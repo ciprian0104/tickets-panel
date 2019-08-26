@@ -1,13 +1,18 @@
 import {combineReducers} from "redux";  
 import listReducer from "./listReducer";
-import listOrderReducer from "./listOrderReducer";
+import boardsReducer from "./boardsReducer";
+import boardOrderReducer from "./boardOrderReducer";
+import activeBoardReducer from "./activeBoardReducer";
 import cardsReducer from "./cardsReducer";
+
 
 export default combineReducers(
     {
         lists: listReducer,
         cards: cardsReducer,
-        listOrder: listOrderReducer,
+        boards: boardsReducer,
+        boardOrder: boardOrderReducer,
+        activeBoard: activeBoardReducer
 
     }
 );

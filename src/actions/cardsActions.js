@@ -7,14 +7,14 @@ export const addCard = (listID, text, title, priority) => {
 
     return {
         type: CONSTANTS.ADD_CARD,
-        payload: {id, text, title, listID,priority}
+        payload: {id, text, title, listID, priority}
     };
 };
 
-export const editCard = (id, listID, newText, newTitle,newPriority) => {
+export const editCard = (id, listID, newText, newTitle, newPriority) => {
     return {
       type: CONSTANTS.EDIT_CARD,
-      payload: { id, listID, newText, newTitle,newPriority }
+      payload: { id, listID, newText, newTitle, newPriority }
     };
   };
 
