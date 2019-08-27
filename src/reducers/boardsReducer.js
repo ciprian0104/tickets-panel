@@ -1,4 +1,5 @@
 import { CONSTANTS } from "../actions";
+import { stat } from "fs";
 
 
 const initialState = {};
@@ -54,7 +55,14 @@ const boardsReducer = (state = initialState, action) => {
         lists: []
       };
 
-      return { ...state, [newID]: newBoard };
+      const newState = { ...state, [newID]: newBoard };
+      return newState;
+    }
+    case CONSTANTS.DELETE_BOARD:{
+      const {boardID} = action.payload;
+      const newState= state;
+      delete newState[boardID];
+      return newState;
     }
 
 

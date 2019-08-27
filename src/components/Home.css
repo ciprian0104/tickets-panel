@@ -3,7 +3,7 @@
 .thumbnail {
     height: 280px;
     width: 280px;
-    background: gray;
+    background: linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);
     padding: 10px;
     margin: 8px;
     display: flex;
@@ -11,7 +11,9 @@
     align-items: center;
     cursor: pointer;
     border-radius: 3px;
+    opacity: 0.8;
     box-shadow: 0 2px 4px grey;
+    margin-bottom: 2px;
 }
 
 .thumbnail_title {
@@ -34,9 +36,16 @@
     flex-direction: column;
     align-items: center;
     box-sizing: border-box;
+    min-height: 960px;
+    height: auto;
+    background: linear-gradient(to right, #abbaab, #ffffff);
 }
-
+.deleteBoardIcon{
+    width:230px;
+    margin-left:30px;
+}
 .create_title {
+    margin-top:20px;
     font-size: 48px;
     color: black;
     font-weight: bold;
@@ -54,4 +63,10 @@
     outline-color: blue;
     box-shadow: 0 2px 4px grey;
     align-self: center;
+    margin-bottom: 20px;
+}
+.addBoardButton{
+    margin-bottom: 50px;
+    width: 200px;
+    height: 50px;
 }
