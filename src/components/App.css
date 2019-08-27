@@ -3,6 +3,10 @@
     display: flex;
     flex-direction: row;
     position: relative;
+    height: auto;
+    flex: 1;
+    flex-wrap: wrap;
+    justify-content: flex-start;
   
 }
 
@@ -12,10 +16,11 @@
     margin: 8px;
     border: 0.2px solid white;
     opacity: 0.9;
-    width: 370px;
+    width: 380px;
     height: 100%;
     padding: 15px 15px;
     word-wrap: break-word;
+    display: flex;
 
 }
 
@@ -23,18 +28,11 @@
 .cardContainer {
     margin-bottom: 8px;
     opacity: 0.9;
+    display: flex;
 }
-.priority_selector{
-    width: 126px;
-    margin-left: 20px;
-    margin-bottom: 10px;
-    padding-left: 12px;
-    padding-right: 12px;
-    padding-top: 6px;
-    padding-bottom: 6px;
-    border:1px;
+.prioritySelector{
+    width: 168px;
 }
-
 .formButton {
     display: flex;
     margin-top: 8px;
@@ -88,7 +86,6 @@
 .background{
 
     position: fixed;
-    
     height: 100%;
     width: 100%;
 

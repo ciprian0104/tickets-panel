@@ -8,6 +8,7 @@ const BoardThumbnail = ({ title }) => {
     <div className="thumbnail">
       <h4 className="thumbnail_title">{title}</h4>
     </div>
+  
   );
 };
 
