@@ -18,10 +18,11 @@ export const addBoard = title => {
 };
 
 export const deleteBoard = boardID => {
-
-  return {
+      return {
+      type:CONSTANTS.DELETE_BOARD,
+      payload: boardID,
       type: CONSTANTS.DELETE_BOARD,
       payload: boardID
   };
-
 };
+

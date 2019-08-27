@@ -137,7 +137,7 @@ class CreateCardForm extends React.Component {
             <form className="form-title-inline">
               <Form.Group className="form-title-group">
                 <Form.Label>Title</Form.Label>
-                <Form.Control className="form-title-input" required type="text" maxLength="15" placeholder={placeholder} value={this.state.text} 
+                <Form.Control className="form-title-input" required type="text" maxLength="20" placeholder={placeholder} value={this.state.text} 
                   onChange={this.handleChange('text')}
                 />
               </Form.Group>
@@ -149,7 +149,19 @@ class CreateCardForm extends React.Component {
               <Form.Group>
                 <Form.Label>Description input</Form.Label>
                 <Form.Control size="sm" as="textarea" rows="3" maxLength="200"  value={this.state.title} onChange={this.handleChange('title')}/>
+                
+           <Form.Label>Select priority</Form.Label>
+           <div className="prioritySelector">
+           <Form.Control  size="sm" as="select" defaultValue=""  onChange={this.handleChangePriority}>
+              <option></option>
+              <option value={'danger'}>High</option>
+              <option value={'warning'}>Medium</option>
+              <option value={'success'}>Low</option>
+     
+            </Form.Control>
+            </div>
               </Form.Group>
+              
             </div>
             </Card.Body>
            
@@ -167,16 +179,7 @@ class CreateCardForm extends React.Component {
             value={this.state.title}
             onChange={this.handleChange('title')}
            /> */}
-          <Form className="priority_selector">
-           <Form.Label>Select priority</Form.Label>
-           <Form.Control size="sm" as="select" defaultValue="" onChange={this.handleChangePriority}>
-              <option></option>
-              <option value={'danger'}>High</option>
-              <option value={'warning'}>Medium</option>
-              <option value={'success'}>Low</option>
-     
-            </Form.Control>
-            </Form>
+         
           
         </Card>
 

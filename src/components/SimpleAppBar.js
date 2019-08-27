@@ -14,7 +14,7 @@ TODO: Add functionality later
 export default function SimpleAppBar({title}) {
   return (
 
-    <Navbar style={{width:"100%", position:"fixed"}} expanded="true" bg="secondary" variant="secondary">
+    <Navbar style={{width:"100%"}} expanded="true" bg="secondary" variant="secondary">
     
     <Link to="/">
     <a><FontAwesomeIcon className="icon_arrow" color="white" size="3x" icon={faAngleDoubleLeft} /></a>
