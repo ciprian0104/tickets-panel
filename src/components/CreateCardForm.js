@@ -143,8 +143,9 @@ class CreateCardForm extends React.Component {
               </Form.Group>
               </form>
             </Card.Header>
-            <Card.Body>
             <div className= {(buttonTitle === "Add Card") ? null : "ghost" }>
+            <Card.Body>
+            
 
               <Form.Group>
                 <Form.Label>Description input</Form.Label>
@@ -162,8 +163,9 @@ class CreateCardForm extends React.Component {
             </div>
               </Form.Group>
               
-            </div>
+            
             </Card.Body>
+            </div>
            
            {/*
            <TextField

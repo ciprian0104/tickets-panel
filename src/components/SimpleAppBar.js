@@ -13,8 +13,8 @@ export default function SimpleAppBar({title}) {
     <Navbar bg="secondary" variant="secondary">
     <Navbar.Brand className="buttonText" >
     <Link to="/">Go Back</Link>
-     <h4>{title}</h4>
     </Navbar.Brand>
+    <h4>{title}</h4>
   </Navbar>
   );
 }

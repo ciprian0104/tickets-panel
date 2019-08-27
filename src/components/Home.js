@@ -17,7 +17,11 @@ const Home = ({boardID, boards, boardOrder, dispatch }) => {
   };
   const handleSubmit = e => {
     e.preventDefault();
+    if(newBoardTitle){
     dispatch(addBoard(newBoardTitle));
+    }else{
+      return;
+    }
   };
  
   const renderBoards = () => {
