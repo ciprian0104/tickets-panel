@@ -5,8 +5,8 @@ import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { sort, setActiveBoard } from "../actions";
 import './App.css';
 import CreateCardForm from "./CreateCardForm";
-import { Link } from "react-router-dom";
 import SimpleAppBar from "./SimpleAppBar";
+import ReactResizeDetector from 'react-resize-detector';
 
 
 class Board extends PureComponent {
@@ -36,9 +36,12 @@ class Board extends PureComponent {
     );
   };
 
+
   render() {
     const { lists, cards, match, boards } = this.props;
     const { boardID } = match.params;
+
+
     const board = boards[boardID];
     if (!board) {
       return <p>Board not found</p>;
@@ -47,8 +50,10 @@ class Board extends PureComponent {
 
     return (
      <div className="background">
+    
+    <SimpleAppBar title = {board.title} />    
+
       <DragDropContext onDragEnd={this.onDragEnd}>
-      <SimpleAppBar title = {board.title}/>    
         <Droppable droppableId="all-lists" direction="horizontal" type="list">
           {provided => (
             <div
@@ -56,6 +61,7 @@ class Board extends PureComponent {
               {...provided.droppableProps}
               ref={provided.innerRef}
             >
+
               {listOrder.map((listID, index) => {
                 const list = lists[listID];
                 if (list) {
@@ -81,6 +87,7 @@ class Board extends PureComponent {
       </DragDropContext>
       </div>
     );
+
   }
 }
 

@@ -66,7 +66,7 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
           
             {provided => (
              
-              <div 
+              <div style={{width:"353px"}}
               
               
               {...provided.droppableProps} ref={provided.innerRef}>

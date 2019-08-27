@@ -17,20 +17,30 @@ const Home = ({boardID, boards, boardOrder, dispatch }) => {
   };
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(addBoard(newBoardTitle));
+
+    if (newBoardTitle) {
+
+      dispatch(addBoard(newBoardTitle));
+
+      setNewBoardTitle("");
+    } else{
+      return;
+    }
   };
  
   const renderBoards = () => {
     return boardOrder.map(boardID => {
       const board = boards[boardID];
+
       const handleDeleteBoard = () =>{
         dispatch(deleteBoard(boardID={boardID}));
         console.log(boardID);
       }
 
+
       return (
-        <div key={boardID}>
-        
+        <div key={boardID} >
+                  
         <Link
         
         key={boardID}
