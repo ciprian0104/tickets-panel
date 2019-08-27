@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { addBoard, deleteBoard } from "../actions";
 import BoardThumbnail from "./BoardThumbnail";
-import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Home.css';
 
@@ -23,8 +22,18 @@ const Home = ({ boards, boardOrder, dispatch }) => {
     return boardOrder.map(boardID => {
       const board = boards[boardID];
 
+      const handleDeleteBoard = () => {
+      
+      dispatch(deleteBoard(boardID = {boardID}));
+      console.log("HOME handleDELETEBOARD loop with ID: ", boardID);
+      
+    };
+
 
       return (
+        <div key={boardID} >
+          
+          <div style={{padding: '20px'}}><FontAwesomeIcon className="icon_delete" color="blue" size="1x" icon="trash" onClick={handleDeleteBoard}/></div>
 
         <Link
         
@@ -36,7 +45,7 @@ const Home = ({ boards, boardOrder, dispatch }) => {
         <BoardThumbnail { ...board}/>
  
       </Link>
-      
+      </div>
     );
   });
 };
@@ -58,8 +67,9 @@ const renderCreateBoard = () => {
 
 return (
 <div className="home_container">
-<div className="thumbnails">{renderBoards()}</div>
 {renderCreateBoard()}
+<div className="thumbnails">{renderBoards()}</div>
+
     </div>
   );
 };

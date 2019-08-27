@@ -19,14 +19,9 @@ export const addBoard = title => {
 
 export const deleteBoard = boardID => {
 
-  return (dispatch) => {
-  
-    return dispatch({
-    
+  return {
       type: CONSTANTS.DELETE_BOARD,
       payload: boardID
-
-  });
-  }
+  };
 
 };
