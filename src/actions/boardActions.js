@@ -23,4 +23,10 @@ export const deleteBoard = boardID => {
       payload: boardID,
   };
 };
-
+/*
+export const exportBoard = boardID => {
+  return {
+    type: CONSTANTS.EXPORT_BOARD,
+    payload: boardID,
+  };
+};*/

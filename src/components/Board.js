@@ -6,8 +6,7 @@ import { sort, setActiveBoard } from "../actions";
 import './App.css';
 import CreateCardForm from "./CreateCardForm";
 import SimpleAppBar from "./SimpleAppBar";
-import ReactResizeDetector from 'react-resize-detector';
-
+import { Button } from "@material-ui/core";
 
 class Board extends PureComponent {
   componentDidMount() {
@@ -36,7 +35,12 @@ class Board extends PureComponent {
     );
   };
 
-
+ download(text, fileName) {
+  var a = document.createElement('a');
+  a.setAttribute('href', 'data:text/plain;charset=utf-u,'+encodeURIComponent(text));
+  a.setAttribute('download', fileName);
+  a.click()
+}
   render() {
     const { lists, cards, match, boards } = this.props;
     const { boardID } = match.params;
@@ -51,7 +55,9 @@ class Board extends PureComponent {
     return (
      <div className="background">
     
-    <SimpleAppBar title = {board.title} />    
+    <SimpleAppBar title = {board.title}>
+   {/*this.download(JSON.stringify(board), "board.json")*/}
+    </SimpleAppBar>    
 
       <DragDropContext onDragEnd={this.onDragEnd}>
         <Droppable droppableId="all-lists" direction="horizontal" type="list">
@@ -64,8 +70,12 @@ class Board extends PureComponent {
 
               {listOrder.map((listID, index) => {
                 const list = lists[listID];
+
                 if (list) {
                   const listCards = list.cards.map(cardID => cards[cardID]);
+                  {/*this.download(JSON.stringify( list.cards[listCards]), "lists.json")*/}
+
+                  {console.log("LIST AND CARDS: ", list.title,list.id)}
 
                   return (
                     <TrelloList

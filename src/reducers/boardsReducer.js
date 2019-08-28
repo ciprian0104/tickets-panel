@@ -61,25 +61,21 @@ const boardsReducer = (state = initialState, action) => {
     case CONSTANTS.DELETE_BOARD:{
       const {boardID} = action.payload;
       const newState= state;
+      console.log("Board STATE WAS: ", newState[boardID]);
       delete newState[boardID];
+
       return newState;
     }
-
-    case CONSTANTS.DELETE_BOARD: {
-      
+/*
+    case CONSTANTS.EXPORT_BOARD:{
       const { boardID } = action.payload;
-      console.log(boardID)
-      const newState = state;
-      console.log("ENDS UP IN REDUCER");
-      delete newState[boardID];
-      return newState;
-    
-    }
-
+      return state[boardID];
+    }*/
 
     default:
       return state;
   }
+
 };
 
 export default boardsReducer;

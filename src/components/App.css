@@ -3,9 +3,8 @@
     display: flex;
     flex-direction: row;
     position: relative;
-    flex: 1;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+    margin-top: 75px;
+
 }
 
 .listContainer2 {
@@ -18,7 +17,7 @@
     margin-top: 75px;
 }
     
-.container_2{
+.container_2 {
     margin: 8px;
     border: 0.2px solid white;
     opacity: 0.9;
@@ -148,11 +147,12 @@
 .openFormButtonGroup{
     display: flex;
     cursor: pointer;
-    margin: 15px 15px 15px 15px;
+    margin: 6px 15px 15px 15px;
     border-radius: 3px;
     height: 36px;
-    width: 272px;
+    min-width: 272px;
     padding-left: 10px;
+    padding-right: 25px;
     padding-top: 5px;
 }
 
