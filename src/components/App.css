@@ -3,14 +3,14 @@
     display: flex;
     flex-direction: row;
     position: relative;
-    height: auto;
     flex: 1;
     flex-wrap: wrap;
     justify-content: flex-start;
-  
+    margin-top: 75px;
+    
 }
 
-.container {}
+
     
 .container_2{
     margin: 8px;
@@ -268,5 +268,13 @@
       color: white;
   }
   .plus_icon:hover{
+      color: red;
+  }
+
+  .icon_arrow {
+      color: white;
+
+  }
+  .icon_arrow:hover {
       color: red;
   }

@@ -5,7 +5,7 @@ import { Droppable, Draggable } from "react-beautiful-dnd";
 import './App.css';
 
 import { connect } from "react-redux";
-import { editTitle, deleteList } from "../actions";
+import { editTitle, deleteList, getDataList } from "../actions";
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -37,6 +37,10 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
     dispatch(deleteList(listID));
   };
 
+  const handleGetData = () => {
+    dispatch(getDataList(listID));
+  }
+
   const handleFocus = e => {
 
     e.target.select();
@@ -66,7 +70,7 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
           
             {provided => (
              
-              <div 
+              <div style={{width:"auto"}}
               
               
               {...provided.droppableProps} ref={provided.innerRef}>
@@ -101,6 +105,7 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
                 
                 {provided.placeholder}
                 <CreateCardForm listID={listID} />
+                <FontAwesomeIcon className="icon_delete" color="white" size="1x" icon="trash" onClick={handleGetData}/>
                 </div>
               </MDBContainer>
               </div>

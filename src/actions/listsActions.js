@@ -59,3 +59,20 @@ export const deleteList = listID => {
     });
   };
 };
+
+export const getDataList = (listID, id, text, title, priority) => {
+  return (dispatch,getState) => {
+    const boardID = getState().activeBoard;
+    return dispatch({
+      type:CONSTANTS.GET_DATA,
+      payload: {
+        listID,
+        boardID,
+        id,
+        text,
+        title,
+        priority
+      }     
+    })
+  }
+};

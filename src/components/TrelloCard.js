@@ -1,24 +1,17 @@
 import React, { useState } from "react";
-//import Card from "@material-ui/core/Card";
-import Typography from "@material-ui/core/Typography";
-import CardContent from "@material-ui/core/CardContent";
+
+import NaturalDragAnimation from 'natural-drag-animation-rbdnd';
+
 import { Draggable } from "react-beautiful-dnd";
-import IconButton from "@material-ui/core/IconButton";
-import EditIcon from "@material-ui/icons/Edit";
-import DeleteIcon from "@material-ui/icons/Delete"
-import Chip from '@material-ui/core/Chip';
-import EditCardForm from "./EditCardForm";
+
 import EditModal from "./EditModal";
 import { editCard, deleteCard } from "../actions";
 import { connect } from "react-redux";
-import CardHeader from "@material-ui/core/CardHeader";
 import './TrelloCard.css';
 
 import ActionButton from './ActionButton';
-import Box from '@material-ui/core/Box';
 import Card from "react-bootstrap/Card";
 import Badge from "react-bootstrap/Badge";
-import Button from "react-bootstrap/Button";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -82,16 +75,23 @@ const TrelloCard = React.memo(({priority ,title, text, id, listID, index, dispat
     return (
 
       <Draggable draggableId={String(id)} index={index}>
-        {provided => (
+        {(provided, snapshot) => (
+	    <NaturalDragAnimation
+      style={provided.draggableProps.style}
+      snapshot={snapshot}
+    >
+      {style => (
           <div className="cardDiv"
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             ref={provided.innerRef}
             onDoubleClick={() => setIsEditing(true)}
+
+            style={style}
           >
             
-            <Card bg="secondary" text="white" style={{width:'18rem', overflow:'auto'}}>
-              <Card.Header style={{width:'275px',paddingRight: '5px'}}>
+            <Card bg="secondary" text="white" style={{width:'100%', overflow:'auto'}}>
+              <Card.Header style={{width:'auto',paddingRight: '5px', boxSadow: "0 2px 4px grey"}}>
                 
                 {title}
                 <Badge variant={priority}  className="icon" disabled>
@@ -112,48 +112,10 @@ const TrelloCard = React.memo(({priority ,title, text, id, listID, index, dispat
               
               </Card.Body>
             </Card>
-            {/*
-            <Card 
-            style={{backgroundColor:"white"} }
-            
-            >
-            <IconButton
-                aria-label="edit"
-                onMouseDown={() => setIsEditing(true)}
-                fontSize="small"
-              >
-                <EditIcon  fontSize="small"/>
-            </IconButton>
-            <IconButton
-                aria-label="delete"
-                onMouseDown={handleDeleteCard}
-                fontSize="small"
-            >
-              <DeleteIcon  fontSize="small"/>
-            </IconButton>
-              
-              <Typography
-                variant="h6"
-                >
-                <Box  textAlign="center" >
-                  {title}
-                </Box>
-                </Typography>
-
-              <CardContent>
-                <Typography
-                variant="body1"
-                >
-                <Box  textAlign="center" >
-                  {text}
-                </Box>
-                </Typography>
-              </CardContent>
-              <Chip className="chip" style={{backgroundColor: priority}} size="medium" display="flex" justifyContent="center" 
-
-flexWrap="wrap" variant="outlined" label={(priority === "red") ? "High" : (priority === "yellow") ? "Medium" : (priority === "green") ? "Normal" : "Undefined" }/>
-            </Card>*/}
           </div>
+      )}
+         </NaturalDragAnimation>
+
         )}
       </Draggable>
 
