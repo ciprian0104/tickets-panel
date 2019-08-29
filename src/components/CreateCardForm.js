@@ -22,7 +22,7 @@ class CreateCardForm extends React.Component {
     formOpen: false,
     title: "",
     text: "",
-    priority: "",
+    priority: "success",
   };
 
   openForm = () => {
@@ -68,11 +68,10 @@ class CreateCardForm extends React.Component {
     const { title } = this.state;
     const { priority } = this.state;
 
-    if (text && title && priority) {
+    if (text && title ) {
       this.setState({
         title: "",
         text: "",
-        priority: "",
       });
       dispatch(addCard(listID, title, text, priority));
       this.closeForm();
@@ -152,7 +151,7 @@ class CreateCardForm extends React.Component {
 
                       <Form.Label>Select priority</Form.Label>
                       <div className="prioritySelector">
-                        <Form.Control size="sm" as="select" defaultValue="success" onChange={this.handleChangePriority}>
+                        <Form.Control size="sm" as="select" defaultValue='success' onChange={this.handleChangePriority}>
                           <option></option>
                           <option value={'danger'}>High</option>
                           <option value={'warning'}>Medium</option>

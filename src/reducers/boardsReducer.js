@@ -1,5 +1,4 @@
 import { CONSTANTS } from "../actions";
-import { stat } from "fs";
 
 
 const initialState = {};
@@ -61,14 +60,23 @@ const boardsReducer = (state = initialState, action) => {
     case CONSTANTS.DELETE_BOARD:{
       const {boardID} = action.payload;
       const newState= state;
+      console.log("Board STATE WAS: ", newState[boardID]);
       delete newState[boardID];
+
       return newState;
     }
 
+    case CONSTANTS.EXPORT_BOARD:{
+      const { items } = action.payload;
+
+      console.log("From board reducer with love, " , items);
+      return state;
+    }
 
     default:
       return state;
   }
+
 };
 
 export default boardsReducer;
