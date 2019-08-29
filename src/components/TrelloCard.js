@@ -17,7 +17,7 @@ import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 library.add(faTrash, faEdit);
-const TrelloCard = React.memo(({priority ,title, text, id, listID, index, dispatch }) => {
+const TrelloCard = React.memo(({ priority, title, text, id, listID, index, dispatch }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [cardText, setText] = useState(text);
   const [cardTitle, setTitle] = useState(title);
@@ -30,12 +30,12 @@ const TrelloCard = React.memo(({priority ,title, text, id, listID, index, dispat
 
   const handleChangeText = e => {
     setText(e.target.value);
-    
+
   };
   const handleChangeTitle = e => {
     setTitle(e.target.value);
   }
-  const handleChangePriority = e =>{
+  const handleChangePriority = e => {
     setPriority(e.target.value);
     console.log(e.target.value);
   }
@@ -48,7 +48,7 @@ const TrelloCard = React.memo(({priority ,title, text, id, listID, index, dispat
   const saveCard = e => {
 
     e.preventDefault();
-    dispatch(editCard(id, listID, cardText, cardTitle,cardPriority));
+    dispatch(editCard(id, listID, cardText, cardTitle, cardPriority));
     setIsEditing(false);
   };
 
@@ -61,14 +61,14 @@ const TrelloCard = React.memo(({priority ,title, text, id, listID, index, dispat
       </EditCardForm>
       */
 
-     <EditModal show = {isEditing} text={cardText} title={cardTitle}
-     priority={cardPriority} onChangeText={handleChangeText} onChangePriority={handleChangePriority}
-      onChangeTitle={handleChangeTitle} closeForm={closeForm}>
-    <ActionButton onClick={saveCard}>Save</ActionButton>
+      <EditModal show={isEditing} text={cardText} title={cardTitle}
+        priority={cardPriority} onChangeText={handleChangeText} onChangePriority={handleChangePriority}
+        onChangeTitle={handleChangeTitle} closeForm={closeForm}>
+        <ActionButton onClick={saveCard}>Save</ActionButton>
 
-    </EditModal>
-  );
-    
+      </EditModal>
+    );
+
   };
 
   const renderCard = () => {
@@ -76,45 +76,45 @@ const TrelloCard = React.memo(({priority ,title, text, id, listID, index, dispat
 
       <Draggable draggableId={String(id)} index={index}>
         {(provided, snapshot) => (
-	    <NaturalDragAnimation
-      style={provided.draggableProps.style}
-      snapshot={snapshot}
-    >
-      {style => (
-          <div className="cardDiv"
-            {...provided.draggableProps}
-            {...provided.dragHandleProps}
-            ref={provided.innerRef}
-            onDoubleClick={() => setIsEditing(true)}
-
-            style={style}
+          <NaturalDragAnimation
+            style={provided.draggableProps.style}
+            snapshot={snapshot}
           >
-            
-            <Card bg="secondary" text="white" style={{width:'100%', overflow:'auto'}}>
-              <Card.Header style={{width:'auto',paddingRight: '5px', boxSadow: "0 2px 4px grey"}}>
-                
-                {title}
-                <Badge variant={priority}  className="icon" disabled>
-                {(priority === "danger") ? "High" : (priority === "warning") ? "Medium" : (priority === "success") ? "Low" : null}
-             
-                </Badge>
-              </Card.Header>
-              <Card.Body>
-              <Card.Text>
-                {text}
-              </Card.Text>
-              
-              <a><FontAwesomeIcon className="icon_delete" color="white" size="1x" icon="trash" onMouseDown={handleDeleteCard}/></a>
-              <a> <FontAwesomeIcon className="icon_edit" color="white" size="1x" icon="edit" onMouseDown={()=>setIsEditing(true)} />
-              {(isEditing === true) ? renderEditForm() : null}
-              
-              </a>
-              
-              </Card.Body>
-            </Card>
-          </div>
-      )}
-         </NaturalDragAnimation>
+            {style => (
+              <div className="cardDiv"
+                {...provided.draggableProps}
+                {...provided.dragHandleProps}
+                ref={provided.innerRef}
+                onDoubleClick={() => setIsEditing(true)}
+
+                style={style}
+              >
+
+                <Card bg="secondary" text="white" style={{ overflow: 'auto' }}>
+                  <Card.Header style={{ paddingRight: '5px', boxSadow: "0 2px 4px grey" }}>
+
+                    {title}
+                    <Badge variant={priority} className="icon" disabled>
+                      {(priority === "danger") ? "High" : (priority === "warning") ? "Medium" : (priority === "success") ? "Low" : null}
+
+                    </Badge>
+                  </Card.Header>
+                  <Card.Body>
+                    <Card.Text>
+                      {text}
+                    </Card.Text>
+
+                    <a><FontAwesomeIcon className="icon_delete" color="white" size="1x" icon="trash" onMouseDown={handleDeleteCard} /></a>
+                    <a> <FontAwesomeIcon className="icon_edit" color="white" size="1x" icon="edit" onMouseDown={() => setIsEditing(true)} />
+                      {(isEditing === true) ? renderEditForm() : null}
+
+                    </a>
+
+                  </Card.Body>
+                </Card>
+              </div>
+            )}
+          </NaturalDragAnimation>
 
         )}
       </Draggable>
