@@ -5,7 +5,7 @@ import { Droppable, Draggable } from "react-beautiful-dnd";
 import './App.css';
 
 import { connect } from "react-redux";
-import { editTitle, deleteList, getDataList } from "../actions";
+import { editTitle, deleteList, getDataList, getDataCard } from "../actions";
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -15,7 +15,7 @@ import { MDBContainer, MDBScrollbar } from "mdbreact";
 library.add(faTrash);
 const scrollContainerStyle = { maxHeight: "775px", paddingRight: "15px" };
 
-const TrelloList = ({ title, cards, listID, index, dispatch }) => {
+const TrelloList = ({ id, title, cards, listID, index, dispatch }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [listTitle, setListTitle] = useState(title);
 
@@ -39,6 +39,7 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
 
   const handleGetData = () => {
     dispatch(getDataList(listID));
+    
   }
 
   const handleFocus = e => {

@@ -94,7 +94,7 @@ const TrelloCard = React.memo(({ priority, title, text, id, listID, index, dispa
                   <Card.Header style={{ paddingRight: '5px', boxSadow: "0 2px 4px grey" }}>
 
                     {title}
-                    <Badge variant={priority} className="icon" disabled>
+                    <Badge variant={priority} default="success" className="icon" disabled>
                       {(priority === "danger") ? "High" : (priority === "warning") ? "Medium" : (priority === "success") ? "Low" : null}
 
                     </Badge>

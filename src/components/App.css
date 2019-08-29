@@ -13,13 +13,13 @@
 
 .container_2 {
     margin: 8px;
-    border: 0;
     opacity: 0.9;
     width: 380px;
     height: 100%;
     padding: 15px 15px;
     word-wrap: break-word;
     display: flex;
+
 }
 
 .container {
@@ -97,7 +97,7 @@
 .background {
     background: linear-gradient(to right, #114357, #f29492);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+}
 .card_text {
     font-size: 15px;
     font-style: italic;

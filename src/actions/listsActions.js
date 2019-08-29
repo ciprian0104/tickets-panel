@@ -68,10 +68,6 @@ export const getDataList = (listID, id, text, title, priority) => {
       payload: {
         listID,
         boardID,
-        id,
-        text,
-        title,
-        priority
       }     
     })
   }

@@ -24,3 +24,5 @@ export const editCard = (id, listID, newText, newTitle, newPriority) => {
       payload: { id, listID }
     };
   };
+
+ 

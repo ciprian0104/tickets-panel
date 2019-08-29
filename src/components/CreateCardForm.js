@@ -63,18 +63,18 @@ class CreateCardForm extends React.Component {
   };
 
   handleAddCard = () => {
-    const { dispatch, listID } = this.props;
+    const { dispatch, listID, boardID } = this.props;
     const { text } = this.state;
     const { title } = this.state;
     const { priority } = this.state;
 
-    if (text && title && priority) {
+    if (text && title ) {
       this.setState({
         title: "",
         text: "",
-        priority: "",
+        priority: "success",
       });
-      dispatch(addCard(listID, title, text, priority));
+      dispatch(addCard(listID, title, text, priority, boardID));
       this.closeForm();
     }
   };
@@ -145,8 +145,6 @@ class CreateCardForm extends React.Component {
                 </Card.Header>
                 <Card.Body>
                   <div className={(buttonTitle === "Add Card") ? null : "ghost"}>
-            <Card.Body>
-            
 
                     <Form.Group>
                       <Form.Label>Description input</Form.Label>
@@ -154,7 +152,7 @@ class CreateCardForm extends React.Component {
 
                       <Form.Label>Select priority</Form.Label>
                       <div className="prioritySelector">
-                        <Form.Control size="sm" as="select" defaultValue="success" onChange={this.handleChangePriority}>
+                        <Form.Control size="sm" as="select" defaultValue="" onChange={this.handleChangePriority}>
                           <option></option>
                           <option value={'danger'}>High</option>
                           <option value={'warning'}>Medium</option>
@@ -166,7 +164,8 @@ class CreateCardForm extends React.Component {
 
                   </div>
                 </Card.Body>
-            </div>
+
+            
 
                 {/*
            <TextField

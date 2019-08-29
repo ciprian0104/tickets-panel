@@ -5,14 +5,15 @@ const initialState = {};
 const cardsReducer = (state = initialState, action) => {
   switch (action.type) {
     case CONSTANTS.ADD_CARD: {
-      const {title, text, priority, listID, id } = action.payload;
+      const {title, text, priority, listID, boardID, id } = action.payload;
 
       const newCard = {
         title,
         text,
         priority,
         id: `card-${id}`,
-        list: listID
+        list: listID,
+        boardID: boardID,
       };
 
       return { ...state, [`card-${id}`]: newCard };
@@ -32,6 +33,7 @@ const cardsReducer = (state = initialState, action) => {
       delete newState[id];
       return newState;
     }
+    
     default:
       return state;
   }

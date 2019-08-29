@@ -3,7 +3,7 @@ import rootReducer from "../reducers";
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from "redux-thunk";
 
-import { persistStore, persistReducer } from 'redux-persist'
+import { persistStore, persistReducer, autoRehydrate } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' // default localStorage for web
 
 
@@ -17,8 +17,15 @@ const persistConfig = {
   export default () => {
     let store = createStore(persistedReducer, applyMiddleware(thunk));
     let persistor = persistStore(store);
+    store.dispatch({type:"GET_DATA", payload:""})
+    const obj = store.getState();
+
+    var myJSON =JSON.stringify(obj);
+    console.log(myJSON);
     return { store, persistor }
-  }
+  };
+
+
 
 /*
  const store = createStore(rootReducer, composeWithDevTools());

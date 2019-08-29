@@ -14,5 +14,6 @@ export const CONSTANTS = {
     ADD_BOARD: "ADD_BOARD",
     DELETE_BOARD: "DELETE_BOARD",
     GET_DATA: "GET_DATA",
+    GET_DATA_CARD:"GET_DATA_CARD",
     
 };

@@ -1,27 +1,29 @@
 import { CONSTANTS } from "../actions";
-
 const initialState = {};
+
+
 
 const listsReducer = (state = initialState, action) => {
   switch (action.type) {
     case CONSTANTS.ADD_LIST: {
       const { title, id } = action.payload;
-      const {text, priority} = action.payload;
+      
       const newList = {
         title: title,
         id: `list-${id}`,
         cards: []
       };
-     
-
+    
+      
       const newState = { ...state, [`list-${id}`]: newList };
 
       return newState;
     }
 
     case CONSTANTS.ADD_CARD: {
-      const { listID, id } = action.payload;
+      const { listID, boardID, id } = action.payload;
       const list = state[listID];
+      const board = state[boardID]
       list.cards.push(`card-${id}`);
       return { ...state, [listID]: list };
     }
@@ -95,13 +97,14 @@ const listsReducer = (state = initialState, action) => {
       return newState;
     }
     case CONSTANTS.GET_DATA: {
-      const {listID, id} = action.payload;
+      const {listID} = action.payload;
       const newState = state;
       console.log("Data received: ", newState[listID]);
       return newState;
     }
     default:
       return state;
+      
   }
 };
 
