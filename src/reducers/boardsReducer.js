@@ -1,5 +1,4 @@
 import { CONSTANTS } from "../actions";
-import { stat } from "fs";
 
 
 const initialState = {};
@@ -66,11 +65,13 @@ const boardsReducer = (state = initialState, action) => {
 
       return newState;
     }
-/*
+
     case CONSTANTS.EXPORT_BOARD:{
-      const { boardID } = action.payload;
-      return state[boardID];
-    }*/
+      const { items } = action.payload;
+
+      console.log("From board reducer with love, " , items);
+      return state;
+    }
 
     default:
       return state;

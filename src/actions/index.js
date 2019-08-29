@@ -1,6 +1,6 @@
 export * from "./listsActions";
 export * from "./cardsActions";
-export {setActiveBoard,addBoard,deleteBoard} from "./boardActions";
+export {setActiveBoard,addBoard,deleteBoard, exportBoard} from "./boardActions";
 
 export const CONSTANTS = {
     ADD_CARD: "ADD_CARD",

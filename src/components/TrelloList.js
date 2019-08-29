@@ -13,7 +13,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import Form from "react-bootstrap/Form";
 import { MDBContainer, MDBScrollbar } from "mdbreact";
 library.add(faTrash);
-const scrollContainerStyle = {maxHeight: "775px", paddingRight:"15px" };
+const scrollContainerStyle = { maxHeight: "775px", paddingRight: "15px" };
 
 const TrelloList = ({ title, cards, listID, index, dispatch }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -22,13 +22,13 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
   const renderEditInput = () => {
     return (
       <Form.Control
-      as="textarea"
-      className="editList"
-      value={listTitle}
-      onChange={handleChange}
-      onFocus={handleFocus}
-      onBlur={handleFinishEditing}
-      autoFocus
+        as="textarea"
+        className="editList"
+        value={listTitle}
+        onChange={handleChange}
+        onFocus={handleFocus}
+        onBlur={handleFinishEditing}
+        autoFocus
       />
     )
   }
@@ -53,7 +53,7 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
   };
 
   return (
-    
+
     <Draggable draggableId={String(listID)} index={index}>
       {provided => (
         <div className="container_2"
@@ -61,58 +61,58 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
           {...provided.dragHandleProps}
           ref={provided.innerRef}
         >
-          
+
           <Droppable droppableId={String(listID)} type="card">
-          
+
             {provided => (
-             
-              <div style={{width:"353px"}}
-              
-              
-              {...provided.droppableProps} ref={provided.innerRef}>
-                
-                
+
+              <div style={{ width: "353px" }}
+
+
+                {...provided.droppableProps} ref={provided.innerRef}>
+
+
                 {
                   isEditing ? (renderEditInput()) : (
-                  <div className="titleContainer" onClick={() => setIsEditing(true)} >
-                      <p className="list_title">{listTitle}</p>
-                      <FontAwesomeIcon className="icon_delete" color="white" size="1x" icon="trash" onClick={handleDeleteList}/>
-                      
-                      
-                      
+                    <div className="titleContainer container" onClick={() => setIsEditing(true)} >
+                      <h3 className="list_title">{listTitle}</h3>
+                      <FontAwesomeIcon className="icon_delete" color="white" size="1x" icon="trash" onClick={handleDeleteList} />
 
+
+
+
+                    </div>
+                  )}
+                <MDBContainer>
+                  <div>
+                    {cards.map((card, index) => (
+
+                      <TrelloCard
+                        key={card.id}
+                        title={card.title}
+                        text={card.text}
+                        priority={card.priority}
+                        id={card.id}
+                        index={index}
+                        listID={listID}
+                      />
+
+                    ))}
+
+                    {provided.placeholder}
+                    <CreateCardForm listID={listID} />
                   </div>
-            )}
-                 <MDBContainer>
-                   <div className="scrollbar scrollbar-primary  mt-5 mx-auto" style={scrollContainerStyle} >
-                {cards.map((card, index) => (
-                   
-                  <TrelloCard
-                    key={card.id}
-                    title={card.title}
-                    text={card.text}
-                    priority={card.priority}
-                    id={card.id}
-                    index={index}
-                    listID={listID}
-                  />
-                 
-                ))}
-                
-                {provided.placeholder}
-                <CreateCardForm listID={listID} />
-                </div>
-              </MDBContainer>
+                </MDBContainer>
               </div>
-              
-              
+
+
             )}
           </Droppable>
-          
+
         </div>
       )}
     </Draggable>
-   
+
   );
 };
 

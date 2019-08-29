@@ -16,13 +16,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Modal from 'react-bootstrap/Modal';
 
 //Changed from TrelloActionButton
-library.add(faPlus );
+library.add(faPlus);
 class CreateCardForm extends React.Component {
   state = {
     formOpen: false,
     title: "",
     text: "",
-    priority:"",
+    priority: "success",
   };
 
   openForm = () => {
@@ -38,14 +38,14 @@ class CreateCardForm extends React.Component {
   };
   //handler for the selector
   handleChangePriority = (e) => {
-    return this.setState({priority:e.target.value});
+    return this.setState({ priority: e.target.value });
   }
 
 
   handleChange = name => event => {
     this.setState({ ...this.state, [name]: event.target.value });
   };
-  
+
   handleAddList = () => {
     const { dispatch } = this.props;
     const { text } = this.state;
@@ -66,13 +66,12 @@ class CreateCardForm extends React.Component {
     const { dispatch, listID } = this.props;
     const { text } = this.state;
     const { title } = this.state;
-    const {priority}= this.state;
+    const { priority } = this.state;
 
-    if (text && title && priority) {
+    if (text && title ) {
       this.setState({
         title: "",
         text: "",
-        priority:"",
       });
       dispatch(addCard(listID, title, text, priority));
       this.closeForm();
@@ -88,30 +87,30 @@ class CreateCardForm extends React.Component {
     const buttonTextBackground = list ? "rgba(0,0,0,.15)" : "inherit";
 
 
-  return (
-    <div
+    return (
+      <div
         onClick={this.openForm}
         className="openFormButtonGroup"
         style={{
-        capacity: buttonTextOpacity, 
-        color: buttonTextColor, 
-        background: buttonTextBackground,
+          capacity: buttonTextOpacity,
+          color: buttonTextColor,
+          background: buttonTextBackground,
 
-}}
-    >
-    <FontAwesomeIcon size="1x" icon="plus" className="plus_icon" />
-    <p class="p_class">{buttonText}</p>
-    </div>
-);
+        }}
+      >
+        <FontAwesomeIcon size="1x" icon="plus" className="plus_icon" />
+        <p className="p_class">{buttonText}</p>
+      </div>
+    );
 
-};
+  };
 
   renderForm = () => {
     const { list } = this.props;
 
     const secondPlaceholder = list
-    ? ""
-    : "Enter card description";
+      ? ""
+      : "Enter card description";
 
 
     const placeholder = list
@@ -123,49 +122,49 @@ class CreateCardForm extends React.Component {
 
     return (
       <Modal show={this.openForm}
-      onHide={this.closeForm}
+        onHide={this.closeForm}
       >
         <Modal.Header closeButton>
-                <Modal.Title>Add another card</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-      <div>
-        <form>
+          <Modal.Title>Add another card</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div>
+            <form>
 
-        <Card className="add_card">
-            <Card.Header className="inputCardHeader">
-            <form className="form-title-inline">
-              <Form.Group className="form-title-group">
-                <Form.Label>Title</Form.Label>
-                <Form.Control className="form-title-input" required type="text" maxLength="20" placeholder={placeholder} value={this.state.text} 
-                  onChange={this.handleChange('text')}
-                />
-              </Form.Group>
-              </form>
-            </Card.Header>
-            <Card.Body>
-            <div className= {(buttonTitle === "Add Card") ? null : "ghost" }>
+              <Card className="add_card">
+                <Card.Header className="inputCardHeader">
+                  <form className="form-title-inline">
+                    <Form.Group className="form-title-group">
+                      <Form.Label>Title</Form.Label>
+                      <Form.Control className="form-title-input" required type="text" maxLength="20" placeholder={placeholder} value={this.state.text}
+                        onChange={this.handleChange('text')}
+                      />
+                    </Form.Group>
+                  </form>
+                </Card.Header>
+                <Card.Body>
+                  <div className={(buttonTitle === "Add Card") ? null : "ghost"}>
 
-              <Form.Group>
-                <Form.Label>Description input</Form.Label>
-                <Form.Control size="sm" as="textarea" rows="3" maxLength="200"  value={this.state.title} onChange={this.handleChange('title')}/>
-                
-           <Form.Label>Select priority</Form.Label>
-           <div className="prioritySelector">
-           <Form.Control  size="sm" as="select" defaultValue=""  onChange={this.handleChangePriority}>
-              <option></option>
-              <option value={'danger'}>High</option>
-              <option value={'warning'}>Medium</option>
-              <option value={'success'}>Low</option>
-     
-            </Form.Control>
-            </div>
-              </Form.Group>
-              
-            </div>
-            </Card.Body>
-           
-           {/*
+                    <Form.Group>
+                      <Form.Label>Description input</Form.Label>
+                      <Form.Control size="sm" as="textarea" rows="3" maxLength="200" value={this.state.title} onChange={this.handleChange('title')} />
+
+                      <Form.Label>Select priority</Form.Label>
+                      <div className="prioritySelector">
+                        <Form.Control size="sm" as="select" defaultValue='success' onChange={this.handleChangePriority}>
+                          <option></option>
+                          <option value={'danger'}>High</option>
+                          <option value={'warning'}>Medium</option>
+                          <option value={'success'}>Low</option>
+
+                        </Form.Control>
+                      </div>
+                    </Form.Group>
+
+                  </div>
+                </Card.Body>
+
+                {/*
            <TextField
             placeholder={placeholder}
             value={this.state.text}
@@ -179,21 +178,21 @@ class CreateCardForm extends React.Component {
             value={this.state.title}
             onChange={this.handleChange('title')}
            /> */}
-         
-          
-        </Card>
 
-        <div className="buttonContainer">
-          <Button style={{color: 'white', background: '#5aac44'}}
-            onMouseDown={list ? this.handleAddList : this.handleAddCard}
-            variant="contained"
-            children={buttonTitle}
-          />
-        </div>
-        </form>
 
-      </div>
-      </Modal.Body>
+              </Card>
+
+              <div className="buttonContainer">
+                <Button style={{ color: 'white', background: '#5aac44' }}
+                  onMouseDown={list ? this.handleAddList : this.handleAddCard}
+                  variant="contained"
+                  children={buttonTitle}
+                />
+              </div>
+            </form>
+
+          </div>
+        </Modal.Body>
       </Modal>
     );
   };

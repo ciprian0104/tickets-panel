@@ -11,21 +11,19 @@ library.add(faAngleDoubleLeft);
 TODO: Add functionality later
 style={{width:"100%", position:"absolute"}}
 */
-export default function SimpleAppBar({title}) {
+export default function SimpleAppBar({ title }) {
   return (
 
-    <Navbar  style={{width:"100%", position:"fixed"}} bg="secondary" variant="secondary">
-    
-    <Link to="/">
-    <a><FontAwesomeIcon className="icon_arrow" color="white" size="3x" icon={faAngleDoubleLeft} /></a>
-    
-    </Link>
-    <Navbar.Brand className="buttonText" >
+    <Navbar style={{ width: "100%" }} expanded="true" bg="secondary" variant="secondary">
 
+      <Link to="/">
+        <FontAwesomeIcon className="icon_arrow" color="white" size="3x" icon={faAngleDoubleLeft} />
+      </Link>
+      <Navbar.Brand className="buttonText" >
 
-     <h4 style ={{color:"white", marginLeft:"20px", marginTop: "7px"}}>{title}</h4>
-    
-    </Navbar.Brand>
-  </Navbar>
+        <h4 style={{ color: "white", marginLeft: "20px", marginTop: "7px" }}>{title}</h4>
+
+      </Navbar.Brand>
+    </Navbar>
   );
 }

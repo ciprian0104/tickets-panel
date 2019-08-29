@@ -1,14 +1,13 @@
-
 .listContainer {
     display: flex;
     flex-direction: row;
     position: relative;
     margin-top: 75px;
-
+    flex-wrap: nowrap;
+    margin-top: 80px;
 }
 
 .listContainer2 {
-
     flex: 1;
     flex-wrap: wrap;
     display: flex;
@@ -16,28 +15,40 @@
     position: relative;
     margin-top: 75px;
 }
-    
+
 .container_2 {
-    margin: 8px;
     border: 0.2px solid white;
+    margin: 8px;
     opacity: 0.9;
     width: 380px;
     height: 100%;
     padding: 15px 15px;
     word-wrap: break-word;
     display: flex;
-
 }
 
+.container {
+    padding-right: 0;
+    padding-left: 0;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.navbar-expand {
+    position: fixed !important;
+    z-index: 1000;
+}
 
 .cardContainer {
     margin-bottom: 8px;
     opacity: 0.9;
     display: flex;
 }
-.prioritySelector{
+
+.prioritySelector {
     width: 168px;
 }
+
 .formButton {
     display: flex;
     margin-top: 8px;
@@ -52,9 +63,10 @@
     height: 36px;
     width: 272px;
     padding-left: 10px;
+    min-width: 300px;
 }
 
-.text_area{
+.text_area {
     resize: none;
     width: 100%;
     outline: none;
@@ -62,89 +74,85 @@
     overflow: hidden;
 }
 
-.icon{
+.icon {
     cursor: pointer;
     border: none;
     text-align: center;
     display: inline-block;
     border-radius: 16px;
     margin: 4px 2px;
-  
 }
 
-.add_card{
+.add_card {
     min-height: 85px;
     min-width: 272px;
     padding: 6px 8px 2px;
+    border: 0 !important;
 }
 
-.add_button{
-    color:blue;
+.add_button {
+    color: blue;
 }
 
-.app_bar{
-    background-color:#7fffd4;
+.app_bar {
+    background-color: #7fffd4;
     margin-bottom: 8px;
-
 }
 
-.background{
-
+.background {
     position: fixed;
     height: 100%;
     width: 100%;
-
     overflow: auto;
-    background: linear-gradient(to right, #114357, #f29492); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, #114357, #f29492);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-
-.card_text{
-    font-size:15px;
-    font-style:italic;
+.card_text {
+    font-size: 15px;
+    font-style: italic;
     cursor: pointer;
-
 }
-.add_button{
-    color:#F6F0CC;
+
+.add_button {
+    color: #F6F0CC;
     background-color: #3ca71f;
 }
-.delete_icon{
+
+.delete_icon {
     position: absolute;
     display: none;
     opacity: 0.5;
     float: right;
-
 }
-.list_title{
+
+.list_title {
     color: white;
     overflow: auto;
- 
-
 }
 
-.icon_delete{
-    display:inline-block;
+.icon_delete {
+    display: inline-block;
     float: right;
     cursor: pointer;
-
 }
-.icon_edit{
-    display:inline-block;
+
+.icon_edit {
+    display: inline-block;
     margin-right: 15px;
-    float:right;
+    float: right;
     cursor: pointer;
+}
 
-}
-.icon_delete:hover{
-    color: #dc3545;
-}
-.icon_edit:hover{
+.icon_delete:hover {
     color: #dc3545;
 }
 
+.icon_edit:hover {
+    color: #dc3545;
+}
 
-.openFormButtonGroup{
+.openFormButtonGroup {
     display: flex;
     cursor: pointer;
     margin: 6px 15px 15px 15px;
@@ -154,23 +162,27 @@
     padding-left: 10px;
     padding-right: 25px;
     padding-top: 5px;
+    min-width: 300px;
 }
 
-.cardContainer{
+.cardContainer {
     margin-bottom: 10px;
 }
 
-.title_area{
-    border:0.3px solid black;
+.title_area {
+    border: 0.3px solid black;
 }
-.button_text{
+
+.button_text {
     color: white;
 }
-.text_area{
-    margin-top:20px;
+
+.text_area {
+    margin-top: 20px;
     padding-bottom: 15px;
-    border:0.1px solid #A9A9A9;
+    border: 0.1px solid #A9A9A9;
 }
+
 .editList {
     width: 100%;
     border: none;
@@ -178,8 +190,8 @@
     border-radius: 3px;
     margin-bottom: 3px;
     padding: 5px;
-
 }
+
 .titleContainer {
     width: 100%;
     display: flex;
@@ -188,107 +200,117 @@
     cursor: pointer;
     word-wrap: break-word;
     overflow-wrap: break-word;
-
-
 }
 
-.background{
-
+.background {
     position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
     overflow: auto;
-    background: linear-gradient(to right, #114357, #f29492); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, #114357, #f29492);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
-.ghost{
+
+.ghost {
     visibility: hidden;
     display: none;
 }
+
 .form-title-inline {
     width: 100%;
 }
+
 .form-title-group {
-    width: 240px;
+    width: 100%;
     margin-bottom: 5px;
 }
-.form-title-input{
-    width:90% !important;
+
+.form-title-input {
+    width: 90% !important;
 }
 
 .form-control {
     width: 126px;
 }
-.priority_selector{
+
+.priority_selector {
     width: 5 rem;
-    margin-left:10px;
-    margin-top:0px;
+    margin-left: 10px;
+    margin-top: 0px;
 }
-.description_input{
-    margin:10px;
-    padding-top:10px;
-    padding-left:0px;
+
+.description_input {
+    margin: 10px;
+    padding-top: 10px;
+    padding-left: 0px;
 }
-.addInputCardBody{
+
+.addInputCardBody {
     padding-top: 5px;
 }
-.inputCardHeader{
-    padding-left:30px;
+
+.inputCardHeader {
+    padding-left: 30px;
 }
-.icon{
+
+.icon {
     float: right;
     width: 60px;
 }
+
 .scrollbar {
     overflow: scroll;
-  }
-  
-  .scrollbar::-webkit-scrollbar {
+}
+
+.scrollbar::-webkit-scrollbar {
     width: 6px;
     height: 6px;
     padding-right: 15px;
-  }
-  
-  .scrollbar::-webkit-scrollbar-thumb {
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
     border-radius: 5px;
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
     background: rgba(0, 0, 0, 0.2);
-  }
-  
-  /* custom colors  */
-  .scrollbar-primary::-webkit-scrollbar {
+}
+
+/* custom colors  */
+
+.scrollbar-primary::-webkit-scrollbar {
     padding-right: 15px;
-  }
-  
-  .scrollbar-primary::-webkit-scrollbar-thumb {
+}
+
+.scrollbar-primary::-webkit-scrollbar-thumb {
     padding-right: 15px;
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
     background-color: white;
-  }
+}
 
-  .p_class{
-      margin-top: 2px;
-  }
+.p_class {
+    margin-top: 2px;
+}
 
-  .p_class:hover{
-      color: red;
-  }
+.p_class:hover {
+    color: red;
+}
 
-  .plus_icon{
-      margin-top: 5px;
-      margin-right: 5px;
-      color: white;
-  }
-  .plus_icon:hover{
-      color: red;
-  }
+.plus_icon {
+    margin-top: 5px;
+    margin-right: 5px;
+    color: white;
+}
 
-  .icon_arrow {
-      color: white;
+.plus_icon:hover {
+    color: red;
+}
 
-  }
-  .icon_arrow:hover {
-      color: red;
-  }
+.icon_arrow {
+    color: white;
+}
+
+.icon_arrow:hover {
+    color: red;
+}
