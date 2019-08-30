@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { addBoard, deleteBoard } from "../actions/boardActions";
+import { addBoard, deleteBoard, importBoard } from "../actions/boardActions";
+import { importList } from "../actions/listsActions";
+import { importCard } from "../actions/cardsActions";
 import BoardThumbnail from "./BoardThumbnail";
 import './Home.css';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -27,7 +29,39 @@ const Home = ({boardID, boards, boardOrder, dispatch }) => {
       return;
     }
   };
- 
+ var data = require("./jsonFile.json");
+
+ for( let k in data.cards){
+   if( data.cards[k] !== null){
+    console.log("Data at ", k, " is ", data.cards[k]);
+
+   }
+ }
+
+ console.log("DATA: ",data.cards);
+const handleImportBoard = (e) => {
+  
+  dispatch(importBoard(data.boards.id, data.boards.title, data.boards.lists ));
+
+  
+  for(let i in data.lists){
+    dispatch(importList(data.lists[i].title , data.lists[i].id, data.lists[i].cards));
+    console.log("LIST DISPATCH")
+  };
+
+  for(let j in data.cards){
+
+    for(let p in data.cards[j]){
+      if(data.cards[j] !== null){
+        dispatch(importCard( data.cards[j][p].title, data.cards[j][p].text, data.cards[j][p].priority, data.cards[j][p].list, data.cards[j][p].id ))
+      
+       };
+    }
+
+  };
+  };
+
+
   const renderBoards = () => {
     return boardOrder.map(boardID => {
       const board = boards[boardID];
@@ -79,7 +113,7 @@ const renderCreateBoard = () => {
 return (
 <div className="home_container">
 {renderCreateBoard()}
-<Button variant="danger" onClick={handleSubmit} className="addBoardButton">Submit</Button>
+<Button variant="danger" onClick={handleImportBoard} className="addBoardButton">Submit</Button>
 <div className="thumbnails">{renderBoards()}</div>
 
 
@@ -88,6 +122,9 @@ return (
 };
 const mapStateToProps = state => ({
   boards: state.boards,
-  boardOrder: state.boardOrder
+  boardOrder: state.boardOrder,
+  cards: state.cards,
+  lists: state.lists
+
 });
 export default connect(mapStateToProps)(Home);

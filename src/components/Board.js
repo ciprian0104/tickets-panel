@@ -14,11 +14,7 @@ class Board extends PureComponent {
     const { boardID } = this.props.match.params;
     this.props.dispatch(setActiveBoard(boardID));
 
-
   }
-
-
-
   onDragEnd = result => {
     const { destination, source, draggableId, type } = result;
 
@@ -57,21 +53,26 @@ class Board extends PureComponent {
 
     //Making the textFile for download
     let textFile = {};
+
     textFile["boards"] = board;
     let listings =  listOrder.map(listID => lists[listID]);
+
     textFile["lists"] = listings;
+
     let listCards = listOrder.map(listID =>{
      const tempList = lists[listID];
 
      const cardsList = tempList.cards.map(cardID => cards[cardID]);
     
-     return cardsList[0];
+     return cardsList;
     })
     textFile["cards"] = listCards;
 
-    //this.download(JSON.stringify(textFile), "testFile.txt")
-    console.log("TEXT FILE CONTENT IS: ", textFile);
+    //this.download(JSON.stringify(textFile), "board5.json")
+    //console.log("TEXT FILE WITH STRINGIFY: ", JSON.stringify(textFile));
 
+    //console.log("TEXT FILE NO STRINGIFY: ", textFile);
+  
     return (
      <div className="background">
     

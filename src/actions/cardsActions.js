@@ -24,3 +24,11 @@ export const editCard = (id, listID, newText, newTitle, newPriority) => {
       payload: { id, listID }
     };
   };
+
+  export const importCard = (title, text, priority, listID, id ) => {
+  
+      return {
+          type: CONSTANTS.IMPORT_CARD,
+          payload: {title, text, priority, listID, id }
+      };
+  };

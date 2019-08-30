@@ -59,3 +59,12 @@ export const deleteList = listID => {
     });
   };
 };
+
+export const importList = (title, id) => {
+  
+  return {
+      type: CONSTANTS.IMPORT_LIST,
+      payload: { title, id }
+  };
+};
+

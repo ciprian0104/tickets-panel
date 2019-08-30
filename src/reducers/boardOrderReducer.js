@@ -12,6 +12,10 @@ const boardOrderReducer = (state = initialState, action) => {
     }
 
 
+    case CONSTANTS.IMPORT_BOARD: {
+
+      return [...state, action.payload.id];
+    }
 
     case CONSTANTS.DELETE_BOARD: {
       const { boardID } = action.payload;

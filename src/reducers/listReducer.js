@@ -93,9 +93,29 @@ const listsReducer = (state = initialState, action) => {
       return newState;
     }
 
-    default:
-      return state;
+    case CONSTANTS.IMPORT_CARD: {
+      const { listID, id } = action.payload;
+      const list = state[listID];
+      list.cards.push(id);
+      return { ...state, [listID]: list };
+    }
+
+    case CONSTANTS.IMPORT_LIST: {
+      const { title, id } = action.payload;
+      const newID = id;
+      const newList = {
+        title,
+        id: newID,
+        cards: [],
+      };
+
+      const newState = { ...state, [newID]: newList };
+      console.log("New list is: ", newList);
+      return newState;
   }
+  default:
+    return state;
+}
 };
 
 export default listsReducer;

@@ -66,12 +66,34 @@ const boardsReducer = (state = initialState, action) => {
       return newState;
     }
 
-    case CONSTANTS.EXPORT_BOARD:{
-      const { items } = action.payload;
+    case CONSTANTS.IMPORT_BOARD: {
 
-      console.log("From board reducer with love, " , items);
-      return state;
+      const { id, title, lists } = action.payload;
+      const newID = id;
+      const newBoard = {
+        id: newID,
+        title,
+        lists: lists
+      };
+
+      const newState = { ...state, [newID]: newBoard };
+      return newState;
     }
+
+/*
+    case CONSTANTS.IMPORT_LIST: {
+      const { boardID, id } = action.payload;
+
+      const board = state[boardID];
+      const newListID = id;
+      const newLists = [...board.lists, newListID];
+      board.lists = newLists;
+      return { ...state, [boardID]: board };
+    }
+
+*/
+
+
 
     default:
       return state;

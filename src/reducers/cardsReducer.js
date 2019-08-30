@@ -31,7 +31,24 @@ const cardsReducer = (state = initialState, action) => {
       const newState = state;
       delete newState[id];
       return newState;
+
+    } 
+    
+    case CONSTANTS.IMPORT_CARD: {
+      const {title, text, priority, listID, id } = action.payload;
+      const newID = id;
+      const newCard = {
+        title,
+        text,
+        priority,
+        id: newID,
+        list: listID
+      };
+
+      return { ...state, [newID]: newCard };
     }
+
+
     default:
       return state;
   }
