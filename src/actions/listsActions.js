@@ -12,6 +12,17 @@ export const addList = title => {
   };
 };
 
+export const addImportList=(id, boardID, title)=>{
+  return(dispatch) => {
+    dispatch({
+    type: CONSTANTS.ADD_IMPORT_LIST,
+    payload: {id, boardID, title},
+  })
+  }
+}
+
+
+
 export const sort = (
   droppableIdStart,
   droppableIdEnd,

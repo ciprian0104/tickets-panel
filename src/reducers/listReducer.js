@@ -20,14 +20,36 @@ const listsReducer = (state = initialState, action) => {
       return newState;
     }
 
+    case CONSTANTS.ADD_IMPORT_LIST: {
+      const { title, id } = action.payload;
+      const newID =id;
+      const newList = {
+        title: title,
+        id: newID,
+        cards: []
+      };
+    
+      
+      const newState = { ...state, [newID]: newList };
+
+      return newState;
+    }
+
+   
+
     case CONSTANTS.ADD_CARD: {
-      const { listID, boardID, id } = action.payload;
+      const { listID, id } = action.payload;
       const list = state[listID];
-      const board = state[boardID]
+      
       list.cards.push(`card-${id}`);
       return { ...state, [listID]: list };
     }
-
+    case CONSTANTS.ADD_IMPORT_CARD: {
+      const {listID,id} = action.payload;
+      const list = state[listID];
+      list.cards.push(id);
+      return {...state, [listID]:list};
+    }
     case CONSTANTS.DRAG_HAPPENED:
       const {
         droppableIdStart,

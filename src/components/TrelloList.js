@@ -106,7 +106,7 @@ const TrelloList = ({ id, title, cards, listID, index, dispatch }) => {
 
                     {provided.placeholder}
                     <CreateCardForm listID={listID} />
-                <FontAwesomeIcon className="icon_delete" color="white" size="1x" icon="trash" onClick={handleGetData}/>
+              
                   </div>
                 </MDBContainer>
               </div>

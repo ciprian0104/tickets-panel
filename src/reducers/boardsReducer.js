@@ -1,5 +1,4 @@
 import { CONSTANTS } from "../actions";
-import { getStoredState } from "redux-persist/es/integration/getStoredStateMigrateV4";
 
 
 
@@ -12,9 +11,23 @@ const boardsReducer = (state = initialState, action) => {
 
       const board = state[boardID];
       const newListID = `list-${id}`;
-      const newLists = [...board.lists, newListID];
+     const newLists = [...board.lists, newListID];
       board.lists = newLists;
       return { ...state, [boardID]: board };
+    }
+
+    case CONSTANTS.ADD_IMPORT_LIST: {
+      const {boardID, id} = action.payload;
+      const board = state[boardID];
+      const newListID=id;
+      const newLists = [...board.lists, newListID];
+      board.lists = newLists;
+      return {...state, [boardID]:board};
+    }
+    case CONSTANTS.ADD_IMPORT: {
+      const {boardID} = action.payload;
+      const board = state[boardID];
+      return {...state,[boardID]:board};
     }
 
     case CONSTANTS.DRAG_HAPPENED: {
@@ -59,17 +72,38 @@ const boardsReducer = (state = initialState, action) => {
       const newState = { ...state, [newID]: newBoard };
       return newState;
     }
+
+    case CONSTANTS.ADD_IMPORT_BOARD: {
+      const {title, id} = action.payload;
+      const newID= id;
+      const newBoard = {
+        id: newID,
+        title,
+        lists:[]
+      };
+      const newState = {...state, [newID]: newBoard};
+      return newState;
+    }
     case CONSTANTS.DELETE_BOARD:{
       const {boardID} = action.payload;
       const newState= state;
+      console.log("Board STATE WAS: ", newState[boardID]);
       delete newState[boardID];
+
       return newState;
     }
 
+    case CONSTANTS.EXPORT_BOARD:{
+      const { items } = action.payload;
+
+      console.log("From board reducer with love, " , items);
+      return state;
+    }
 
     default:
       return state;
   }
+
 };
 
 export default boardsReducer;

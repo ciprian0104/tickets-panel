@@ -4,11 +4,18 @@ import uuid from "uuidv4";
 
 export const addCard = (listID, text, title, priority) => {
   const id = uuid();
-
+  
     return {
         type: CONSTANTS.ADD_CARD,
         payload: {id, text, title, listID, priority}
     };
+};
+
+export const addImportCard = (id, listID, text, title, priority) => {
+  return {
+    type: CONSTANTS.ADD_IMPORT_CARD,
+    payload: { id, text, title, listID, priority}
+  };
 };
 
 export const editCard = (id, listID, newText, newTitle, newPriority) => {

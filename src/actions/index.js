@@ -1,6 +1,6 @@
 export * from "./listsActions";
 export * from "./cardsActions";
-export {setActiveBoard,addBoard,deleteBoard} from "./boardActions";
+export {setActiveBoard,addBoard,deleteBoard, exportBoard} from "./boardActions";
 
 export const CONSTANTS = {
     ADD_CARD: "ADD_CARD",
@@ -13,7 +13,9 @@ export const CONSTANTS = {
     SET_ACTIVE_BOARD: "SET_ACTIVE_BOARD",
     ADD_BOARD: "ADD_BOARD",
     DELETE_BOARD: "DELETE_BOARD",
-    GET_DATA: "GET_DATA",
-    GET_DATA_CARD:"GET_DATA_CARD",
+    EXPORT_BOARD: "EXPORT_BOARD",
+    ADD_IMPORT_BOARD: "ADD_IMPORT_BOARD",
+    ADD_IMPORT_LIST: "ADD_IMPORT_LIST",
+    ADD_IMPORT_CARD: "ADD_IMPORT_CARD",
     
 };

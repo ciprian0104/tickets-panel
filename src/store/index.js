@@ -16,13 +16,14 @@ const persistConfig = {
   
   export default () => {
     let store = createStore(persistedReducer, applyMiddleware(thunk));
+    
     let persistor = persistStore(store);
-    store.dispatch({type:"GET_DATA", payload:""})
-    const obj = store.getState();
 
-    var myJSON =JSON.stringify(obj);
-    console.log(myJSON);
-    return { store, persistor }
+
+
+    //var myJSON =JSON.stringify(obj);
+    //console.log(myJSON);
+      return { store, persistor }
   };
 
 

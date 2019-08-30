@@ -7,6 +7,7 @@ import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { PersistGate } from 'redux-persist/integration/react';
 
+
 const { store, persistor } = Store();
 
      /*
@@ -16,6 +17,7 @@ const { store, persistor } = Store();
 /*<PersistGate loading={null} persistor={persistor}>
     </PersistGate>
 */
+
 
 ReactDOM.render(<Provider store={store}>
     {console.log(store.getState())}

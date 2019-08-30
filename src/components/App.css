@@ -2,16 +2,16 @@
     display: flex;
     flex-direction: row;
     position: relative;
-    flex: 1;
+    margin-top: 75px;
     flex-wrap: nowrap;
     margin-top: 80px;
-    justify-content: flex-start;
     margin-top: 75px;
     
 }
 
 
 .container_2 {
+    border: 0.2px solid white;
     margin: 8px;
     opacity: 0.9;
     width: 380px;
@@ -145,11 +145,12 @@
 .openFormButtonGroup {
     display: flex;
     cursor: pointer;
-    margin: 15px 15px 15px 15px;
+    margin: 6px 15px 15px 15px;
     border-radius: 3px;
     height: 36px;
-    width: 272px;
+    min-width: 272px;
     padding-left: 10px;
+    padding-right: 25px;
     padding-top: 5px;
     min-width: 300px;
 }
