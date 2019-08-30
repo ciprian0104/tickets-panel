@@ -7,14 +7,17 @@ import './App.css';
 import CreateCardForm from "./CreateCardForm";
 import SimpleAppBar from "./SimpleAppBar";
 import { Button } from "@material-ui/core";
+import store from "../store";
+import PostData from '../data/loadData.json';
 
 class Board extends PureComponent {
   componentDidMount() {
     // set active board here
     const { boardID } = this.props.match.params;
     this.props.dispatch(setActiveBoard(boardID));
-
-
+    var data = require('../data/loadData.json');
+    console.log("Loaded data")
+    console.log(data.lists);
   }
 
 
@@ -37,6 +40,9 @@ class Board extends PureComponent {
       )
     );
   };
+  
+  
+
   //Medthod for downloading the json file.
   download(text, fileName) {
     var a = document.createElement('a');
@@ -44,34 +50,40 @@ class Board extends PureComponent {
     a.setAttribute('download', fileName);
     a.click();
   }
+ 
 
   render() {
     const { lists, cards, match, boards } = this.props;
     const { boardID } = match.params;
-
+    
     const board = boards[boardID];
     if (!board) {
       return <p>Board not found</p>;
     }
     const listOrder = board.lists;
-
-    //Making the textFile for download
-    let textFile = {};
-    textFile["boards"] = board;
-    let listings =  listOrder.map(listID => lists[listID]);
-    textFile["lists"] = listings;
-    let listCards = listOrder.map(listID =>{
-     const tempList = lists[listID];
-
-     const cardsList = tempList.cards.map(cardID => cards[cardID]);
     
-     return cardsList[0];
-    })
-    textFile["cards"] = listCards;
+       //Making the textFile for download
+       let textFile = {};
 
-    //this.download(JSON.stringify(textFile), "testFile.txt")
-    console.log("TEXT FILE CONTENT IS: ", textFile);
-
+       textFile["boards"] = board;
+       let listings =  listOrder.map(listID => lists[listID]);
+   
+       textFile["lists"] = listings;
+   
+       let listCards = listOrder.map(listID =>{
+        const tempList = lists[listID];
+   
+        const cardsList = tempList.cards.map(cardID => cards[cardID]);
+       
+        return cardsList;
+       })
+       textFile["cards"] = listCards;
+   
+       //this.download(JSON.stringify(textFile), "myFile.json")
+       //console.log("TEXT FILE WITH STRINGIFY: ", JSON.stringify(textFile));
+   
+       //console.log("TEXT FILE NO STRINGIFY: ", textFile);
+    
     return (
      <div className="background">
     
@@ -94,9 +106,21 @@ class Board extends PureComponent {
                 if (list) {
 
                   const listCards = list.cards.map(cardID => cards[cardID]);
-
+                 
 
                   //this.download(JSON.stringify(textFile), "textFile")
+                  textFile["lists"] = listOrder.map(listID=>lists[listID]);
+                  //textFile["cards"] = cardOrder.map(cardID=> cards[cardID]);
+                  
+                  textFile["cards"] = listCards;
+                  console.log(lists[listID].id)
+                  console.log("TEXT FILE CONTENT IS: ", textFile);
+                  console.log(boards[boardID].lists);
+               
+                  //this.download(JSON.stringify(textFile), "textFile")
+
+                  
+        
                 return (
                     <TrelloList
                       listID={list.id}
@@ -107,6 +131,7 @@ class Board extends PureComponent {
                     />
                   );
                 }
+              
               })}
               {provided.placeholder}
               <CreateCardForm list />
@@ -125,7 +150,8 @@ class Board extends PureComponent {
 const mapStateToProps = state => ({
   lists: state.lists,
   cards: state.cards,
-  boards: state.boards
+  boards: state.boards,
+ 
 });
 
 export default connect(mapStateToProps)(Board);

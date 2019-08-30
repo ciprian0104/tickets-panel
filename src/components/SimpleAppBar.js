@@ -11,7 +11,7 @@ library.add(faAngleDoubleLeft);
 TODO: Add functionality later
 style={{width:"100%", position:"absolute"}}
 */
-export default function SimpleAppBar({ title }) {
+export default function SimpleAppBar({ title, dispatch }) {
   return (
 
     <Navbar style={{ width: "100%" }} expanded="true" bg="secondary" variant="secondary">
@@ -24,6 +24,7 @@ export default function SimpleAppBar({ title }) {
         <h4 style={{ color: "white", marginLeft: "20px", marginTop: "7px" }}>{title}</h4>
 
       </Navbar.Brand>
+    
     </Navbar>
   );
 }

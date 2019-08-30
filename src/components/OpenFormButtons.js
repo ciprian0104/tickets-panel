@@ -9,12 +9,14 @@ const OpenFormButtons = ({ list, children, onClick }) => {
     const buttonTextBackground = list ? "rgba(0,0,0,.15)" : "inherit";
 
     return (
+        
         <div className="openFormButtons">
             <Icon>add</Icon>
             <p style={{ flexShrink: 0}}>{children}</p>
         </div>
-
+        
     );
+
 
 
 };

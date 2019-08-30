@@ -18,6 +18,13 @@ export const addBoard = title => {
   };
 };
 
+export const addImportBoard = (title, id) => {
+  return{
+    type: CONSTANTS.ADD_IMPORT_BOARD,
+    payload:{title, id}
+  }
+}
+
 export const deleteBoard = boardID => {
       return {
       type:CONSTANTS.DELETE_BOARD,

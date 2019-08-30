@@ -63,7 +63,7 @@ class CreateCardForm extends React.Component {
   };
 
   handleAddCard = () => {
-    const { dispatch, listID } = this.props;
+    const { dispatch, listID, boardID } = this.props;
     const { text } = this.state;
     const { title } = this.state;
     const { priority } = this.state;
@@ -73,7 +73,7 @@ class CreateCardForm extends React.Component {
         title: "",
         text: "",
       });
-      dispatch(addCard(listID, title, text, priority));
+      dispatch(addCard(listID, title, text, priority, boardID));
       this.closeForm();
     }
   };
@@ -163,6 +163,8 @@ class CreateCardForm extends React.Component {
 
                   </div>
                 </Card.Body>
+
+            
 
                 {/*
            <TextField

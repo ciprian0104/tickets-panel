@@ -1,6 +1,7 @@
 import { CONSTANTS } from "../actions";
 
 
+
 const initialState = {};
 
 const boardsReducer = (state = initialState, action) => {
@@ -10,9 +11,23 @@ const boardsReducer = (state = initialState, action) => {
 
       const board = state[boardID];
       const newListID = `list-${id}`;
-      const newLists = [...board.lists, newListID];
+     const newLists = [...board.lists, newListID];
       board.lists = newLists;
       return { ...state, [boardID]: board };
+    }
+
+    case CONSTANTS.ADD_IMPORT_LIST: {
+      const {boardID, id} = action.payload;
+      const board = state[boardID];
+      const newListID=id;
+      const newLists = [...board.lists, newListID];
+      board.lists = newLists;
+      return {...state, [boardID]:board};
+    }
+    case CONSTANTS.ADD_IMPORT: {
+      const {boardID} = action.payload;
+      const board = state[boardID];
+      return {...state,[boardID]:board};
     }
 
     case CONSTANTS.DRAG_HAPPENED: {
@@ -55,6 +70,18 @@ const boardsReducer = (state = initialState, action) => {
       };
 
       const newState = { ...state, [newID]: newBoard };
+      return newState;
+    }
+
+    case CONSTANTS.ADD_IMPORT_BOARD: {
+      const {title, id} = action.payload;
+      const newID= id;
+      const newBoard = {
+        id: newID,
+        title,
+        lists:[]
+      };
+      const newState = {...state, [newID]: newBoard};
       return newState;
     }
     case CONSTANTS.DELETE_BOARD:{

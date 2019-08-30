@@ -12,6 +12,17 @@ export const addList = title => {
   };
 };
 
+export const addImportList=(id, boardID, title)=>{
+  return(dispatch) => {
+    dispatch({
+    type: CONSTANTS.ADD_IMPORT_LIST,
+    payload: {id, boardID, title},
+  })
+  }
+}
+
+
+
 export const sort = (
   droppableIdStart,
   droppableIdEnd,
@@ -58,4 +69,17 @@ export const deleteList = listID => {
       }
     });
   };
+};
+
+export const getDataList = (listID, id, text, title, priority) => {
+  return (dispatch,getState) => {
+    const boardID = getState().activeBoard;
+    return dispatch({
+      type:CONSTANTS.GET_DATA,
+      payload: {
+        listID,
+        boardID,
+      }     
+    })
+  }
 };
