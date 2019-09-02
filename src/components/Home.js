@@ -4,43 +4,43 @@ import { connect } from "react-redux";
 import { addBoard, deleteBoard, importBoard } from "../actions/boardActions";
 import { importList } from "../actions/listsActions";
 import { importCard } from "../actions/cardsActions";
+import { } from "../actions/"
 import BoardThumbnail from "./BoardThumbnail";
 import './Home.css';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import Button from "react-bootstrap/Button";
+import ImportFile from "../components/importFile";
+
+
 library.add(faTrash);
 const Home = ({boardID, boards, boardOrder, dispatch }) => {
   // this is the home site that shows you your boards and you can also create a Board here.
   const [newBoardTitle, setNewBoardTitle] = useState("");
+  var data = require('../data/loadData.json');
   const handleChange = e => {
     setNewBoardTitle(e.target.value);
   };
   const handleSubmit = e => {
     e.preventDefault();
-
-    if (newBoardTitle) {
-
+    
+    if(newBoardTitle){
+    
       dispatch(addBoard(newBoardTitle));
-
       setNewBoardTitle("");
-    } else{
+    }else{
       return;
     }
   };
- var data = require("./jsonFile.json");
 
- for( let k in data.cards){
-   if( data.cards[k] !== null){
-    console.log("Data at ", k, " is ", data.cards[k]);
 
-   }
- }
 
- console.log("DATA: ",data.cards);
+ var data = require("../data/loadData.json");
+
+ //console.log("DATA: ",data.cards);
 const handleImportBoard = (e) => {
-  
+
   dispatch(importBoard(data.boards.id, data.boards.title, data.boards.lists ));
 
   
@@ -61,20 +61,18 @@ const handleImportBoard = (e) => {
   };
   };
 
-
+ 
   const renderBoards = () => {
     return boardOrder.map(boardID => {
       const board = boards[boardID];
-
       const handleDeleteBoard = () =>{
         dispatch(deleteBoard(boardID={boardID}));
         console.log(boardID);
       }
 
-
       return (
-        <div key={boardID} >
-                  
+        <div key={boardID}>
+       
         <Link
         
         key={boardID}
@@ -97,6 +95,7 @@ const renderCreateBoard = () => {
   return (    
   <form onSubmit={handleSubmit} style={{ textAlign: "center" }}>
   <h4 className="create_title">Create a new Board</h4>
+  
   <input
     className="create_input"
     onChange={handleChange}
@@ -112,12 +111,16 @@ const renderCreateBoard = () => {
 
 return (
 <div className="home_container">
+<ImportFile importBoard={importBoard} importList={importList} 
+            importCard={importCard} dispatch={dispatch} />
 {renderCreateBoard()}
-<Button variant="danger" onClick={handleImportBoard} className="addBoardButton">Submit</Button>
+<Button variant="danger" onClick={handleSubmit} className="addBoardButton">Submit</Button>
 <div className="thumbnails">{renderBoards()}</div>
 
 
-    </div>
+
+
+</div>
   );
 };
 const mapStateToProps = state => ({

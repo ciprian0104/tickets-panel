@@ -18,6 +18,7 @@ export const addBoard = title => {
   };
 };
 
+
 export const deleteBoard = boardID => {
       return {
       type:CONSTANTS.DELETE_BOARD,

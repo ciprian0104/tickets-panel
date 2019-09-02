@@ -1,6 +1,7 @@
 import { CONSTANTS } from "../actions";
 
 
+
 const initialState = {};
 
 const boardsReducer = (state = initialState, action) => {
@@ -10,7 +11,7 @@ const boardsReducer = (state = initialState, action) => {
 
       const board = state[boardID];
       const newListID = `list-${id}`;
-      const newLists = [...board.lists, newListID];
+     const newLists = [...board.lists, newListID];
       board.lists = newLists;
       return { ...state, [boardID]: board };
     }
@@ -57,6 +58,7 @@ const boardsReducer = (state = initialState, action) => {
       const newState = { ...state, [newID]: newBoard };
       return newState;
     }
+
     case CONSTANTS.DELETE_BOARD:{
       const {boardID} = action.payload;
       const newState= state;
@@ -79,19 +81,6 @@ const boardsReducer = (state = initialState, action) => {
       const newState = { ...state, [newID]: newBoard };
       return newState;
     }
-
-/*
-    case CONSTANTS.IMPORT_LIST: {
-      const { boardID, id } = action.payload;
-
-      const board = state[boardID];
-      const newListID = id;
-      const newLists = [...board.lists, newListID];
-      board.lists = newLists;
-      return { ...state, [boardID]: board };
-    }
-
-*/
 
 
 

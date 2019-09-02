@@ -15,7 +15,7 @@ import { MDBContainer, MDBScrollbar } from "mdbreact";
 library.add(faTrash);
 const scrollContainerStyle = { maxHeight: "775px", paddingRight: "15px" };
 
-const TrelloList = ({ title, cards, listID, index, dispatch }) => {
+const TrelloList = ({ id, title, cards, listID, index, dispatch }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [listTitle, setListTitle] = useState(title);
 
@@ -36,6 +36,7 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
   const handleDeleteList = () => {
     dispatch(deleteList(listID));
   };
+
 
   const handleFocus = e => {
 
@@ -101,6 +102,7 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
 
                     {provided.placeholder}
                     <CreateCardForm listID={listID} />
+              
                   </div>
                 </MDBContainer>
               </div>

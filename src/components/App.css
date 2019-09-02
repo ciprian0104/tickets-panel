@@ -5,16 +5,10 @@
     margin-top: 75px;
     flex-wrap: nowrap;
     margin-top: 80px;
+    margin-top: 75px;
+    
 }
 
-.listContainer2 {
-    flex: 1;
-    flex-wrap: wrap;
-    display: flex;
-    flex-direction: row;
-    position: relative;
-    margin-top: 75px;
-}
 
 .container_2 {
     border: 0.2px solid white;
@@ -25,6 +19,7 @@
     padding: 15px 15px;
     word-wrap: break-word;
     display: flex;
+
 }
 
 .container {
@@ -100,14 +95,9 @@
 }
 
 .background {
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    overflow: auto;
     background: linear-gradient(to right, #114357, #f29492);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
-
 .card_text {
     font-size: 15px;
     font-style: italic;
@@ -313,4 +303,7 @@
 
 .icon_arrow:hover {
     color: red;
+}
+.button_float {
+    float: right;
 }

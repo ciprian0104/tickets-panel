@@ -3,7 +3,7 @@ import rootReducer from "../reducers";
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from "redux-thunk";
 
-import { persistStore, persistReducer } from 'redux-persist'
+import { persistStore, persistReducer, autoRehydrate } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' // default localStorage for web
 
 
@@ -20,8 +20,13 @@ const persistConfig = {
     let persistor = persistStore(store);
 
 
+
+    //var myJSON =JSON.stringify(obj);
+    //console.log(myJSON);
       return { store, persistor }
-  }
+  };
+
+
 
 /*
  const store = createStore(rootReducer, composeWithDevTools());
