@@ -6,7 +6,6 @@ import { sort, setActiveBoard, exportBoard } from "../actions";
 import './App.css';
 import CreateCardForm from "./CreateCardForm";
 import SimpleAppBar from "./SimpleAppBar";
-import { Button } from "@material-ui/core";
 import store from "../store";
 import PostData from '../data/loadData.json';
 
@@ -78,18 +77,17 @@ class Board extends PureComponent {
         return cardsList;
        })
        textFile["cards"] = listCards;
-   
-       //this.download(JSON.stringify(textFile), "myFile.json")
+      
+      this.download(JSON.stringify(textFile), "myFile.json")
        //console.log("TEXT FILE WITH STRINGIFY: ", JSON.stringify(textFile));
    
        //console.log("TEXT FILE NO STRINGIFY: ", textFile);
-    
+       //const down = this.download(JSON.stringify(textFile), "myFile.json");
     return (
      <div className="background">
     
-    <SimpleAppBar title = {board.title}>
-
-    </SimpleAppBar>    
+    <SimpleAppBar title = {board.title}  />
+    
 
       <DragDropContext onDragEnd={this.onDragEnd}>
         <Droppable droppableId="all-lists" direction="horizontal" type="list">
