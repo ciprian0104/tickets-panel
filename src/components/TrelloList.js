@@ -5,7 +5,7 @@ import { Droppable, Draggable } from "react-beautiful-dnd";
 import './App.css';
 
 import { connect } from "react-redux";
-import { editTitle, deleteList, getDataList, getDataCard } from "../actions";
+import { editTitle, deleteList } from "../actions";
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -37,10 +37,6 @@ const TrelloList = ({ id, title, cards, listID, index, dispatch }) => {
     dispatch(deleteList(listID));
   };
 
-  const handleGetData = () => {
-    dispatch(getDataList(listID));
-    
-  }
 
   const handleFocus = e => {
 

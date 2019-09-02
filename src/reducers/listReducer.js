@@ -19,22 +19,6 @@ const listsReducer = (state = initialState, action) => {
 
       return newState;
     }
-
-    case CONSTANTS.ADD_IMPORT_LIST: {
-      const { title, id } = action.payload;
-      const newID =id;
-      const newList = {
-        title: title,
-        id: newID,
-        cards: []
-      };
-    
-      
-      const newState = { ...state, [newID]: newList };
-
-      return newState;
-    }
-
    
 
     case CONSTANTS.ADD_CARD: {
@@ -112,22 +96,32 @@ const listsReducer = (state = initialState, action) => {
     case CONSTANTS.DELETE_LIST: {
       const { listID } = action.payload;
       const newState = state;
-      console.log("This is the list state: ", newState);
-      console.log("List state with list ID:", newState[listID]);
       delete newState[listID];
-      console.log("List state after deletion: ", newState);
       return newState;
     }
-    case CONSTANTS.GET_DATA: {
-      const {listID} = action.payload;
-      const newState = state;
-      console.log("Data received: ", newState[listID]);
-      return newState;
+    case CONSTANTS.IMPORT_CARD: {
+      const { listID, id } = action.payload;
+      const list = state[listID];
+      list.cards.push(id);
+      return { ...state, [listID]: list };
     }
-    default:
-      return state;
-      
+
+    case CONSTANTS.IMPORT_LIST: {
+      const { title, id } = action.payload;
+      const newID = id;
+      const newList = {
+        title,
+        id: newID,
+        cards: [],
+      };
+
+      const newState = { ...state, [newID]: newList };
+      return newState;
   }
+  default:
+    return state;
+      
+}
 };
 
 export default listsReducer;

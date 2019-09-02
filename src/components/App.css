@@ -304,3 +304,6 @@
 .icon_arrow:hover {
     color: red;
 }
+.button_float {
+    float: right;
+}

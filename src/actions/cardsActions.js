@@ -11,12 +11,6 @@ export const addCard = (listID, text, title, priority) => {
     };
 };
 
-export const addImportCard = (id, listID, text, title, priority) => {
-  return {
-    type: CONSTANTS.ADD_IMPORT_CARD,
-    payload: { id, text, title, listID, priority}
-  };
-};
 
 export const editCard = (id, listID, newText, newTitle, newPriority) => {
     return {
@@ -32,4 +26,10 @@ export const editCard = (id, listID, newText, newTitle, newPriority) => {
     };
   };
 
- 
+  export const importCard = (title, text, priority, listID, id ) => {
+  
+      return {
+          type: CONSTANTS.IMPORT_CARD,
+          payload: {title, text, priority, listID, id }
+      };
+  };
