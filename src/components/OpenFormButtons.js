@@ -2,11 +2,7 @@ import React from "react";
 import Icon from "@material-ui/core/Icon";
 import "./OpenFormButtons"
 
-const OpenFormButtons = ({ list, children, onClick }) => {
-
-    const buttonTextOpacity = list ? 1 : 0.5;
-    const buttonTextColor = list ? "white" : "inherit";
-    const buttonTextBackground = list ? "rgba(0,0,0,.15)" : "inherit";
+const OpenFormButtons = ({ children}) => {
 
     return (
         
@@ -16,9 +12,6 @@ const OpenFormButtons = ({ list, children, onClick }) => {
         </div>
         
     );
-
-
-
 };
 
 export default OpenFormButtons;

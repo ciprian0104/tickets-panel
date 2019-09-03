@@ -7,57 +7,35 @@ import { faAngleDoubleLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import Button from 'react-bootstrap/Button';
+
+import Nav from 'react-bootstrap/Nav';
 library.add(faAngleDoubleLeft);
 
 
-/**To be modified
-TODO: Add functionality later
-style={{width:"100%", position:"absolute"}}
-*/
-
-
 export default function SimpleAppBar({ title, download }) {
-  const [truth] = useState(false);
-  const [setTruth] = useState(false);
+  const [truth, setTruth] = useState(false);
   if(truth){
     download.click();
     setTruth(false);
   }
-  const handleChange = e => {
-    let file = e.target.files;
-    console.log(file);
-    
-    let reader = new FileReader();
-    const text=reader.readAsText(file[0]);
-    const parseContent= JSON.parse(text);
-    console.log(parseContent.cards);
-    reader.onload = (e) =>{
-      console.log("data", e.target.result)
-    
-     
-      
-    }
-    //var data = require(file);
-    //console.log("DATA:--",data);
-
-  };
-  
   return (
 
-    <Navbar style={{ width: "100%" }} expanded="true" bg="secondary" variant="secondary">
-
-      <Link to="/">
+<Navbar bg="secondary" style={{ width: "100%" }} expanded="true">
+  <Navbar.Toggle aria-controls="basic-navbar-nav" />
+  <Navbar.Collapse id="basic-navbar-nav">
+    <Nav className="mr-auto">
+    <Link to="/">
         <FontAwesomeIcon className="icon_arrow" color="white" size="3x" icon={faAngleDoubleLeft} />
       </Link>
-      <Navbar.Brand className="buttonText" >
+      <h4 style={{ color: "white", marginLeft: "20px", marginTop: "7px" }}>{title}</h4>
 
-        <h4 style={{ color: "white", marginLeft: "20px", marginTop: "7px" }}>{title}</h4>
+    </Nav>
+    <Nav>
+    <Button variant="outline-light" onClick={() => setTruth(true)}> 
+      Download Board
+      </Button>    </Nav>
+  </Navbar.Collapse>
+</Navbar>
 
-      </Navbar.Brand>
-
-      <Button onClick={() => setTruth(true)}> TEST </Button>
-      <input type="file" name="file" onChange={handleChange}/>
-    
-    </Navbar>
   );
 }

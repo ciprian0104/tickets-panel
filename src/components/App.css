@@ -137,7 +137,9 @@
 .icon_delete:hover {
     color: #dc3545;
 }
-
+.input-file{
+    color: black;
+}
 .icon_edit:hover {
     color: #dc3545;
 }
@@ -303,4 +305,7 @@
 
 .icon_arrow:hover {
     color: red;
+}
+.button_float {
+    float: right;
 }

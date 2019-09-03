@@ -1,14 +1,8 @@
 import React from "react";
-import styled from "styled-components";
-import Icon from "@material-ui/core/Icon";
-import Card from "@material-ui/core/Card";
 import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
 import "./App.css";
-import TextField from "@material-ui/core/TextField";
 import "./EditCardForm.css";
 import Form from 'react-bootstrap/Form';
-import { FORMERR } from "dns";
 
 //This is the edit form
 
@@ -19,10 +13,6 @@ const EditModal = React.memo(
     const placeholder = list
       ? "Enter list title..."
       : "Enter a title for this card...";
-
-      const buttonTitle = "Save";
-
-
       
         return (    
           <>   
