@@ -1,12 +1,12 @@
-
 import React from 'react'
 import Button from "react-bootstrap/Button";
-
+import './App.css';
 const ImportFile = ({ importBoard, importList, importCard, dispatch }) => {
 
     let fileReader;
     let data;
     const handleFileRead = e => {
+      e.preventDefault();
         const content = fileReader.result;
         const parsedContent = JSON.parse(content);
         data = parsedContent;
@@ -17,7 +17,7 @@ const ImportFile = ({ importBoard, importList, importCard, dispatch }) => {
 
 
     const handleFileChosen = file => {
-
+      
         fileReader = new FileReader();
 
         fileReader.onloadend = handleFileRead;
@@ -25,10 +25,12 @@ const ImportFile = ({ importBoard, importList, importCard, dispatch }) => {
         fileReader.readAsText(file);
     };
 
-    const handleImportBoard = (e) => {
-
-        dispatch(importBoard(data.boards.id, data.boards.title, data.boards.lists ));
+    const handleImportBoard = () => {
       
+        if(data){
+        dispatch(importBoard(data.boards.id, data.boards.title, data.boards.lists ));
+        
+        
         
         for(let i in data.lists){
           dispatch(importList(data.lists[i].title , data.lists[i].id, data.lists[i].cards));
@@ -36,7 +38,6 @@ const ImportFile = ({ importBoard, importList, importCard, dispatch }) => {
         };
       
         for(let j in data.cards){
-      
           for(let p in data.cards[j]){
             if(data.cards[j] !== null){
               dispatch(importCard( data.cards[j][p].title, data.cards[j][p].text, data.cards[j][p].priority, data.cards[j][p].list, data.cards[j][p].id ))
@@ -44,15 +45,14 @@ const ImportFile = ({ importBoard, importList, importCard, dispatch }) => {
 
              };
           }
-      
-        };
-        };
+      };
+    };
+  }
     return (
         <div>
             <input 
             type='file'
             id = 'file'
-            className="input-file"
             accept='.json'
             onChange={e => handleFileChosen(e.target.files[0])}
             />

@@ -6,7 +6,6 @@ import { sort, setActiveBoard } from "../actions";
 import './App.css';
 import CreateCardForm from "./CreateCardForm";
 import SimpleAppBar from "./SimpleAppBar";
-import { Button } from "@material-ui/core";
 
 
 class Board extends PureComponent {
@@ -65,23 +64,21 @@ class Board extends PureComponent {
 
        let listCards = listOrder.map(listID =>{
         const tempList = lists[listID];
-   
+    
         const cardsList = tempList.cards.map(cardID => cards[cardID]);
+       
+        
        
      return cardsList;
        })
        textFile["cards"] = listCards;
-   
-    //this.download(JSON.stringify(textFile), "board5.json")
-    //console.log("TEXT FILE WITH STRINGIFY: ", JSON.stringify(textFile));
-
-    //console.log("TEXT FILE NO STRINGIFY: ", textFile);
+       
   
     return (
      <div className="background">
     
     <SimpleAppBar title = {board.title} download = {this.download(JSON.stringify(textFile), "board5.json")}/>
-
+    
       <DragDropContext onDragEnd={this.onDragEnd}>
         <Droppable droppableId="all-lists" direction="horizontal" type="list">
           {provided => (
@@ -97,20 +94,6 @@ class Board extends PureComponent {
                 if (list) {
 
                   const listCards = list.cards.map(cardID => cards[cardID]);
-                 
-                  /*
-                  //this.download(JSON.stringify(textFile), "textFile")
-                  textFile["lists"] = listOrder.map(listID=>lists[listID]);
-                  //textFile["cards"] = cardOrder.map(cardID=> cards[cardID]);
-                  
-                  textFile["cards"] = listCards;
-                  console.log(lists[listID].id)
-                  console.log("TEXT FILE CONTENT IS: ", textFile);
-                  console.log(boards[boardID].lists);
-               
-                  //this.download(JSON.stringify(textFile), "textFile")
-
-                */
         
                 return (
                     <TrelloList

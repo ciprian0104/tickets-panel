@@ -22,6 +22,9 @@ export const sort = (
 ) => {
   return (dispatch, getState) => {
     const boardID = getState().activeBoard;
+    const activeLists = getState().boards[boardID].lists;
+    const lists = getState().lists;
+    console.log("CARDS ACTIONS: ", activeLists);
     dispatch({
       type: CONSTANTS.DRAG_HAPPENED,
       payload: {
@@ -31,7 +34,9 @@ export const sort = (
         droppableIndexStart,
         draggableId,
         type,
-        boardID
+        boardID,
+        activeLists,
+        lists
       }
     });
   };
@@ -68,4 +73,3 @@ export const importList = (title, id) => {
       payload: { title, id }
   };
 };
-

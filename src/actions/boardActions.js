@@ -1,6 +1,6 @@
 import { CONSTANTS } from "../actions";
 import uuid from "uuidv4";
-import Store from "../store";
+
 
 export const setActiveBoard = id => {
   return {
