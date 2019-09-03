@@ -111,7 +111,7 @@ const renderCreateBoard = () => {
 
 return (
 <div className="home_container">
-<ImportFile importBoard={importBoard} importList={importList} 
+<ImportFile boardIds={boardOrder} importBoard={importBoard} importList={importList} 
             importCard={importCard} dispatch={dispatch} />
 {renderCreateBoard()}
 <Button variant="danger" onClick={handleSubmit} className="addBoardButton">Submit</Button>

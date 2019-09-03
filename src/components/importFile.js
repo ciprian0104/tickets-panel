@@ -1,33 +1,23 @@
 
 import React from 'react'
 import Button from "react-bootstrap/Button";
-import { useStore } from 'react-redux'
 
 
-const ImportFile = ({ importBoard, importList, importCard, dispatch }) => {
+const ImportFile = ({boardIds, importBoard, importList, importCard, dispatch }) => {
     
-    let storeState = useStore().getState();
     let fileReader;
     let data;
-    let boardsIds = [];
-
     const handleFileRead = e => {
-        const content = fileReader.result;
+        let content = fileReader.result;
         const parsedContent = JSON.parse(content);
         data = parsedContent;
-        
-    }
-
-    const handleUniqueBoard = id => {
-      const storeBoards = storeState.boards;
-      for(let i in storeBoards){
-
-        boardsIds.push(storeBoards[i].id);
+        content = null;
       }
 
-      for( let j in boardsIds){
+    const handleUniqueBoard = id => {
+      for( let j in boardIds){
 
-        if( id === boardsIds[j]){
+        if( id === boardIds[j]){
           return false;
         }
       }
@@ -44,6 +34,10 @@ const ImportFile = ({ importBoard, importList, importCard, dispatch }) => {
     };
 
     const handleImportBoard = (e) => {
+      document.getElementById("file").value = "";
+
+        if(data){
+        
         let notImported = handleUniqueBoard(data.boards.id);
 
 
@@ -56,7 +50,6 @@ const ImportFile = ({ importBoard, importList, importCard, dispatch }) => {
         
         for(let i in data.lists){
           dispatch(importList(data.lists[i].title , data.lists[i].id, data.lists[i].cards));
-          console.log("List ", i, " is: ", data.lists[i])
         };
       
         for(let j in data.cards){
@@ -64,7 +57,6 @@ const ImportFile = ({ importBoard, importList, importCard, dispatch }) => {
           for(let p in data.cards[j]){
             if(data.cards[j] !== null){
               dispatch(importCard( data.cards[j][p].title, data.cards[j][p].text, data.cards[j][p].priority, data.cards[j][p].list, data.cards[j][p].id ))
-              console.log("Cards lists of [", j,"][", p, "] is: ", data.cards[j][p])
 
              };
           }
@@ -76,7 +68,8 @@ const ImportFile = ({ importBoard, importList, importCard, dispatch }) => {
         window.alert("Duplicate board! ");
 
       }
-        };
+       
+    } };
     return (
         <div>
             <input 

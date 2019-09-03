@@ -66,8 +66,9 @@ const cardsReducer = (state = initialState, action) => {
     case CONSTANTS.DRAG_HAPPENED:
       const {
         activeLists,
-        lists
-
+        lists,
+        droppableIdStart,
+        droppableIdEnd,
       } = action.payload;
       
       const listings =  activeLists.map(listID => lists[listID]);
@@ -76,6 +77,7 @@ const cardsReducer = (state = initialState, action) => {
       //console.log("Listings: ", listings);
     
       const newState = state;
+      if (droppableIdStart !== droppableIdEnd) {
 
       for(let i in listings){
         for(let j in listings[i].cards){
@@ -89,7 +91,7 @@ const cardsReducer = (state = initialState, action) => {
 
           }
       }
-    }
+    }};
 
       return newState;
 
