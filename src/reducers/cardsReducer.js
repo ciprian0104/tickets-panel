@@ -30,6 +30,8 @@ const cardsReducer = (state = initialState, action) => {
       };
       return {...state, [newID]: newCard};
     }
+
+
     case CONSTANTS.EDIT_CARD: {
       const { id, newTitle, newText, newPriority } = action.payload;
       const card = state[id];
@@ -61,6 +63,35 @@ const cardsReducer = (state = initialState, action) => {
       return { ...state, [newID]: newCard };
     }
 
+    case CONSTANTS.DRAG_HAPPENED:
+      const {
+        activeLists,
+        lists
+
+      } = action.payload;
+      
+      const listings =  activeLists.map(listID => lists[listID]);
+
+
+      //console.log("Listings: ", listings);
+    
+      const newState = state;
+
+      for(let i in listings){
+        for(let j in listings[i].cards){
+
+          if((newState[listings[i].cards[j]].list !== null) && ( newState[listings[i].cards[j]].list !== listings[i].id ))
+          {
+          
+            console.log("Obj: ", newState[listings[i].cards[j]].list)
+            console.log("New ID: ", listings[i].id);
+            newState[listings[i].cards[j]].list = listings[i].id;
+
+          }
+      }
+    }
+
+      return newState;
 
     default:
       return state;

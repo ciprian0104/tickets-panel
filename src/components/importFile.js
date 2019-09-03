@@ -1,20 +1,38 @@
 
 import React from 'react'
 import Button from "react-bootstrap/Button";
+import { useStore } from 'react-redux'
+
 
 const ImportFile = ({ importBoard, importList, importCard, dispatch }) => {
-
+    
+    let storeState = useStore().getState();
     let fileReader;
     let data;
+    let boardsIds = [];
+
     const handleFileRead = e => {
         const content = fileReader.result;
         const parsedContent = JSON.parse(content);
         data = parsedContent;
-        console.log(parsedContent);
-        
         
     }
 
+    const handleUniqueBoard = id => {
+      const storeBoards = storeState.boards;
+      for(let i in storeBoards){
+
+        boardsIds.push(storeBoards[i].id);
+      }
+
+      for( let j in boardsIds){
+
+        if( id === boardsIds[j]){
+          return false;
+        }
+      }
+      return true;
+    }
 
     const handleFileChosen = file => {
 
@@ -26,7 +44,13 @@ const ImportFile = ({ importBoard, importList, importCard, dispatch }) => {
     };
 
     const handleImportBoard = (e) => {
+        let notImported = handleUniqueBoard(data.boards.id);
 
+
+        if(notImported === true){
+
+
+        
         dispatch(importBoard(data.boards.id, data.boards.title, data.boards.lists ));
       
         
@@ -46,6 +70,12 @@ const ImportFile = ({ importBoard, importList, importCard, dispatch }) => {
           }
       
         };
+
+      }else{
+        console.log("Duplicate ");
+        window.alert("Duplicate board! ");
+
+      }
         };
     return (
         <div>

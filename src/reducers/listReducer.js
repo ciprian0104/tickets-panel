@@ -28,19 +28,13 @@ const listsReducer = (state = initialState, action) => {
       list.cards.push(`card-${id}`);
       return { ...state, [listID]: list };
     }
-    case CONSTANTS.ADD_IMPORT_CARD: {
-      const {listID,id} = action.payload;
-      const list = state[listID];
-      list.cards.push(id);
-      return {...state, [listID]:list};
-    }
+
     case CONSTANTS.DRAG_HAPPENED:
       const {
         droppableIdStart,
         droppableIdEnd,
         droppableIndexEnd,
         droppableIndexStart,
-
         type
       } = action.payload;
 
@@ -64,8 +58,9 @@ const listsReducer = (state = initialState, action) => {
         // pull out the card from this list
         const card = listStart.cards.splice(droppableIndexStart, 1);
         // find the list where the drag ended
+        //const cards = this.props;
         const listEnd = state[droppableIdEnd];
-
+        console.log("Cards: ", card);
         // put the card in the new list
         listEnd.cards.splice(droppableIndexEnd, 0, ...card);
         return {

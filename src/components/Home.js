@@ -36,7 +36,7 @@ const Home = ({boardID, boards, boardOrder, dispatch }) => {
 
 
 
- var data = require("../data/loadData.json");
+ //var data = require("../data/loadData.json");
 
  //console.log("DATA: ",data.cards);
 const handleImportBoard = (e) => {
