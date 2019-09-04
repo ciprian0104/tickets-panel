@@ -62,23 +62,20 @@ class Board extends PureComponent {
 
        textFile["lists"] = listings;
 
-       let listCards = listOrder.map(listID =>{
+       let listOfCards = listOrder.map(listID =>{
         const tempList = lists[listID];
-    
+   
         const cardsList = tempList.cards.map(cardID => cards[cardID]);
-       
-        
        
      return cardsList;
        })
-       textFile["cards"] = listCards;
-       
-  
+       textFile["cards"] = listOfCards;
+
     return (
      <div className="background">
     
-    <SimpleAppBar title = {board.title} download = {this.download(JSON.stringify(textFile), "board5.json")}/>
-    
+    <SimpleAppBar title = {board.title} download = {this.download(JSON.stringify(textFile), "boardFile.json")}/>
+
       <DragDropContext onDragEnd={this.onDragEnd}>
         <Droppable droppableId="all-lists" direction="horizontal" type="list">
           {provided => (
@@ -94,7 +91,9 @@ class Board extends PureComponent {
                 if (list) {
 
                   const listCards = list.cards.map(cardID => cards[cardID]);
-        
+                 
+
+
                 return (
                     <TrelloList
                       listID={list.id}
