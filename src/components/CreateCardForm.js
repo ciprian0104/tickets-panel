@@ -1,10 +1,7 @@
 import React from "react";
-import Icon from "@material-ui/core/Icon";
-//import Card from "@material-ui/core/Card";
 import Button from "react-bootstrap/Button";
 import { connect } from "react-redux";
 import { addList, addCard } from "../actions";
-import ButtonToolbar from "react-bootstrap/ButtonToolbar";
 import './App.css';
 import './EditCardForm.css';
 import Card from "react-bootstrap/Card";
@@ -17,6 +14,7 @@ import Modal from 'react-bootstrap/Modal';
 
 //Changed from TrelloActionButton
 library.add(faPlus);
+
 class CreateCardForm extends React.Component {
   state = {
     formOpen: false,
@@ -31,7 +29,7 @@ class CreateCardForm extends React.Component {
     });
   };
 
-  closeForm = e => {
+  closeForm = () => {
     this.setState({
       formOpen: false
     });
@@ -51,14 +49,15 @@ class CreateCardForm extends React.Component {
     const { text } = this.state;
 
     if (text) {
+
       this.setState({
         text: ""
       });
+
       dispatch(addList(text));
       this.closeForm();
 
     }
-
     return;
   };
 
@@ -108,16 +107,13 @@ class CreateCardForm extends React.Component {
   renderForm = () => {
     const { list } = this.props;
 
-    const secondPlaceholder = list
-      ? ""
-      : "Enter card description";
-
-
-    const placeholder = list
+   
+const placeholder = list
       ? "Enter list title..."
       : "Enter a title for this card...";
 
     const buttonTitle = list ? "Add List" : "Add Card";
+    const buttonText = list ? "Add another list" : "Add another card";
 
 
     return (
@@ -125,7 +121,7 @@ class CreateCardForm extends React.Component {
         onHide={this.closeForm}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Add another card</Modal.Title>
+          <Modal.Title>{buttonText}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div>
@@ -163,23 +159,6 @@ class CreateCardForm extends React.Component {
 
                   </div>
                 </Card.Body>
-
-            
-
-                {/*
-           <TextField
-            placeholder={placeholder}
-            value={this.state.text}
-            onChange={this.handleChange('text')}
-          />
-        
-
-
-        <TextField
-            placeholder={secondPlaceholder}
-            value={this.state.title}
-            onChange={this.handleChange('title')}
-           /> */}
 
 
               </Card>

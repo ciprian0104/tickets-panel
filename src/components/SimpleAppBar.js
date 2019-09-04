@@ -7,14 +7,11 @@ import { faAngleDoubleLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+
 import Nav from 'react-bootstrap/Nav';
 library.add(faAngleDoubleLeft);
 
-/**To be modified
-TODO: Add functionality later
-style={{width:"100%", position:"absolute"}}
-*/
+
 export default function SimpleAppBar({ title, download }) {
   const [truth, setTruth] = useState(false);
   if(truth){

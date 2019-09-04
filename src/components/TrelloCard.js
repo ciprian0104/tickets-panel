@@ -1,14 +1,10 @@
 import React, { useState } from "react";
-
 import NaturalDragAnimation from 'natural-drag-animation-rbdnd';
-
 import { Draggable } from "react-beautiful-dnd";
-
 import EditModal from "./EditModal";
 import { editCard, deleteCard } from "../actions";
 import { connect } from "react-redux";
 import './TrelloCard.css';
-
 import ActionButton from './ActionButton';
 import Card from "react-bootstrap/Card";
 import Badge from "react-bootstrap/Badge";
@@ -17,6 +13,8 @@ import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 library.add(faTrash, faEdit);
+
+
 const TrelloCard = React.memo(({ priority, title, text, id, listID, index, dispatch }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [cardText, setText] = useState(text);
@@ -54,13 +52,6 @@ const TrelloCard = React.memo(({ priority, title, text, id, listID, index, dispa
 
   const renderEditForm = () => {
     return (
-      /*
-      <EditCardForm text={cardText} title={cardTitle} priority={cardPriority} onChangeText={handleChangeText} onChangePriority={handleChangePriority} onChangeTitle={handleChangeTitle} closeForm={closeForm}>
-      <ActionButton onClick={saveCard}>Save</ActionButton>
-
-      </EditCardForm>
-      */
-
       <EditModal show={isEditing} text={cardText} title={cardTitle}
         priority={cardPriority} onChangeText={handleChangeText} onChangePriority={handleChangePriority}
         onChangeTitle={handleChangeTitle} closeForm={closeForm}>

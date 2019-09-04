@@ -3,17 +3,15 @@ import TrelloCard from "./TrelloCard";
 import CreateCardForm from "./CreateCardForm";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import './App.css';
-
 import { connect } from "react-redux";
 import { editTitle, deleteList } from "../actions";
-
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import Form from "react-bootstrap/Form";
-import { MDBContainer, MDBScrollbar } from "mdbreact";
+
 library.add(faTrash);
-const scrollContainerStyle = { maxHeight: "775px", paddingRight: "15px" };
+
 
 const TrelloList = ({ id, title, cards, listID, index, dispatch }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -64,7 +62,6 @@ const TrelloList = ({ id, title, cards, listID, index, dispatch }) => {
         >
 
           <Droppable droppableId={String(listID)} type="card">
-
             {provided => (
 
               <div style={{ width: "353px" }}
@@ -84,7 +81,7 @@ const TrelloList = ({ id, title, cards, listID, index, dispatch }) => {
 
                     </div>
                   )}
-                <MDBContainer>
+               
                   <div>
                     {cards.map((card, index) => (
 
@@ -104,7 +101,7 @@ const TrelloList = ({ id, title, cards, listID, index, dispatch }) => {
                     <CreateCardForm listID={listID} />
               
                   </div>
-                </MDBContainer>
+               
               </div>
 
 

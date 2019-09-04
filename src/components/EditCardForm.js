@@ -1,14 +1,10 @@
 import React from "react";
-import styled from "styled-components";
 import Icon from "@material-ui/core/Icon";
-import Textarea from "react-textarea-autosize";
 import Card from "@material-ui/core/Card";
-import Button from "@material-ui/core/Button";
-import { CardHeader } from "@material-ui/core";
 import "./App.css";
 import TextField from "@material-ui/core/TextField";
 import "./EditCardForm.css";
-import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
+import { ContextMenuTrigger } from "react-contextmenu";
 
 //This is the edit form
 
@@ -22,7 +18,6 @@ const EditCardForm = React.memo(
     ? "Enter list title..."
     : "Enter a title for this card...";
 
-  const buttonTitle = "Save";
 
   return (
     <div className="EditCardFormContainer">
