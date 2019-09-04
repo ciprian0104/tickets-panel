@@ -1,6 +1,5 @@
 import { CONSTANTS } from "../actions";
 import uuid from "uuidv4";
-import Store from "../store";
 
 export const setActiveBoard = id => {
   return {
@@ -9,12 +8,12 @@ export const setActiveBoard = id => {
   };
 };
 
-export const addBoard = title => {
+export const addBoard = (emoji, title) => {
   const id = uuid();
 
   return {
     type: CONSTANTS.ADD_BOARD,
-    payload: { title, id }
+    payload: {emoji, title, id }
   };
 };
 
@@ -27,10 +26,18 @@ export const deleteBoard = boardID => {
   };
 };
 
-export const importBoard = (id, title, lists) => {
+export const importBoard = (id, emoji, title, lists) => {
 
   return {
     type: CONSTANTS.IMPORT_BOARD,
-    payload: { id, title, lists }
+    payload: { id, emoji, title, lists }
+  };
+};
+
+export const editBoard = (id, newEmoji, newTitle) =>{
+
+  return {
+    type: CONSTANTS.EDIT_BOARD,
+    payload: {id, newEmoji, newTitle}
   };
 };

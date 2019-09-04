@@ -45,7 +45,7 @@ const ImportFile = ({boardIds, importBoard, importList, importCard, dispatch }) 
 
 
         
-        dispatch(importBoard(data.boards.id, data.boards.title, data.boards.lists ));
+        dispatch(importBoard(data.boards.id, data.boards.emoji, data.boards.title, data.boards.lists ));
       
         
         for(let i in data.lists){
@@ -78,6 +78,7 @@ const ImportFile = ({boardIds, importBoard, importList, importCard, dispatch }) 
             className="input-file"
             accept='.json'
             onChange={e => handleFileChosen(e.target.files[0])}
+            style={{maxWidth:"200px"}}
             />
         <Button variant="danger" onClick={handleImportBoard}>Import</Button>
 
