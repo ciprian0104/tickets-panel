@@ -77,9 +77,9 @@ const ImportFile = ({boardIds, importBoard, importList, importCard, dispatch }) 
             className="input-file"
             accept='.json'
             onChange={e => handleFileChosen(e.target.files[0])}
-            style={{maxWidth:"200px"}}
+            style={{maxWidth:"200px",color:"white",marginRight:"45px"}}
             />
-        <Button variant="danger" onClick={handleImportBoard}>Import</Button>
+        <Button style={{backgroundColor:"transparent", border:"0.5px solid white", marginBottom:"5px"}} onClick={handleImportBoard}>Import</Button>
 
         </div>
     )
@@ -89,4 +89,3 @@ const ImportFile = ({boardIds, importBoard, importList, importCard, dispatch }) 
 }
 
 export default ImportFile;
-

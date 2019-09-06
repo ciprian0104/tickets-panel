@@ -1,16 +1,25 @@
 import React from "react";
 import './Home.css';
 import 'emoji-mart/css/emoji-mart.css';
-import { Picker, Emoji } from 'emoji-mart';
+import { Emoji } from 'emoji-mart';
+import { Link } from "react-router-dom";
 
 const BoardThumbnail = ({ title, emoji }) => {
-  return (
 
-    <div className="thumbnail">
+
+
+
+  return (
+    <div style={{display:"flex", flexDirection:"colum"}}>
+    <div style={{display:"flex", flexDirection:"row"}}>
       <div className="emoji_styling">
       <Emoji  emoji={emoji} size={64} />
       </div>
-      <h4 className="thumbnail_title">{title}</h4>
+      <h4>{title}</h4>
+    </div>
+    <div>
+      
+    </div>
     </div>
   );
 };

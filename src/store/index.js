@@ -22,6 +22,3 @@ const persistConfig = {
 
       return { store, persistor }
   };
-
-
-

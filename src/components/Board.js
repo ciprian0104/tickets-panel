@@ -53,7 +53,7 @@ class Board extends PureComponent {
       return <p>Board not found</p>;
     }
     const listOrder = board.lists;
-    
+    console.log("Board emoji: ", board.emoji);
        //Making the textFile for download
        let textFile = {};
 
@@ -74,7 +74,7 @@ class Board extends PureComponent {
     return (
      <div className="background">
     
-    <SimpleAppBar title = {board.title} download = {this.download(JSON.stringify(textFile), "boardFile.json")}/>
+    <SimpleAppBar title = {board.title} download = {this.download(JSON.stringify(textFile), "boardFile.json")} emoFace={board.emoji}/>
 
       <DragDropContext onDragEnd={this.onDragEnd}>
         <Droppable droppableId="all-lists" direction="horizontal" type="list">
