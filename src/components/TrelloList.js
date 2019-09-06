@@ -11,7 +11,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import Form from "react-bootstrap/Form";
-import { MDBContainer, MDBScrollbar } from "mdbreact";
+
 library.add(faTrash);
 
 const Container = styled.div`
@@ -115,7 +115,7 @@ const TrelloList = ({ id, title, cards, listID, index, dispatch }) => {
 
                     </div>
                   )}
-                <MDBContainer>
+               
                   <div
                 
 
@@ -139,7 +139,7 @@ const TrelloList = ({ id, title, cards, listID, index, dispatch }) => {
                     <CreateCardForm listID={listID} />
               
                   </div>
-                </MDBContainer>
+               
               </CardList>
 
 

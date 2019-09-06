@@ -47,12 +47,13 @@ const boardsReducer = (state = initialState, action) => {
     }
 
     case CONSTANTS.ADD_BOARD: {
-      const {emoji, title, id } = action.payload;
+      const {emoji, title, description, id } = action.payload;
       const newID = `board-${id}`;
       const newBoard = {
         id: newID,
         emoji,
         title,
+        description,
         lists: []
       };
 
@@ -70,12 +71,13 @@ const boardsReducer = (state = initialState, action) => {
 
     case CONSTANTS.IMPORT_BOARD: {
 
-      const { id, emoji, title, lists } = action.payload;
+      const { id, emoji, title, description, lists } = action.payload;
       const newID = id;
       const newBoard = {
         id: newID,
         emoji,
         title,
+        description,
         lists: lists
       };
 
@@ -85,13 +87,14 @@ const boardsReducer = (state = initialState, action) => {
 
     case CONSTANTS.EDIT_BOARD: {
 
-      const { id, newEmoji, newTitle} = action.payload;
+      const { id, newEmoji, newTitle, newDescription} = action.payload;
 
       const board = state[id];
       console.log("STATE OF BOARD ID : ", state[id]);
 
       board.emoji = newEmoji;
       board.title = newTitle;
+      board.description = newDescription;
 
       return {...state, [`board-${id}`]: board};
     }

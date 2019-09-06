@@ -136,7 +136,9 @@
 .icon_delete:hover {
     color: #eb9494;
 }
-
+.input-file{
+    color: black;
+}
 .icon_edit:hover {
     color: #eb9494;
 }
