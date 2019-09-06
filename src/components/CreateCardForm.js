@@ -1,7 +1,10 @@
 import React from "react";
+import Icon from "@material-ui/core/Icon";
+//import Card from "@material-ui/core/Card";
 import Button from "react-bootstrap/Button";
 import { connect } from "react-redux";
 import { addList, addCard } from "../actions";
+import ButtonToolbar from "react-bootstrap/ButtonToolbar";
 import './App.css';
 import './EditCardForm.css';
 import Card from "react-bootstrap/Card";
@@ -14,7 +17,6 @@ import Modal from 'react-bootstrap/Modal';
 
 //Changed from TrelloActionButton
 library.add(faPlus);
-
 class CreateCardForm extends React.Component {
   state = {
     formOpen: false,
@@ -29,7 +31,7 @@ class CreateCardForm extends React.Component {
     });
   };
 
-  closeForm = () => {
+  closeForm = e => {
     this.setState({
       formOpen: false
     });
@@ -49,15 +51,14 @@ class CreateCardForm extends React.Component {
     const { text } = this.state;
 
     if (text) {
-
       this.setState({
         text: ""
       });
-
       dispatch(addList(text));
       this.closeForm();
 
     }
+
     return;
   };
 
@@ -107,13 +108,16 @@ class CreateCardForm extends React.Component {
   renderForm = () => {
     const { list } = this.props;
 
-   
-const placeholder = list
+    const secondPlaceholder = list
+      ? ""
+      : "Enter card description";
+
+
+    const placeholder = list
       ? "Enter list title..."
       : "Enter a title for this card...";
 
     const buttonTitle = list ? "Add List" : "Add Card";
-    const buttonText = list ? "Add another list" : "Add another card";
 
 
     return (
@@ -121,7 +125,7 @@ const placeholder = list
         onHide={this.closeForm}
       >
         <Modal.Header closeButton>
-          <Modal.Title>{buttonText}</Modal.Title>
+          <Modal.Title>{list ? "Add another list" : "Add another card"}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div>
@@ -159,9 +163,7 @@ const placeholder = list
 
                   </div>
                 </Card.Body>
-
-
-              </Card>
+                </Card>
 
               <div className="buttonContainer">
                 <Button style={{ color: 'white', background: '#5aac44' }}
@@ -184,3 +186,6 @@ const placeholder = list
 }
 
 export default connect()(CreateCardForm);
+
+
+
