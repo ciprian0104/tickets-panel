@@ -44,7 +44,7 @@ const ImportFile = ({boardIds, importBoard, importList, importCard, dispatch }) 
 
 
         
-        dispatch(importBoard(data.boards.id, data.boards.emoji, data.boards.title, data.boards.lists ));
+        dispatch(importBoard(data.boards.id, data.boards.emoji, data.boards.title, data.boards.description, data.boards.lists ));
       
         
         for(let i in data.lists){

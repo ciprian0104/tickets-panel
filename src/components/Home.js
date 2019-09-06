@@ -15,6 +15,7 @@ import 'emoji-mart/css/emoji-mart.css';
 import { Picker, Emoji } from 'emoji-mart';
 import Form from "react-bootstrap/Form";
 import {Nav} from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { MDBBtn, MDBCollapse } from "mdbreact";
 
@@ -24,6 +25,7 @@ library.add(faTrash, faGrinAlt, faEdit);
 const Home = ({boardID, boards, boardOrder, dispatch }) => {
   // this is the home site that shows you your boards and you can also create a Board here.
   const [newBoardTitle, setNewBoardTitle] = useState("");
+  const [boardDesc, setBoardDesc] = useState("");
   const [isEmojing, setIsEmojing] = useState(false);
   const [emojiState, setEmoji] = useState({});
   const [createBoard, setCreateBoard] = useState(false);
@@ -49,83 +51,84 @@ const thumbnailDispatch = (id) => {
 const renderBoardDescription = () => {
 
   let board = boards[tempID];
+  
+  if(board){
+    return (
 
-const handleDeleteBoard = () =>{
-        dispatch(deleteBoard(boardID={tempID}));
-      }
-  return (
-
-    <div style={{display:"flex",
-     flexDirection:"column",
-      justifyContent:"center",
-      margin: "250px"
+      <div style={{display:"flex",
+       flexDirection:"column",
+        justifyContent:"center",
+        margin: "250px"
+        
+        }}>
+        
+        <Emoji  emoji={board.emoji} size={80} />
+        
+        <h1 style={{color:"white"}}>{board.title}</h1>
+      <div style={{display:"flex",flexDirection:"row"}}>
       
-      }}>
       
-      <Emoji  emoji={board.emoji} size={80} />
-      
-      <h1 style={{color:"white"}}>{board.title}</h1>
-    <div style={{display:"flex",flexDirection:"row"}}>
-    
-    
-    <Link
+      <Link
+  
+      key={boardID}
+      to={`/${board.id}`}
+      style={{ textDecoration: "none" }}
+    >
+  
+  
+      <Button variant="outline-light" className="nextPageButton">GO TO BOARD</Button>
+    </Link>
+   
+    </div>
+    <div className="descriptionContent">
+      <h4 style={{color:"white"}}>Description:</h4>
+      <p style={{color:"white", font:"serif", fontSize:"23px"}}>{board.description}</p>
+    </div>
+    </div>
+  
+  
+    );
 
-    key={boardID}
-    to={`/${board.id}`}
-    style={{ textDecoration: "none" }}
-  >
-
-
-    <Button variant="outline-light" className="nextPageButton">GO TO BOARD</Button>
-  </Link>
- 
-  </div>
-  <div className="descriptionContent">
-    <h6 style={{color:"white"}}>Description</h6>
-  </div>
-  </div>
-
-
-  );
-
+  } else {
+    return null;
+  }
 
 }
-//and this
-const BoardThumbnail = ({ id, title, emoji }) => {
-
-
-
-  return (
-    <div style={{display:"flex", position:"relative",flexDirection:"row", cursor:"pointer"}} onClick={() => thumbnailDispatch(id)}>
-      <div className="emoji_styling">
-      <Emoji emoji={emoji} size={32} />
-      </div>
-      <h4 className="titleBoard">{title}</h4>
-    </div>
-  );
-};
 
   const handleEmoji = e => {
     setEmoji(e.target.value);
   }
-  const handleChange = e => {
+  const handleChangeTitle = e => {
     setNewBoardTitle(e.target.value);
   };
+
+  const handleChangeDesc = e => {
+    setBoardDesc(e.target.value);
+  }
+
+
+
   const handleSubmit = e => {
     setCreateBoard(false);
     setIsEmojing(false);
     e.preventDefault();
     
-    if(newBoardTitle ){
+    if(newBoardTitle && boardDesc){
       
-      console.log("Emoji state obj: ", emojiState.length);
-      dispatch(addBoard(emojiState, newBoardTitle));
+      dispatch(addBoard(emojiState, newBoardTitle, boardDesc));
       setNewBoardTitle("");
+      setBoardDesc("");
       setEmoji({});
+      toggleNewBoard();
+    
     }else{
       return;
     }
   };
+
+
+
+
 const handleCloseStates = () => {
   setCreateBoard(false);
   setIsEmojing(false);
@@ -139,67 +142,49 @@ const handleCloseStates = () => {
       )
     }
     
-  
-//and this
-const renderBoardsList = () =>{
+  const BoardThumbnail = ({ id, title, emoji },{handleDeleteBoard}) => {
+
+
+
+      return (
+        <div style={{display:"flex" ,flexDirection:"row", cursor:"pointer", justifyContent:"center", marginTop:"7px"}} >
+          <div onClick={() => thumbnailDispatch(id)} style={{display:"flex" ,flexDirection:"row", cursor:"pointer", left:"100px"}}>
+          <div className="emoji_styling">
+          <Emoji emoji={emoji} size={32} />
+          </div>
+          <h4 className="titleBoard">{title}</h4>
+          </div>
+          <div style={{marginTop:"9px", marginLeft:"10px"}}>
+          <FontAwesomeIcon className="icon_delete" color="white" size="1x" icon="trash" onMouseDown={handleDeleteBoard} />
+          </div>
+        </div>
+      );
+    };
+    
+
+
+
+const renderBoardsList = () => {
   return boardOrder.map(boardID => {
     const board = boards[boardID];
 
+    const handleDeleteBoard = () =>{
+      dispatch(deleteBoard(boardID={boardID}));
+    }
+  return (
+    <div style={{minWidth:"355px", maxWidth:"355px"}} key={boardID}>
 
-    return (
-    <div style={{justifyContent:"center",display:"flex", flexDirection:"row"}} key={boardID}>
 
-
-{BoardThumbnail({ ...board })} 
-
+{BoardThumbnail({ ...board },{handleDeleteBoard})} 
 </div>
 
 
 );
+
+    
 });
-}
-
- 
-  const renderBoards = () => {
-    return boardOrder.map(boardID => {
-      const board = boards[boardID];
-      console.log("BOARD: ", board);
-      const handleDeleteBoard = () =>{
-        dispatch(deleteBoard(boardID={boardID}));
-      }
-      console.log("BOARD in HOME: ", board);
-      return (
-        <div style={{display:"flex", flexDirection:"row"}} key={boardID}>
-        <Nav>
-        <Nav.Item>
- 
-        <Nav.Link
-        href={`/${board.id}`}
-        key={boardID}
-        to={`/${board.id}`}
-        style={{ textDecoration: "none" }}
-      >
-
-        <BoardThumbnail {  ...board }> 
-
-        
-        </BoardThumbnail>
-        {/*<Emoji  emoji={emoji} size={64}/>*/}
-
-      </Nav.Link>
-      </Nav.Item>
-      {/*
-      <div style={{display:"flex", flexDirection:"column", marginTop:"15px"}}>
-      <a><FontAwesomeIcon className="icon_delete" color="white" size="1x" icon="trash" onMouseDown={handleDeleteBoard} /></a>
-      </div> */}
-      </Nav>
-
-      </div>
-      
-     
-    );
-  });
 };
+
 
 const renderCreateBoard = () => {
   return (
@@ -208,11 +193,10 @@ const renderCreateBoard = () => {
   
   <h5 style={{color:"white"}}>Create form</h5>
   <form onSubmit={handleSubmit} >
-  {/*<FontAwesomeIcon className="icon_delete" color="white" size="3x" icon="grin-alt" onMouseDown={() => setIsEmojing(true)} />*/}
 
   <input
     className="create_input"
-    onChange={handleChange}
+    onChange={handleChangeTitle}
     value={newBoardTitle}
     placeholder="Your boards title..."
     type="text"
@@ -220,12 +204,18 @@ const renderCreateBoard = () => {
   <Form>
     <Form.Group>
       <Form.Label style={{color:"white",fontSize:"20px",fontStyle:"bold"}}>Board description</Form.Label>
-      <Form.Control as="textarea" maxLength="255" style={{width:"350px"}} rows="3"/>
+      <Form.Control as="textarea" maxLength="255" style={{width:"350px"}} rows="3"
+                    placeholder="Enter board description" onChange={handleChangeDesc}
+                    value={boardDesc}
+       />
     </Form.Group>
   </Form>
   {renderEmojis()}
-  <Button style={{marginTop:"10px",backgroundColor:"transparent", border:"0.5px solid white"}} onClick={handleSubmit} className="addBoardButton">Submit</Button>
- 
+  <div style = {{display:"flex", flexDirection:"row"}}>
+
+  <Button style={{marginTop:"10px",backgroundColor:"transparent", border:"0.5px solid white", marginRight:"30px"}} onClick={handleSubmit} className="addBoardButton">Submit</Button>
+  <Emoji emoji={emojiState} size={64} />
+  </div>
 </form>
  
    
@@ -233,6 +223,8 @@ const renderCreateBoard = () => {
 </div>   
 );
 };
+
+
 const handleImport = () => {
   return (
     <ImportFile boardIds={boardOrder} importBoard={importBoard} importList={importList} 
