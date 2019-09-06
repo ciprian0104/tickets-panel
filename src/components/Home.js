@@ -54,7 +54,9 @@ const thumbnailDispatch = (id) => {
 //and this
 const renderBoardDescription = () => {
 
-  let board = boards[tempID];
+  if(boards[tempID]){
+
+  const board = boards[tempID];
 
   return (
 
@@ -83,19 +85,17 @@ const renderBoardDescription = () => {
 
   </Link>
 
-  <Button onClick={() => console.log(dispatch(deleteBoard(board.id)))}>DELETE</Button>
-
   </div>
 
   );
-
+    }else{
+      return null;
+    }
 
 }
 //and this
 const BoardThumbnail = ({ id, title, emoji }) => {
-  const handleDeleteBoard = (id) =>{
-    dispatch(deleteBoard(boardID={id}));
-  }
+
 
 
   return (
@@ -104,7 +104,6 @@ const BoardThumbnail = ({ id, title, emoji }) => {
       <Emoji  emoji={emoji} size={64} />
       </div>
       <h4>{title}</h4>
-      <Button onClick={() => handleDeleteBoard(id)}>DELETE</Button>
     </div>
   );
 };
@@ -142,7 +141,7 @@ const handleToggle = e =>{
 
 const renderEmojis = (e) => {
   return (
-  <Picker onClick={(emoji) => setEmoji(emoji)} title='Pick your emoji…' emoji='point_up' onLeave={() => setIsEmojing(false)}
+  <Picker onClick={(emoji) => setEmoji(emoji)} title='Pick your emoji…' emoji='point_up'
 
 />
 
@@ -155,14 +154,15 @@ const renderEmojis = (e) => {
 const renderBoardsList = () =>{
   return boardOrder.map(boardID => {
     const board = boards[boardID];
-
-
+    const handleDeleteBoard = () =>{
+      dispatch(deleteBoard(boardID={boardID}));
+    }
     return (
     <div style={{display:"flex", flexDirection:"row"}} key={boardID}>
 
 
 {BoardThumbnail({ ...board })} 
-
+<Button onMouseDown={handleDeleteBoard} >DELETE</Button>
 </div>
 
 
@@ -175,9 +175,7 @@ return boardOrder.map(boardID => {
 const board = boards[boardID];
 console.log("BOARD: ", board);
 
-const handleDeleteBoard = () =>{
-    dispatch(deleteBoard(boardID={boardID}));
-}
+
 
 return (
 <div style={{display:"flex", flexDirection:"row"}} key={boardID}>
