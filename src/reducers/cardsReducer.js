@@ -85,8 +85,7 @@ const cardsReducer = (state = initialState, action) => {
           if((newState[listings[i].cards[j]].list !== null) && ( newState[listings[i].cards[j]].list !== listings[i].id ))
           {
           
-            console.log("Obj: ", newState[listings[i].cards[j]].list)
-            console.log("New ID: ", listings[i].id);
+
             newState[listings[i].cards[j]].list = listings[i].id;
 
           }

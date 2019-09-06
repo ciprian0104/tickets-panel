@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: row;
     position: relative;
-    margin-top: 75px;
+    margin-top: 80px;
     flex-wrap: nowrap;
     margin-top: 80px;
     margin-top: 75px;
@@ -13,7 +13,6 @@
 .container_2 {
     border: 0.2px solid white;
     margin: 8px;
-    opacity: 0.9;
     width: 380px;
     height: 100%;
     padding: 15px 15px;
@@ -135,17 +134,17 @@
 }
 
 .icon_delete:hover {
-    color: #dc3545;
+    color: #eb9494;
 }
 
 .icon_edit:hover {
-    color: #dc3545;
+    color: #eb9494;
 }
 
 .openFormButtonGroup {
     display: flex;
     cursor: pointer;
-    margin: 6px 15px 15px 15px;
+    margin: 10px 15px 15px 15px;
     border-radius: 3px;
     height: 36px;
     min-width: 272px;
@@ -284,7 +283,7 @@
 }
 
 .p_class:hover {
-    color: red;
+    color: #eb9494;
 }
 
 .plus_icon {
@@ -294,7 +293,7 @@
 }
 
 .plus_icon:hover {
-    color: red;
+    color: #eb9494;
 }
 
 .icon_arrow {
@@ -302,7 +301,7 @@
 }
 
 .icon_arrow:hover {
-    color: red;
+    color: #eb9494;
 }
 .button_float {
     float: right;

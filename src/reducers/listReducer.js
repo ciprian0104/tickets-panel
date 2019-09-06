@@ -60,7 +60,6 @@ const listsReducer = (state = initialState, action) => {
         // find the list where the drag ended
         //const cards = this.props;
         const listEnd = state[droppableIdEnd];
-        console.log("Cards: ", card);
         // put the card in the new list
         listEnd.cards.splice(droppableIndexEnd, 0, ...card);
         return {

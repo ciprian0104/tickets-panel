@@ -3,7 +3,7 @@ import TrelloCard from "./TrelloCard";
 import CreateCardForm from "./CreateCardForm";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import './App.css';
-
+import styled from 'styled-components';
 import { connect } from "react-redux";
 import { editTitle, deleteList } from "../actions";
 
@@ -13,6 +13,32 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import Form from "react-bootstrap/Form";
 import { MDBContainer, MDBScrollbar } from "mdbreact";
 library.add(faTrash);
+
+const Container = styled.div`
+
+    border: 0.2px solid white;
+    width: 390px;
+    margin: 10px;
+
+    height: 100%;
+    padding: 15px 15px;
+    word-wrap: break-word;
+    display: flex;
+    background-color: ${props => (props.isDragging ? '#eb9494' : null)};
+
+`;
+
+const CardList = styled.div`
+      width: 373px;
+
+      background-color: ${props => (props.isDraggingOver ? '#eb9494' : null)};
+
+`;
+
+
+
+
+
 const scrollContainerStyle = { maxHeight: "775px", paddingRight: "15px" };
 
 const TrelloList = ({ id, title, cards, listID, index, dispatch }) => {
@@ -56,21 +82,26 @@ const TrelloList = ({ id, title, cards, listID, index, dispatch }) => {
   return (
 
     <Draggable draggableId={String(listID)} index={index}>
-      {provided => (
-        <div className="container_2"
+      {(provided, snapshot) => (
+        <Container
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
+          isDragging={snapshot.isDragging}
         >
 
           <Droppable droppableId={String(listID)} type="card">
 
-            {provided => (
+            {(provided, snapshot) => (
 
-              <div style={{ width: "353px" }}
+              <CardList 
 
 
-                {...provided.droppableProps} ref={provided.innerRef}>
+                {...provided.droppableProps} ref={provided.innerRef}
+                
+                isDraggingOver={snapshot.isDraggingOver}
+
+                >
 
 
                 {
@@ -85,7 +116,11 @@ const TrelloList = ({ id, title, cards, listID, index, dispatch }) => {
                     </div>
                   )}
                 <MDBContainer>
-                  <div>
+                  <div
+                
+
+                  
+                  >
                     {cards.map((card, index) => (
 
                       <TrelloCard
@@ -105,13 +140,13 @@ const TrelloList = ({ id, title, cards, listID, index, dispatch }) => {
               
                   </div>
                 </MDBContainer>
-              </div>
+              </CardList>
 
 
             )}
           </Droppable>
 
-        </div>
+        </Container>
       )}
     </Draggable>
 

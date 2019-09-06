@@ -125,7 +125,7 @@ class CreateCardForm extends React.Component {
         onHide={this.closeForm}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Add another card</Modal.Title>
+          <Modal.Title>{list ? "Add another list" : "Add another card"}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div>
@@ -163,26 +163,7 @@ class CreateCardForm extends React.Component {
 
                   </div>
                 </Card.Body>
-
-            
-
-                {/*
-           <TextField
-            placeholder={placeholder}
-            value={this.state.text}
-            onChange={this.handleChange('text')}
-          />
-        
-
-
-        <TextField
-            placeholder={secondPlaceholder}
-            value={this.state.title}
-            onChange={this.handleChange('title')}
-           /> */}
-
-
-              </Card>
+                </Card>
 
               <div className="buttonContainer">
                 <Button style={{ color: 'white', background: '#5aac44' }}

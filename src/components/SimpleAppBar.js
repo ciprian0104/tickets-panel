@@ -7,15 +7,14 @@ import { faAngleDoubleLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
+import 'emoji-mart/css/emoji-mart.css';
+import { Emoji } from 'emoji-mart';
+
 library.add(faAngleDoubleLeft);
 
-/**To be modified
-TODO: Add functionality later
-style={{width:"100%", position:"absolute"}}
-*/
-export default function SimpleAppBar({ title, download }) {
+
+export default function SimpleAppBar({ title, download, emoFace }) {
   const [truth, setTruth] = useState(false);
   if(truth){
     download.click();
@@ -23,22 +22,27 @@ export default function SimpleAppBar({ title, download }) {
   }
   return (
 
-<Navbar bg="secondary" style={{ width: "100%" }} expanded="true">
+<Navbar bg="secondary" style={{ width: "100%"}} expanded="true">
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
     <Nav className="mr-auto">
     <Link to="/">
-        <FontAwesomeIcon className="icon_arrow" color="white" size="3x" icon={faAngleDoubleLeft} />
+        <FontAwesomeIcon className="icon_arrow" color="white" size="4x" icon={faAngleDoubleLeft} />
       </Link>
-      <h4 style={{ color: "white", marginLeft: "20px", marginTop: "7px" }}>{title}</h4>
+      <div style={{marginLeft:"20px", display:"flex", flexDirection:"row", marginTop:"10px"}}>
+      <Emoji emoji={emoFace} size={48}/>
+      <h4 style={{ color: "white", marginTop: "10px", marginLeft: "5px" }}>{title}</h4>
+
+      </div>
 
     </Nav>
     <Nav>
     <Button variant="outline-light" onClick={() => setTruth(true)}> 
       Download Board
-      </Button>    </Nav>
+      </Button>    
+    </Nav>
   </Navbar.Collapse>
 </Navbar>
 
   );
-}
+};
