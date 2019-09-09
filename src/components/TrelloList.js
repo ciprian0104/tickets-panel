@@ -48,6 +48,7 @@ const TrelloList = ({ id, title, cards, listID, index, dispatch }) => {
   const renderEditInput = () => {
     return (
       <Form.Control
+        style={{ width:"360px", height:"60px"}}
         as="textarea"
         className="editList"
         value={listTitle}

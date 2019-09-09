@@ -261,6 +261,8 @@ return (
     </MDBBtn>
         <MDBCollapse className ="a" id="basicCollapse2" isOpen={!collapsedCreate}>
         {renderCreateBoard()}
+        
+        
         </MDBCollapse>
       </>
 <>
