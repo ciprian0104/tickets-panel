@@ -147,11 +147,11 @@ class CreateCardForm extends React.Component {
 
                     <Form.Group>
                       <Form.Label>Description input</Form.Label>
-                      <Form.Control size="sm" as="textarea" rows="3" maxLength="200" value={this.state.title} onChange={this.handleChange('title')} />
+                      <Form.Control  as="textarea" rows="3" maxLength="200" style={{width:"400px"}} value={this.state.title} onChange={this.handleChange('title')} />
 
                       <Form.Label>Select priority</Form.Label>
                       <div className="prioritySelector">
-                        <Form.Control size="sm" as="select" defaultValue='success' onChange={this.handleChangePriority}>
+                        <Form.Control style={{width:"150px"}} as="select" defaultValue='success' onChange={this.handleChangePriority}>
                           <option></option>
                           <option value={'danger'}>High</option>
                           <option value={'warning'}>Medium</option>
