@@ -24,14 +24,14 @@ const Container = styled.div`
     padding: 15px 15px;
     word-wrap: break-word;
     display: flex;
-    background-color: ${props => (props.isDragging ? '#eb9494' : null)};
+    background-color: ${props => (props.isDragging ? 'darkgrey' : null)};
 
 `;
 
 const CardList = styled.div`
       width: 373px;
 
-      background-color: ${props => (props.isDraggingOver ? '#eb9494' : null)};
+      background-color: ${props => (props.isDraggingOver ? 'darkgrey' : null)};
 
 `;
 
