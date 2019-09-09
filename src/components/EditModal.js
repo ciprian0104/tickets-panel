@@ -20,20 +20,20 @@ const EditModal = React.memo(
             onHide={()=>closeForm(false)}
             >
               <Modal.Header closeButton>
-                <Modal.Title>Modal heading</Modal.Title>
+                <Modal.Title>Edit Card</Modal.Title>
               </Modal.Header>
               <Modal.Body>
       
       <Form>
         <Form.Group>
-          <Form.Control type="text" placeholder={titleholder} maxLength="15"
+          <Form.Control style={{width:"440px",height:"35px"}}  type="text" placeholder={titleholder} maxLength="15"
           value={title} onChange={e =>onChangeTitle(e)}></Form.Control>
         </Form.Group>
         <Form.Group>
-          <Form.Control type="text" maxLength="200"placeholder={placeholder} 
+          <Form.Control style={{width:"440px",height:"35px"}}  type="text" maxLength="200"placeholder={placeholder} 
           value={text} onChange={e =>onChangeText(e)}></Form.Control>
         </Form.Group>
-        <Form.Control size="sm" as="select" defaultValue={priority} onChange={e=> onChangePriority(e)}>
+        <Form.Control  style={{width:"440px",height:"35px"}}  as="select" defaultValue={priority} onChange={e=> onChangePriority(e)}>
               <option></option>
               <option value={'danger'}>High</option>
               <option value={'warning'}>Medium</option>

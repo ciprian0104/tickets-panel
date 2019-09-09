@@ -25,12 +25,13 @@ const EditCardForm = React.memo(
       <Card className="add_card">
       <TextField
             placeholder={titleholder}
-
+            style={{width:"440px",height:"24px"}}
             value={title}
             onChange={e => onChangeTitle(e)}
           />
         <TextField
           placeholder={placeholder}
+          style={{width:"440px",height:"24px"}}
           value={text}
           onChange={e => onChangeText(e)}
         />
@@ -39,7 +40,7 @@ const EditCardForm = React.memo(
       <div className="colorMenuButton">Priority</div>
       </ContextMenuTrigger>
 
-      <select defaultValue={priority} onChange={e=> onChangePriority(e)}
+      <select style={{width:"440px",height:"24px"}} defaultValue={priority} onChange={e=> onChangePriority(e)}
                 className="form-control">
                     <option></option>
                     <option value={'red'}>High</option>
