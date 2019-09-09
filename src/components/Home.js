@@ -62,7 +62,7 @@ const handleDeleteBoard = () =>{
       
       }}>
       
-      <Emoji  emoji={board.emoji} size={80} />
+      <Emoji  emoji={board.emoji} size={80} /> 
       
       <h1 style={{color:"white"}}>{board.title}</h1>
     <div style={{display:"flex",flexDirection:"row"}}>
@@ -116,12 +116,13 @@ const BoardThumbnail = ({ id, title, emoji }) => {
     setIsEmojing(false);
     e.preventDefault();
     
-    if(newBoardTitle ){
+    if(newBoardTitle){
       
       console.log("Emoji state obj: ", emojiState.length);
       dispatch(addBoard(emojiState, newBoardTitle));
       setNewBoardTitle("");
       setEmoji({});
+      
     }else{
       return;
     }
@@ -225,7 +226,6 @@ const renderCreateBoard = () => {
   </Form>
   {renderEmojis()}
   <Button style={{marginTop:"10px",backgroundColor:"transparent", border:"0.5px solid white"}} onClick={handleSubmit} className="addBoardButton">Submit</Button>
- 
 </form>
  
    
@@ -269,6 +269,8 @@ return (
     </MDBBtn>
         <MDBCollapse className ="a" id="basicCollapse2" isOpen={!collapsedCreate}>
         {renderCreateBoard()}
+        
+        
         </MDBCollapse>
       </>
 <>
