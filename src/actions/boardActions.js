@@ -8,12 +8,12 @@ export const setActiveBoard = id => {
   };
 };
 
-export const addBoard = (emoji, title) => {
+export const addBoard = (emoji, title, description) => {
   const id = uuid();
 
   return {
     type: CONSTANTS.ADD_BOARD,
-    payload: {emoji, title, id }
+    payload: {emoji, title, description, id }
   };
 };
 
@@ -26,18 +26,18 @@ export const deleteBoard = boardID => {
   };
 };
 
-export const importBoard = (id, emoji, title, lists) => {
+export const importBoard = (id, emoji, title, description, lists) => {
 
   return {
     type: CONSTANTS.IMPORT_BOARD,
-    payload: { id, emoji, title, lists }
+    payload: { id, emoji, title, description, lists }
   };
 };
 
-export const editBoard = (id, newEmoji, newTitle) =>{
+export const editBoard = (id, newEmoji, newTitle, newDescription) =>{
 
   return {
     type: CONSTANTS.EDIT_BOARD,
-    payload: {id, newEmoji, newTitle}
+    payload: {id, newEmoji, newTitle, newDescription}
   };
 };

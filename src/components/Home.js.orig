@@ -67,6 +67,10 @@ const renderBoardDescription = () => {
         <h1 style={{color:"white"}}>{board.title}</h1>
       <div style={{display:"flex",flexDirection:"row"}}>
       
+<<<<<<< HEAD
+      <Emoji  emoji={board.emoji} size={80} /> 
+=======
+>>>>>>> master
       
       <Link
   
@@ -113,14 +117,22 @@ const renderBoardDescription = () => {
     setIsEmojing(false);
     e.preventDefault();
     
+<<<<<<< HEAD
+    if(newBoardTitle){
+=======
     if(newBoardTitle && boardDesc){
+>>>>>>> master
       
       dispatch(addBoard(emojiState, newBoardTitle, boardDesc));
       setNewBoardTitle("");
       setBoardDesc("");
       setEmoji({});
+<<<<<<< HEAD
+      
+=======
       toggleNewBoard();
     
+>>>>>>> master
     }else{
       return;
     }
@@ -211,11 +223,15 @@ const renderCreateBoard = () => {
     </Form.Group>
   </Form>
   {renderEmojis()}
+<<<<<<< HEAD
+  <Button style={{marginTop:"10px",backgroundColor:"transparent", border:"0.5px solid white"}} onClick={handleSubmit} className="addBoardButton">Submit</Button>
+=======
   <div style = {{display:"flex", flexDirection:"row"}}>
 
   <Button style={{marginTop:"10px",backgroundColor:"transparent", border:"0.5px solid white", marginRight:"30px"}} onClick={handleSubmit} className="addBoardButton">Submit</Button>
   <Emoji emoji={emojiState} size={64} />
   </div>
+>>>>>>> master
 </form>
  
    
