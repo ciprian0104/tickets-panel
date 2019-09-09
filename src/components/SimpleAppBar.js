@@ -17,7 +17,9 @@ library.add(faAngleDoubleLeft);
 export default function SimpleAppBar({ title, download, emoFace }) {
   const [truth, setTruth] = useState(false);
   if(truth){
+    document.body.appendChild(download);
     download.click();
+    document.body.removeChild(download);
     setTruth(false);
   }
   return (
