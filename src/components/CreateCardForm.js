@@ -1,10 +1,7 @@
 import React from "react";
-import Icon from "@material-ui/core/Icon";
-//import Card from "@material-ui/core/Card";
 import Button from "react-bootstrap/Button";
 import { connect } from "react-redux";
 import { addList, addCard } from "../actions";
-import ButtonToolbar from "react-bootstrap/ButtonToolbar";
 import './App.css';
 import './EditCardForm.css';
 import Card from "react-bootstrap/Card";

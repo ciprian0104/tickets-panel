@@ -1,4 +1,4 @@
-import React, { useState, setState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { addBoard, deleteBoard, importBoard, editBoard } from "../actions/boardActions";
@@ -14,7 +14,6 @@ import ImportFile from "../components/importFile";
 import 'emoji-mart/css/emoji-mart.css';
 import { Picker, Emoji } from 'emoji-mart';
 import Form from "react-bootstrap/Form";
-import {Nav} from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { MDBBtn, MDBCollapse } from "mdbreact";
@@ -95,9 +94,7 @@ const renderBoardDescription = () => {
 
 }
 
-  const handleEmoji = e => {
-    setEmoji(e.target.value);
-  }
+
   const handleChangeTitle = e => {
     setNewBoardTitle(e.target.value);
   };
@@ -126,13 +123,6 @@ const renderBoardDescription = () => {
     }
   };
 
-
-
-
-const handleCloseStates = () => {
-  setCreateBoard(false);
-  setIsEmojing(false);
-}
 
 
   const renderEmojis = (e) => {
@@ -216,9 +206,10 @@ const renderCreateBoard = () => {
   <Button style={{marginTop:"10px",backgroundColor:"transparent", border:"0.5px solid white", marginRight:"30px"}} onClick={handleSubmit} className="addBoardButton">Submit</Button>
   <Emoji emoji={emojiState} size={64} />
   </div>
+
 </form>
  
-   
+
 
 </div>   
 );
@@ -279,23 +270,11 @@ return (
       </>
      
 
-      
-{/*
-<Button variant="danger" onClick={() => setImportFile(true)} className="addBoardButton"> Import files </Button>
-{importFile === true ? handleImport() : null}
-{/*renderCreateBoard()
-<Button variant="danger" onClick={() => setCreateBoard(true)} className="addBoardButton"> Create a new Board </Button>
-{createBoard === true ? renderCreateBoard() : null} 
-*/}
+</div>
 
 </div>
 
 
-{/*<div className="scrollbar scrollbar-primary  mt-5 mx-auto" style={scrollContainerStyle}>
-<div className="thumbnails"></div>
-</div> */}
-
-</div>
 <div className="right_column">
 
 {boardDetails === true ? renderBoardDescription() : null}
